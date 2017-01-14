@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeLite_Project Name="core" InternalType="User templates" Version="10.0.0">
+  <Plugins>
+    <Plugin Name="qmake">
+      <![CDATA[00040001N0011Win32-Debug0000000000000001N0013Win32-Release0000000000000001N0011Win64-Debug0000000000000001N0013Win64-Release000000000000]]>
+    </Plugin>
+    <Plugin Name="CMakePlugin">
+      <![CDATA[[{
+  "name": "Win32-Debug",
+  "enabled": false,
+  "buildDirectory": "build",
+  "sourceDirectory": "$(ProjectPath)",
+  "generator": "",
+  "buildType": "",
+  "arguments": [],
+  "parentProject": ""
+ }, {
+  "name": "Win32-Release",
+  "enabled": false,
+  "buildDirectory": "build",
+  "sourceDirectory": "$(ProjectPath)",
+  "generator": "",
+  "buildType": "",
+  "arguments": [],
+  "parentProject": ""
+ }]]]>
+    </Plugin>
+  </Plugins>
+  <Description/>
+  <Dependencies/>
+  <VirtualDirectory Name="src">
+    <File Name="src/wxFrame.cpp"/>
+    <File Name="src/wxApp.cpp"/>
+    <File Name="src/wxPanel.cpp"/>
+    <File Name="src/wxButton.cpp"/>
+    <File Name="src/wxWindow.cpp"/>
+  </VirtualDirectory>
+  <Dependencies Name="Win32-Debug">
+    <Project Name="base"/>
+  </Dependencies>
+  <Dependencies Name="Win32-Release">
+    <Project Name="base"/>
+  </Dependencies>
+  <Dependencies Name="Win64-Debug">
+    <Project Name="base"/>
+  </Dependencies>
+  <Dependencies Name="Win64-Release">
+    <Project Name="base"/>
+  </Dependencies>
+  <Settings Type="Dynamic Library">
+    <GlobalSettings>
+      <Compiler Options="" C_Options="" Assembler="">
+        <IncludePath Value="."/>
+        <IncludePath Value="backend"/>
+        <IncludePath Value="include"/>
+        <Preprocessor Value="EMINGW"/>
+        <Preprocessor Value="EWINDOWS"/>
+        <Preprocessor Value="WXEUMSW"/>
+      </Compiler>
+      <Linker Options="">
+        <LibraryPath Value="."/>
+        <LibraryPath Value="$(WXWIN)/lib/gcc_lib"/>
+        <LibraryPath Value="./bin/$(ConfigurationName)"/>
+      </Linker>
+      <ResourceCompiler Options=""/>
+    </GlobalSettings>
+    <Configuration Name="Win32-Debug" CompilerType="MinGW ( TDM-GCC-32 )" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-g;-m32;$(shell wx-config --cxxflags --debug=yes --unicode=yes)" C_Options="-g;-m32;$(shell wx-config --cflags --debug=yes --unicode=yes)" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+        <Preprocessor Value="EDEBUG"/>
+      </Compiler>
+      <Linker Options="-m32;-Wl,--whole-archive;-lwxmsw31ud_core;-Wl,--no-whole-archive;-lwxeud_base;-lkernel32;-luser32;-lgdi32;-lcomdlg32;-lwinspool;-lwinmm;-lshell32;-lcomctl32;-lversion;-lshlwapi;-lole32;-loleaut32;-luuid;-lrpcrt4;-ladvapi32;-lwsock32" Required="yes"/>
+      <ResourceCompiler Options="-F pe-i386" Required="no"/>
+      <General OutputFile="./bin/$(ConfigurationName)/libwxeud_$(ProjectName).dll" IntermediateDirectory="./build/$(ProjectName)/$(ConfigurationName)" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="" PauseExecWhenProcTerminates="no" IsGUIProgram="no" IsEnabled="yes"/>
+      <BuildSystem Name="Default"/>
+      <Environment EnvVarSetName="wxWidgets-3.1.0 (32-bit)" DbgSetName="&lt;Use Defaults&gt;">
+        <![CDATA[WXCFG=gcc_lib\mswud]]>
+      </Environment>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="no">
+        <DebuggerSearchPaths/>
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="no">
+        <RebuildCommand/>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+      <Completion EnableCpp11="no" EnableCpp14="no">
+        <ClangCmpFlagsC/>
+        <ClangCmpFlags/>
+        <ClangPP/>
+        <SearchPaths/>
+      </Completion>
+    </Configuration>
+    <Configuration Name="Win32-Release" CompilerType="MinGW ( TDM-GCC-32 )" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-O2;-m32;$(shell wx-config --cxxflags --debug=no --unicode=yes)" C_Options="-O2;-m32;$(shell wx-config --cflags --debug=no --unicode=yes)" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0"/>
+      <Linker Options="-s;-m32;-Wl,--whole-archive;-lwxmsw31u_core;-Wl,--no-whole-archive;-lwxeu_base;-lkernel32;-luser32;-lgdi32;-lcomdlg32;-lwinspool;-lwinmm;-lshell32;-lcomctl32;-lversion;-lshlwapi;-lole32;-loleaut32;-luuid;-lrpcrt4;-ladvapi32;-lwsock32" Required="yes"/>
+      <ResourceCompiler Options="-F pe-i386" Required="no"/>
+      <General OutputFile="./bin/$(ConfigurationName)/libwxeu_$(ProjectName).dll" IntermediateDirectory="./build/$(ProjectName)/$(ConfigurationName)" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="" PauseExecWhenProcTerminates="no" IsGUIProgram="no" IsEnabled="yes"/>
+      <BuildSystem Name="Default"/>
+      <Environment EnvVarSetName="wxWidgets-3.1.0 (32-bit)" DbgSetName="&lt;Use Defaults&gt;">
+        <![CDATA[WXCFG=gcc_lib\mswu]]>
+      </Environment>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="no">
+        <DebuggerSearchPaths/>
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="no">
+        <RebuildCommand/>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+      <Completion EnableCpp11="no" EnableCpp14="no">
+        <ClangCmpFlagsC/>
+        <ClangCmpFlags/>
+        <ClangPP/>
+        <SearchPaths/>
+      </Completion>
+    </Configuration>
+    <Configuration Name="Win64-Debug" CompilerType="MinGW ( TDM-GCC-32 )" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-g;$(shell wx-config --cxxflags --debug=yes --unicode=yes)" C_Options="-g;$(shell wx-config --cflags --debug=yes --unicode=yes)" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+        <Preprocessor Value="EDEBUG"/>
+      </Compiler>
+      <Linker Options="-Wl,--whole-archive;-lwxmsw31ud_core;-Wl,--no-whole-archive;-lwxeud_base;-lkernel32;-luser32;-lgdi32;-lcomdlg32;-lwinspool;-lwinmm;-lshell32;-lcomctl32;-lversion;-lshlwapi;-lole32;-loleaut32;-luuid;-lrpcrt4;-ladvapi32;-lwsock32" Required="yes"/>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="./bin/$(ConfigurationName)/libwxeud_$(ProjectName).dll" IntermediateDirectory="./build/$(ProjectName)/$(ConfigurationName)" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="" PauseExecWhenProcTerminates="no" IsGUIProgram="no" IsEnabled="yes"/>
+      <BuildSystem Name="Default"/>
+      <Environment EnvVarSetName="wxWidgets-3.1.0 (64-bit)" DbgSetName="&lt;Use Defaults&gt;">
+        <![CDATA[WXCFG=gcc_lib\mswud]]>
+      </Environment>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="no">
+        <DebuggerSearchPaths/>
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="no">
+        <RebuildCommand/>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+      <Completion EnableCpp11="no" EnableCpp14="no">
+        <ClangCmpFlagsC/>
+        <ClangCmpFlags/>
+        <ClangPP/>
+        <SearchPaths/>
+      </Completion>
+    </Configuration>
+    <Configuration Name="Win64-Release" CompilerType="MinGW ( TDM-GCC-32 )" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-O2;$(shell wx-config --cxxflags --debug=no --unicode=yes)" C_Options="-O2;$(shell wx-config --cflags --debug=no --unicode=yes)" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0"/>
+      <Linker Options="-s;-Wl,--whole-archive;-lwxmsw31u_core;-Wl,--no-whole-archive;-lwxeu_base;-lkernel32;-luser32;-lgdi32;-lcomdlg32;-lwinspool;-lwinmm;-lshell32;-lcomctl32;-lversion;-lshlwapi;-lole32;-loleaut32;-luuid;-lrpcrt4;-ladvapi32;-lwsock32" Required="yes"/>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="./bin/$(ConfigurationName)/libwxeu_$(ProjectName).dll" IntermediateDirectory="./build/$(ProjectName)/$(ConfigurationName)" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="" PauseExecWhenProcTerminates="no" IsGUIProgram="no" IsEnabled="yes"/>
+      <BuildSystem Name="Default"/>
+      <Environment EnvVarSetName="wxWidgets-3.1.0 (64-bit)" DbgSetName="&lt;Use Defaults&gt;">
+        <![CDATA[WXCFG=gcc_lib\mswu]]>
+      </Environment>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="no">
+        <DebuggerSearchPaths/>
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="no">
+        <RebuildCommand/>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+      <Completion EnableCpp11="no" EnableCpp14="no">
+        <ClangCmpFlagsC/>
+        <ClangCmpFlags/>
+        <ClangPP/>
+        <SearchPaths/>
+      </Completion>
+    </Configuration>
+  </Settings>
+</CodeLite_Project>
