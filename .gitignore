@@ -1,3 +1,4 @@
+.build-linux64-debug/
 .build-win32-debug/
 .build-win32-release/
 .build-win64-debug/

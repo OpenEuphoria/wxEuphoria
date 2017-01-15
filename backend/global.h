@@ -35,8 +35,10 @@ typedef signed   char   schar;
 //TODO if we are on 64bit linux, then we should fall back to the EBSD version
 #if defined(ELINUX) || defined(EMINGW)
 	/* use glibc 64bit variants */
+#ifndef _LARGEFILE_SOURCE
 #	define _LARGEFILE_SOURCE
 #	define _LARGEFILE64_SOURCE
+#endif
 	/* note that LARGEFILE* macros do not work on MinGW */
 #	include <sys/types.h>
 #ifndef EMINGW

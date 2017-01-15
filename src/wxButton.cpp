@@ -1,6 +1,6 @@
 
 #include <wx/button.h>
-#include "WxEuphoria.h"
+#include "wxEuphoria.h"
 
 extern "C" {
 

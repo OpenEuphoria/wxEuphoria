@@ -18,6 +18,7 @@ public:
 	
 	int OnExit() {
 		wxUninitialize();
+		return 0;
 	}
 };
 

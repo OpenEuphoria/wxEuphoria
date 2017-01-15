@@ -54,6 +54,10 @@ public function wx_library( sequence name )
 		
 	end for
 	
+	if lib = NULL then
+		wxCrash( "library %s not found\n", {name} )
+	end if
+	
 	return lib
 end function
 

@@ -69,9 +69,12 @@ public procedure SetTopWindow( wxApp self, wxWindow window )
 	wx_proc( WXAPP_SETTOPWINDOW, {self,window} )
 end procedure
 
-public procedure wxMain( wxWindow window )
+public procedure wxMain( wxWindow window, wxApp app = NULL )
 	
-	wxApp app = wxApp:new()
+	if app = NULL then
+		app = wxApp:new()
+	end if
+
 	wxApp:SetTopWindow( app, window )
 	
 	wxWindow:Show( window )

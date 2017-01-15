@@ -1,4 +1,5 @@
 
+#include "wx/init.h"
 #include "wxEuphoria.h"
 
 #ifdef WXEUMSW

@@ -55,16 +55,54 @@
         <IncludePath Value="."/>
         <IncludePath Value="backend"/>
         <IncludePath Value="include"/>
-        <Preprocessor Value="EMINGW"/>
-        <Preprocessor Value="EWINDOWS"/>
-        <Preprocessor Value="WXEUMSW"/>
+        <Preprocessor Value="ELINUX"/>
+        <Preprocessor Value="WXEUGTK"/>
       </Compiler>
       <Linker Options="">
         <LibraryPath Value="."/>
-        <LibraryPath Value="$(WXWIN)/lib/gcc_lib"/>
+        <LibraryPath Value="$(WXWIN)/build/gtk-debug/lib"/>
       </Linker>
       <ResourceCompiler Options=""/>
     </GlobalSettings>
+    <Configuration Name="Linux64-Debug" CompilerType="GCC" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-g;-fPIC;$(shell $(WXWIN)/build/gtk-debug/wx-config --cxxflags --debug=yes --unicode=yes)" C_Options="-g;-fPIC;$(shell $(WXWIN)/build/gtk-debug/wx-config --cflags --debug=yes --unicode=yes)" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+        <Preprocessor Value="EDEBUG"/>
+      </Compiler>
+      <Linker Options="-pthread;-Wl,--whole-archive;-lwx_baseu-3.1;-lwxregexu-3.1;-lwxexpat-3.1;-lwxtiff-3.1;-lwxjpeg-3.1;-lwxpng-3.1;-lwxzlib-3.1;-Wl,--no-whole-archive;-ldl;-lm" Required="yes"/>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="./bin/$(ConfigurationName)/libwxeud_$(ProjectName).so" IntermediateDirectory="./build/$(ProjectName)/$(ConfigurationName)" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="" PauseExecWhenProcTerminates="no" IsGUIProgram="no" IsEnabled="yes"/>
+      <BuildSystem Name="Default"/>
+      <Environment EnvVarSetName="wxWidgets-3.1.0 (64-bit)" DbgSetName="&lt;Use Defaults&gt;">
+        <![CDATA[PATH=$WXWIN/build/gtk-debug:$PATH]]>
+      </Environment>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="no">
+        <DebuggerSearchPaths/>
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="no">
+        <RebuildCommand/>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+      <Completion EnableCpp11="no" EnableCpp14="no">
+        <ClangCmpFlagsC/>
+        <ClangCmpFlags/>
+        <ClangPP/>
+        <SearchPaths/>
+      </Completion>
+    </Configuration>
     <Configuration Name="Win32-Debug" CompilerType="MinGW ( TDM-GCC-32 )" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-g;-m32;$(shell wx-config --cxxflags --debug=yes --unicode=yes)" C_Options="-g;-m32;$(shell wx-config --cflags --debug=yes --unicode=yes)" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <Preprocessor Value="EDEBUG"/>
