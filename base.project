@@ -73,7 +73,7 @@
       <General OutputFile="./bin/$(ConfigurationName)/libwxeud_$(ProjectName).so" IntermediateDirectory="./build/$(ProjectName)/$(ConfigurationName)" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="" PauseExecWhenProcTerminates="no" IsGUIProgram="no" IsEnabled="yes"/>
       <BuildSystem Name="Default"/>
       <Environment EnvVarSetName="wxWidgets-3.1.0 (64-bit)" DbgSetName="&lt;Use Defaults&gt;">
-        <![CDATA[PATH=$WXWIN/build/gtk-debug:$PATH]]>
+        <![CDATA[]]>
       </Environment>
       <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="no">
         <DebuggerSearchPaths/>

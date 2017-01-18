@@ -8,6 +8,10 @@ object WXEUAPI_CORE wxPanel_new( object parent, object id, object pos, object si
 {
 	wxPanel* panel = new wxPanel( (wxWindow*)parent, get_int(id), get_point(pos), get_size(size), get_int(style), get_string(name) );
 	
+	wxDeRef( pos );
+	wxDeRef( size );
+	wxDeRef( name );
+	
 	return BOX_INT( panel );
 }
 

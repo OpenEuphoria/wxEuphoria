@@ -3,6 +3,14 @@
 #include <wx/frame.h>
 #include "wxEuphoria.h"
 
+class EuApp : public wxApp, public EuAppBase
+{
+public:
+	EuApp( EuCallFunc func, EuCallProc proc, object rtfatal );
+	bool OnInit();
+	int OnExit();
+};
+
 class EuFrame : public wxFrame
 {
 public:

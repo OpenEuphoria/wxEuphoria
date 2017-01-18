@@ -18,3 +18,4 @@ public include "wx/frame.e"
 public include "wx/gdicmn.e"
 public include "wx/button.e"
 
+--wxApp app = wxApp:new()

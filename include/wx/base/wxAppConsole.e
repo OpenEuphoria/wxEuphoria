@@ -2,8 +2,8 @@
 namespace wxAppConsole
 
 include "wx/dll.e"
-include "wx/defs.e"
 include "wx/base.e"
+include "wx/defs.e"
 include "wx/string.e"
 
 public include "wx/base/wxEvtHandler.e"
@@ -126,3 +126,4 @@ end function
 public function GetInstance()
 	return wx_func( WXAPPCONSOLE_GETINSTANCE, {} )
 end function
+

@@ -26,10 +26,15 @@ extern "C" {
 
 object WXEUAPI_CORE wxApp_new( object func, object proc, object rtfatal )
 {
-	EuApp* app = new EuApp( (EuCallFunc)func, (EuCallProc)proc, rtfatal );
+	EuApp* app = (EuApp*)wxApp::GetInstance();
 	
-	wxInitialize();
-	wxApp::SetInstance( app );
+	if ( app == NULL ) {
+		app = new EuApp( (EuCallFunc)func, (EuCallProc)proc, rtfatal );
+		
+		wxInitialize();
+		wxApp::SetInstance( app );
+	}
+	
 	
 	return BOX_INT( app );
 }
@@ -110,6 +115,10 @@ void WXEUAPI_CORE wxApp_SetTopWindow( object self, object window )
 object WXEUAPI_CORE wxApp_wxMessageBox( object message, object caption, object style, object parent, object x, object y )
 {
 	int result = wxMessageBox( get_string(message), get_string(caption), get_int(style), (wxWindow*)parent, get_int(x), get_int(y) );
+	
+	wxDeRef( message );
+	wxDeRef( caption );
+	
 	return BOX_INT( result );
 }
 

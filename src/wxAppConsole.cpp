@@ -25,10 +25,14 @@ extern "C" {
 
 object WXEUAPI_BASE wxAppConsole_new( object func, object proc, object rtfatal )
 {
-	EuAppConsole* app = new EuAppConsole( (EuCallFunc)func, (EuCallProc)proc, rtfatal );
+	EuAppConsole* app = (EuAppConsole*)wxAppConsole::GetInstance();
 	
-	wxInitialize();
-	wxAppConsole::SetInstance( app );
+	if ( app == NULL ) {
+		app = new EuAppConsole( (EuCallFunc)func, (EuCallProc)proc, rtfatal );
+		
+		wxInitialize();
+		wxAppConsole::SetInstance( app );
+	}
 	
 	return BOX_INT( app );
 }
