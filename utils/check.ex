@@ -47,10 +47,10 @@ function check_eu( sequence file, sequence func_info )
 	integer f_typename  = 0
 	integer f_routine   = 0
 	
---	if equal( file_class, "wxEuphoria" ) then
---		-- type name not required
---		f_typename = 1
---	end if
+	if equal( file_class, "wxEuphoria" ) then
+		-- type name not required
+		f_typename = 1
+	end if
 	
 	object line = gets( fn )
 	integer line_no = 1
@@ -256,7 +256,7 @@ end function
 
 procedure main()
 	
-	sequence path = startup_dir()
+	sequence path = current_dir()
 	integer func = routine_id( "look_at" )
 	
 	integer exit_code = walk_dir( path, func, TRUE )
