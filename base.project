@@ -44,6 +44,8 @@
     <File Name="src/wxEuphoria.cpp"/>
     <File Name="src/wxAppConsole.cpp"/>
     <File Name="src/wxEvtHandler.cpp"/>
+    <File Name="src/wxObject.cpp"/>
+    <File Name="src/wxClassInfo.cpp"/>
   </VirtualDirectory>
   <Dependencies Name="Win32-Debug"/>
   <Dependencies Name="Win32-Release"/>

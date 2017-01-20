@@ -34,5 +34,9 @@ export constant
 	WXEUPHORIA_INITIALIZE							= wx_define( base, "wxEuphoria_Initialize",                         1, FALSE ),
 	WXEVTHANDLER_CONNECT							= wx_define( base, "wxEvtHandler_Connect",                          4, FALSE ),
 	WXEVTHANDLER_GETOBJECT							= wx_define( base, "wxEvtHandler_GetObject",                        0, TRUE  ),
+	WXOBJECT_GETCLASSINFO							= wx_define( base, "wxObject_GetClassInfo",                         1, TRUE  ),
+	WXOBJECT_GETREFDATA								= wx_define( base, "wxObject_GetRefData",                           1, TRUE  ),
+	WXOBJECT_ISKINDOF								= wx_define( base, "wxObject_IsKindOf",                             2, TRUE  ),
+	WXOBJECT_ISSAMEAS								= wx_define( base, "wxObject_IsSameAs",                             2, TRUE  ),
 $
 
