@@ -24,16 +24,34 @@ using namespace std;
 #undef LENGTH
 #endif
 
+static inline object box_int( intptr_t x );
+static inline intptr_t get_int( object x );
+
 #define BOX_INT(x) box_int( (intptr_t)x )
 #define UNBOX_INT(x) unbox_int( (intptr_t)x )
 #define LENGTH(s1) ((s1_ptr)SEQ_PTR(s1))->length
 #define wxDeRefDS(a) {assert(DBL_PTR(a)->ref); --(DBL_PTR(a)->ref);}
 #define wxDeRef(a) if(IS_DBL_OR_SEQUENCE(a)){ wxDeRefDS(a); }
 
+/*
 #ifdef WXEUMSW
 extern int winInstance;
 extern HANDLE default_heap;
 #endif
+*/
+
+/* external memory allocation typedefs */
+typedef object WXEUAPI (*MallocFunc)( intptr_t size );
+
+/* external memory allocation function */
+static MallocFunc g_Malloc = NULL;
+
+/* use external function to allocate memory */
+static inline void* Malloc( intptr_t size )
+{
+	object ptr = g_Malloc( size );
+	return (void*)get_int( ptr );
+}
 
 /* convert atom to char. *must avoid side effects in elem* */
 #define Char(elem) ((IS_ATOM_INT(elem)) \
@@ -94,7 +112,7 @@ static inline void MakeCString( char *s, object obj )
 /* allocate space for a new double value */
 static inline object NewDouble( double dbl )
 {
-	d_ptr d = (d_ptr)malloc( (long)D_SIZE );
+	d_ptr d = (d_ptr)Malloc( (long)D_SIZE );
 	d->ref = 1;
 	d->dbl = dbl;
 	d->cleanup = 0;
@@ -108,7 +126,7 @@ static inline s1_ptr NewS1( size_t size )
 {
 	size_t s1_size = sizeof(struct s1) + (size+1) * sizeof(object);
 	
-	s1_ptr s1 = (s1_ptr)malloc( (long)s1_size );
+	s1_ptr s1 = (s1_ptr)Malloc( (long)s1_size );
 	s1->ref = 1;
 	s1->base = (object_ptr)(s1 + 1);
 	s1->length = size;
@@ -155,13 +173,6 @@ static inline object box_int( intptr_t x )
 		return (object)x;
 	
 	return NewDouble( (eudouble)x );
-}
-
-/* unwrap an atom by freeing its memory */
-static inline void unbox_int( intptr_t x )
-{
-	if ( IS_DBL_OR_SEQUENCE(x) )
-		free( DBL_PTR(x) );
 }
 
 /* convert a Euphoria sequence to a wxString */

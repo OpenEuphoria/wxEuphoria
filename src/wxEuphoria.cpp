@@ -2,10 +2,12 @@
 #include "wx/init.h"
 #include "wxEuphoria.h"
 
+/*
 #ifdef WXEUMSW
 int winInstance;
 HANDLE default_heap;
 #endif
+*/
 
 EuAppBase* EuAppBase::s_EuAppBase;
 EuCallFunc EuAppBase::s_CallFunc;
@@ -131,8 +133,8 @@ BOOL APIENTRY DllMain( HANDLE hModule, DWORD dwReason, LPVOID lpReserved ) {
 	
 	if ( dwReason == DLL_PROCESS_ATTACH )
 	{
-		winInstance = (intptr_t)hModule;
-		default_heap = GetProcessHeap();
+	//	winInstance = (intptr_t)hModule;
+	//	default_heap = GetProcessHeap();
 	}
 	
 	return TRUE;
@@ -146,5 +148,10 @@ void __attribute__ ((destructor))  my_fini(void) {}
 #endif
 
 extern "C" {
+
+void WXEUAPI_BASE wxEuphoria_Initialize( MallocFunc malloc_func )
+{
+	g_Malloc = malloc_func;
+}
 
 };

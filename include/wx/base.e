@@ -31,6 +31,7 @@ export constant
 	WXAPPCONSOLE_SETINSTANCE						= wx_define( base, "wxAppConsole_SetInstance",                      1, FALSE ),
 	WXAPPCONSOLE_GETINSTANCE						= wx_define( base, "wxAppConsole_GetInstance",                      0, TRUE  ),
 	WXAPPCONSOLE_ISMAINLOOPRUNNING					= wx_define( base, "wxAppConsole_IsMainLoopRunning",                0, TRUE  ),
+	WXEUPHORIA_INITIALIZE							= wx_define( base, "wxEuphoria_Initialize",                         1, FALSE ),
 	WXEVTHANDLER_CONNECT							= wx_define( base, "wxEvtHandler_Connect",                          4, FALSE ),
 	WXEVTHANDLER_GETOBJECT							= wx_define( base, "wxEvtHandler_GetObject",                        0, TRUE  ),
 $

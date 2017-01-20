@@ -3,6 +3,7 @@
 public include "wx/dll.e"
 public include "wx/base.e"
 public include "wx/core.e"
+public include "wx/init.e"
 
 -- base
 public include "wx/defs.e"
@@ -18,4 +19,3 @@ public include "wx/frame.e"
 public include "wx/gdicmn.e"
 public include "wx/button.e"
 
---wxApp app = wxApp:new()
