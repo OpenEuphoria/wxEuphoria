@@ -25,9 +25,10 @@ Truth be told, programming in general is not easy and we don't expect to be. We 
 
 ## Status
 
-- [x] The library builds and runs on Windows 32-bit and 64-bit.
+- [x] The library builds and runs on Windows 10 32-bit and 64-bit.
+- [x] The library builds and runs on Linux Mint 18 64-bit.
 - [x] Just a few base and core classes are wrapped and working.
-- [ ] No support for Linux (*coming soon!*) or Mac OS X (*maybe?*).
+- [ ] No support for *32-bit* Linux (*coming soon!*) or Mac OS X (*maybe?*).
 - [ ] No documentation yet. Still trying to figure out what to use.
 
 ## Requirements
@@ -45,7 +46,7 @@ To build from source:
 
 ### What's up with that project name?
 
-This is inspired by the [wxPython](https://www.wxpython.org/)'s *[Project Phoenix](https://wiki.wxpython.org/ProjectPhoenix)*. The name is [synonymous](https://www.google.com/search?q=define%3Aleviathan) with *a thing that is very large or powerful* and the word evokes the sense of overwhelming effort and danger involved with the attempt tackle a project of this scale.
+This is inspired by the [wxPython](https://www.wxpython.org/)'s *[Project Phoenix](https://wiki.wxpython.org/ProjectPhoenix)*. The name **leviathan** is [synonymous](https://www.google.com/search?q=define%3Aleviathan) with *a thing that is very large or powerful* and the word evokes the sense of overwhelming effort and danger involved with the attempt tackle a project of this scale.
 
 ### Why not update and extend the old library?
 
@@ -57,18 +58,26 @@ No. This is not supported. Please do not try to do this. Bad things will happen.
 
 ## History
 
+### January 20, 2017
+
+- Added `wxAppConsole` and `wxApp` functions.
+- Added `wxObject` and `wxClassInfo` functions.
+- Added a couple demos (see `demo/wx/`).
+- Added preliminary support for Linux builds.
+- Reworked external memory allocation functions.
+
 ### January 14, 2017
 
-- Posted project to GitHub.
+- Posted project to [GitHub](https://github.com/ghaberek/wxEuphoria) and [OpenEuhporia.org](openeuphoria.org/forum/130722.wc).
 
 ### January 8, 2017
 
-- Added `check.ex` for basic sanity checking.
+- Added `check.ex` for basic wrapper sanity checking.
 
 ### January 2, 2017
 
-- Added `newclass.cmd` for quick deployment of wrappers.
-- Added multiple command scripts for spawning test shells.
+- Added `newclass.cmd` for quick deployment of wrappers on Windows.
+- Added multiple command scripts for spawning test shells on Windows.
   - `debug32.cmd`
   - `debug64.cmd`
   - `release32.cmd`
