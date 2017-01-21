@@ -2,7 +2,7 @@
 <CodeLite_Project Name="core" InternalType="User templates" Version="10.0.0">
   <Plugins>
     <Plugin Name="qmake">
-      <![CDATA[00040001N0011Win32-Debug0000000000000001N0013Win32-Release0000000000000001N0011Win64-Debug0000000000000001N0013Win64-Release000000000000]]>
+      <![CDATA[00050001N0013Linux64-Debug0000000000000001N0011Win32-Debug0000000000000001N0013Win32-Release0000000000000001N0011Win64-Debug0000000000000001N0013Win64-Release000000000000]]>
     </Plugin>
     <Plugin Name="CMakePlugin">
       <![CDATA[[{
@@ -56,21 +56,21 @@
         <IncludePath Value="."/>
         <IncludePath Value="backend"/>
         <IncludePath Value="include"/>
-        <Preprocessor Value="ELINUX"/>
-        <Preprocessor Value="WXEUGTK"/>
       </Compiler>
       <Linker Options="">
-        <LibraryPath Value="."/>
-        <LibraryPath Value="$(WXWIN)/build/gtk-debug/lib"/>
         <LibraryPath Value="./bin/$(ConfigurationName)"/>
       </Linker>
       <ResourceCompiler Options=""/>
     </GlobalSettings>
-    <Configuration Name="Linux64-Debug" CompilerType="GCC" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+    <Configuration Name="Linux64-Debug" CompilerType="" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-fPIC;-g;$(shell $(WXWIN)/build/gtk-debug/wx-config --cxxflags --debug=yes --unicode=yes)" C_Options="-fPIC;-g;$(shell $(WXWIN)/build/gtk-debug/wx-config --cflags --debug=yes --unicode=yes)" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <Preprocessor Value="EDEBUG"/>
+        <Preprocessor Value="ELINUX"/>
+        <Preprocessor Value="WXEUGTK"/>
       </Compiler>
-      <Linker Options="-pthread;-Wl,-rpath=.;-Wl,--whole-archive;-lwx_gtk3u_core-3.1;-Wl,--no-whole-archive;-lwxeud_base;-lgthread-2.0;-lX11;-lXxf86vm;-lSM;-lgtk-3;-lgdk-3;-lpangocairo-1.0;-lpango-1.0;-latk-1.0;-lcairo-gobject;-lcairo;-lgdk_pixbuf-2.0;-lgio-2.0;-lgobject-2.0;-lglib-2.0;-ldl;-lm" Required="yes"/>
+      <Linker Options="-pthread;-Wl,-rpath=.;-Wl,--whole-archive;-lwx_gtk3u_core-3.1;-Wl,--no-whole-archive;-lwxeud_base;-lgthread-2.0;-lX11;-lXxf86vm;-lSM;-lgtk-3;-lgdk-3;-lpangocairo-1.0;-lpango-1.0;-latk-1.0;-lcairo-gobject;-lcairo;-lgdk_pixbuf-2.0;-lgio-2.0;-lgobject-2.0;-lglib-2.0;-ldl;-lm" Required="yes">
+        <LibraryPath Value="$(WXWIN)/build/gtk-debug/lib"/>
+      </Linker>
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="./bin/$(ConfigurationName)/libwxeud_$(ProjectName).so" IntermediateDirectory="./build/$(ProjectName)/$(ConfigurationName)" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="" PauseExecWhenProcTerminates="no" IsGUIProgram="no" IsEnabled="yes"/>
       <BuildSystem Name="Default"/>
@@ -108,8 +108,12 @@
     <Configuration Name="Win32-Debug" CompilerType="MinGW ( TDM-GCC-32 )" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-g;-m32;$(shell wx-config --cxxflags --debug=yes --unicode=yes)" C_Options="-g;-m32;$(shell wx-config --cflags --debug=yes --unicode=yes)" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <Preprocessor Value="EDEBUG"/>
+        <Preprocessor Value="EWINDOWS"/>
+        <Preprocessor Value="WXEUMSW"/>
       </Compiler>
-      <Linker Options="-m32;-Wl,--whole-archive;-lwxmsw31ud_core;-Wl,--no-whole-archive;-lwxeud_base;-lkernel32;-luser32;-lgdi32;-lcomdlg32;-lwinspool;-lwinmm;-lshell32;-lcomctl32;-lversion;-lshlwapi;-lole32;-loleaut32;-luuid;-lrpcrt4;-ladvapi32;-lwsock32" Required="yes"/>
+      <Linker Options="-m32;-Wl,--whole-archive;-lwxmsw31ud_core;-Wl,--no-whole-archive;-lwxeud_base;-lkernel32;-luser32;-lgdi32;-lcomdlg32;-lwinspool;-lwinmm;-lshell32;-lcomctl32;-lversion;-lshlwapi;-lole32;-loleaut32;-luuid;-lrpcrt4;-ladvapi32;-lwsock32" Required="yes">
+        <LibraryPath Value="$(WXWIN)/lib/gcc_lib"/>
+      </Linker>
       <ResourceCompiler Options="-F pe-i386" Required="no"/>
       <General OutputFile="./bin/$(ConfigurationName)/libwxeud_$(ProjectName).dll" IntermediateDirectory="./build/$(ProjectName)/$(ConfigurationName)" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="" PauseExecWhenProcTerminates="no" IsGUIProgram="no" IsEnabled="yes"/>
       <BuildSystem Name="Default"/>
@@ -145,8 +149,13 @@
       </Completion>
     </Configuration>
     <Configuration Name="Win32-Release" CompilerType="MinGW ( TDM-GCC-32 )" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
-      <Compiler Options="-O2;-m32;$(shell wx-config --cxxflags --debug=no --unicode=yes)" C_Options="-O2;-m32;$(shell wx-config --cflags --debug=no --unicode=yes)" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0"/>
-      <Linker Options="-s;-m32;-Wl,--whole-archive;-lwxmsw31u_core;-Wl,--no-whole-archive;-lwxeu_base;-lkernel32;-luser32;-lgdi32;-lcomdlg32;-lwinspool;-lwinmm;-lshell32;-lcomctl32;-lversion;-lshlwapi;-lole32;-loleaut32;-luuid;-lrpcrt4;-ladvapi32;-lwsock32" Required="yes"/>
+      <Compiler Options="-O2;-m32;$(shell wx-config --cxxflags --debug=no --unicode=yes)" C_Options="-O2;-m32;$(shell wx-config --cflags --debug=no --unicode=yes)" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+        <Preprocessor Value="EWINDOWS"/>
+        <Preprocessor Value="WXEUMSW"/>
+      </Compiler>
+      <Linker Options="-s;-m32;-Wl,--whole-archive;-lwxmsw31u_core;-Wl,--no-whole-archive;-lwxeu_base;-lkernel32;-luser32;-lgdi32;-lcomdlg32;-lwinspool;-lwinmm;-lshell32;-lcomctl32;-lversion;-lshlwapi;-lole32;-loleaut32;-luuid;-lrpcrt4;-ladvapi32;-lwsock32" Required="yes">
+        <LibraryPath Value="$(WXWIN)/lib/gcc_lib"/>
+      </Linker>
       <ResourceCompiler Options="-F pe-i386" Required="no"/>
       <General OutputFile="./bin/$(ConfigurationName)/libwxeu_$(ProjectName).dll" IntermediateDirectory="./build/$(ProjectName)/$(ConfigurationName)" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="" PauseExecWhenProcTerminates="no" IsGUIProgram="no" IsEnabled="yes"/>
       <BuildSystem Name="Default"/>
@@ -184,8 +193,12 @@
     <Configuration Name="Win64-Debug" CompilerType="MinGW ( TDM-GCC-32 )" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-g;$(shell wx-config --cxxflags --debug=yes --unicode=yes)" C_Options="-g;$(shell wx-config --cflags --debug=yes --unicode=yes)" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <Preprocessor Value="EDEBUG"/>
+        <Preprocessor Value="EWINDOWS"/>
+        <Preprocessor Value="WXEUMSW"/>
       </Compiler>
-      <Linker Options="-Wl,--whole-archive;-lwxmsw31ud_core;-Wl,--no-whole-archive;-lwxeud_base;-lkernel32;-luser32;-lgdi32;-lcomdlg32;-lwinspool;-lwinmm;-lshell32;-lcomctl32;-lversion;-lshlwapi;-lole32;-loleaut32;-luuid;-lrpcrt4;-ladvapi32;-lwsock32" Required="yes"/>
+      <Linker Options="-Wl,--whole-archive;-lwxmsw31ud_core;-Wl,--no-whole-archive;-lwxeud_base;-lkernel32;-luser32;-lgdi32;-lcomdlg32;-lwinspool;-lwinmm;-lshell32;-lcomctl32;-lversion;-lshlwapi;-lole32;-loleaut32;-luuid;-lrpcrt4;-ladvapi32;-lwsock32" Required="yes">
+        <LibraryPath Value="$(WXWIN)/lib/gcc_lib"/>
+      </Linker>
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="./bin/$(ConfigurationName)/libwxeud_$(ProjectName).dll" IntermediateDirectory="./build/$(ProjectName)/$(ConfigurationName)" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="" PauseExecWhenProcTerminates="no" IsGUIProgram="no" IsEnabled="yes"/>
       <BuildSystem Name="Default"/>
@@ -221,8 +234,13 @@
       </Completion>
     </Configuration>
     <Configuration Name="Win64-Release" CompilerType="MinGW ( TDM-GCC-32 )" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
-      <Compiler Options="-O2;$(shell wx-config --cxxflags --debug=no --unicode=yes)" C_Options="-O2;$(shell wx-config --cflags --debug=no --unicode=yes)" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0"/>
-      <Linker Options="-s;-Wl,--whole-archive;-lwxmsw31u_core;-Wl,--no-whole-archive;-lwxeu_base;-lkernel32;-luser32;-lgdi32;-lcomdlg32;-lwinspool;-lwinmm;-lshell32;-lcomctl32;-lversion;-lshlwapi;-lole32;-loleaut32;-luuid;-lrpcrt4;-ladvapi32;-lwsock32" Required="yes"/>
+      <Compiler Options="-O2;$(shell wx-config --cxxflags --debug=no --unicode=yes)" C_Options="-O2;$(shell wx-config --cflags --debug=no --unicode=yes)" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+        <Preprocessor Value="EWINDOWS"/>
+        <Preprocessor Value="WXEUMSW"/>
+      </Compiler>
+      <Linker Options="-s;-Wl,--whole-archive;-lwxmsw31u_core;-Wl,--no-whole-archive;-lwxeu_base;-lkernel32;-luser32;-lgdi32;-lcomdlg32;-lwinspool;-lwinmm;-lshell32;-lcomctl32;-lversion;-lshlwapi;-lole32;-loleaut32;-luuid;-lrpcrt4;-ladvapi32;-lwsock32" Required="yes">
+        <LibraryPath Value="$(WXWIN)/lib/gcc_lib"/>
+      </Linker>
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="./bin/$(ConfigurationName)/libwxeu_$(ProjectName).dll" IntermediateDirectory="./build/$(ProjectName)/$(ConfigurationName)" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="" PauseExecWhenProcTerminates="no" IsGUIProgram="no" IsEnabled="yes"/>
       <BuildSystem Name="Default"/>

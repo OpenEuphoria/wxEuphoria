@@ -2,6 +2,14 @@
 #include <wx/object.h>
 #include "wxEuphoria.h"
 
+#ifdef WXEUMSW
+
+// N.B. this undefs "GetClassInfo"
+// http://trac.wxwidgets.org/ticket/2421
+#include <wx/msw/winundef.h>
+
+#endif
+
 extern "C" {
 
 object WXEUAPI_BASE wxObject_GetClassInfo( object self )

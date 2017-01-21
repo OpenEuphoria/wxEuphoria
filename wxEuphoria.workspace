@@ -10,7 +10,7 @@
       <Project Name="base" ConfigName="Win64-Debug"/>
       <Project Name="core" ConfigName="Win64-Debug"/>
     </WorkspaceConfiguration>
-    <WorkspaceConfiguration Name="Win64-Release" Selected="no">
+    <WorkspaceConfiguration Name="Win64-Release" Selected="yes">
       <Environment/>
       <Project Name="all" ConfigName="Win64-Release"/>
       <Project Name="base" ConfigName="Win64-Release"/>
@@ -28,7 +28,7 @@
       <Project Name="base" ConfigName="Win32-Release"/>
       <Project Name="core" ConfigName="Win32-Release"/>
     </WorkspaceConfiguration>
-    <WorkspaceConfiguration Name="Linux64-Debug" Selected="yes">
+    <WorkspaceConfiguration Name="Linux64-Debug" Selected="no">
       <Environment/>
       <Project Name="core" ConfigName="Linux64-Debug"/>
       <Project Name="base" ConfigName="Linux64-Debug"/>
