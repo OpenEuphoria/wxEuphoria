@@ -24,6 +24,7 @@ using namespace std;
 #undef LENGTH
 #endif
 
+/* forward delcarations */
 static inline object box_int( intptr_t x );
 static inline intptr_t get_int( object x );
 
@@ -40,16 +41,36 @@ extern HANDLE default_heap;
 #endif
 */
 
-/* external memory allocation typedefs */
-typedef object WXEUAPI (*MallocFunc)( intptr_t size );
+/* call back functions into Euphoria code */
+typedef object WXEUAPI (*EuCallFunc)(intptr_t);
+typedef   void WXEUAPI (*EuCallProc)(intptr_t);
+typedef object WXEUAPI (*MallocFunc)(intptr_t);
 
-/* external memory allocation function */
-static MallocFunc g_Malloc = NULL;
+/* shared class for wxEuphoria application */
+class EuAppBase : public wxEvtHandler
+{
+public:
+	EuAppBase( EuCallFunc func, EuCallProc proc, intptr_t rtfatal );
+	void Handler( wxEvent& event );
+	static object GetTheObject();
+	
+	static object DoCallFunc( intptr_t id, object params );
+	static void DoCallProc( intptr_t id, object params );
+	static void DoRTFatal( wxString& msg );
+	
+	static EuAppBase* s_EuAppBase;
+	static EuCallFunc s_CallFunc;
+	static EuCallProc s_CallProc;
+	static MallocFunc s_MallocFunc;
+	static intptr_t s_RTFatal;
+	static intptr_t s_TheObject;
+};
 
 /* use external function to allocate memory */
 static inline void* Malloc( intptr_t size )
 {
-	object ptr = g_Malloc( size );
+	assert( EuAppBase::s_MallocFunc );
+	object ptr = EuAppBase::s_MallocFunc( size );
 	return (void*)get_int( ptr );
 }
 
@@ -292,10 +313,6 @@ static inline wxSize get_size( object sz )
 	}
 }
 
-/* call back functions into Euphoria code */
-typedef object WXEUAPI (*EuCallFunc)(intptr_t);
-typedef   void WXEUAPI (*EuCallProc)(intptr_t);
-
 /* routine id lookup table entry structure */
 typedef struct wxObjRid {
 	wxObjRid() {};
@@ -320,25 +337,6 @@ public:
 	void Get( wxWindowID window_id, wxEventType event_type, intptr_t* handler, intptr_t* routine_id );
 private:
 	wxEvtType2Id m_EvtType2Id;
-};
-
-/* shared class for wxEuphoria application */
-class EuAppBase : public wxEvtHandler
-{
-public:
-	EuAppBase( EuCallFunc func, EuCallProc proc, intptr_t rtfatal );
-	void Handler( wxEvent& event );
-	static object GetTheObject();
-	
-	static object DoCallFunc( intptr_t id, object params );
-	static void DoCallProc( intptr_t id, object params );
-	static void DoRTFatal( wxString& msg );
-	
-	static EuAppBase* s_EuAppBase;
-	static EuCallFunc s_CallFunc;
-	static EuCallProc s_CallProc;
-	static intptr_t s_RTFatal;
-	static intptr_t s_TheObject;
 };
 
 #endif // WXEUPHORIA_H

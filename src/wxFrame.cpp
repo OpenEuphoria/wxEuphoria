@@ -43,4 +43,17 @@ object WXEUAPI_CORE wxFrame_new( object parent, object id, object title, object 
 	return BOX_INT( frame );
 }
 
+object WXEUAPI_CORE wxFrame_Create( object self, object parent, object id, object title, object pos, object size, object style, object name )
+{
+	bool result = ((wxFrame*)self)->Create( (wxWindow*)parent, get_int(id), get_string(title), get_point(pos), get_size(size), get_int(style), get_string(name) );
+	if ( result ) ((wxFrame*)self)->Connect( id, wxEVT_CLOSE_WINDOW, wxCommandEventHandler(EuFrame::OnCloseWindow) );
+	
+	wxDeRef( title );
+	wxDeRef( pos );
+	wxDeRef( size );
+	wxDeRef( name );
+	
+	return BOX_INT( result );
+}
+
 };

@@ -12,6 +12,7 @@ HANDLE default_heap;
 EuAppBase* EuAppBase::s_EuAppBase;
 EuCallFunc EuAppBase::s_CallFunc;
 EuCallProc EuAppBase::s_CallProc;
+MallocFunc EuAppBase::s_MallocFunc;
 intptr_t EuAppBase::s_RTFatal;
 intptr_t EuAppBase::s_TheObject;
 
@@ -151,7 +152,7 @@ extern "C" {
 
 void WXEUAPI_BASE wxEuphoria_Initialize( MallocFunc malloc_func )
 {
-	g_Malloc = malloc_func;
+	EuAppBase::s_MallocFunc = malloc_func;
 }
 
 };

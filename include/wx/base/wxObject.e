@@ -14,10 +14,6 @@ public function GetClassInfo( wxObject self )
 	return wx_func( WXOBJECT_GETCLASSINFO, {self} )
 end function
 
-public function GetRefData( wxObject self )
-	return wx_func( WXOBJECT_GETREFDATA, {self} )
-end function
-
 public function IsKindOf( wxObject self, wxClassInfo info )
 	return wx_func( WXOBJECT_ISKINDOF, {self,info} )
 end function
