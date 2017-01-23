@@ -23,25 +23,32 @@ if "%2" == "" (
 	set /P CLASSNAME=class name: 
 )
 
-set FILENAME=%CD%\include\wx\%LIBNAME%\%CLASSNAME%.e
-echo %FILENAME%
+set LIBPATH=%CD%\include\wx\%LIBNAME%
+set FILENAME=%LIBPATH%\%CLASSNAME%.e
+echo LIBPATH=%LIBPATH%
+echo FILENAME=%FILENAME%
 pause
+
+if not exist "%LIBPATH%" (
+	mkdir "%LIBPATH%"
+)
 
 if exist "%FILENAME%" (
 	echo %FILENAME% already exists
 	goto end
 )
 
-echo. >> %FILENAME%
+echo creating %FILENAME%
+echo.>> %FILENAME%
 echo namespace %CLASSNAME%>> %FILENAME%
-echo. >> %FILENAME%
+echo.>> %FILENAME%
 echo include "wx/dll.e">> %FILENAME%
 echo include "wx/%LIBNAME%.e">> %FILENAME%
-echo. >> %FILENAME%
+echo.>> %FILENAME%
 echo public type %CLASSNAME%( object x )>> %FILENAME%
-echo 	return 1>> %FILENAME%
+echo 	return wxObject(x)>> %FILENAME%
 echo end type>> %FILENAME%
-echo. >> %FILENAME%
+echo.>> %FILENAME%
 
 echo.
 :end

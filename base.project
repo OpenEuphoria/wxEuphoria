@@ -197,7 +197,7 @@
         <Preprocessor Value="EWINDOWS"/>
         <Preprocessor Value="WXEUMSW"/>
       </Compiler>
-      <Linker Options="-Wl,--whole-archive;-lwxbase31ud;-lwxtiffd;-lwxjpegd;-lwxpngd;-lwxzlibd;-lwxregexud;-lwxexpatd;-Wl,--no-whole-archive;-lkernel32;-luser32;-lgdi32;-lcomdlg32;-lwinspool;-lwinmm;-lshell32;-lcomctl32;-lversion;-lshlwapi;-lole32;-loleaut32;-luuid;-lrpcrt4;-ladvapi32;-lwsock32" Required="yes">
+      <Linker Options="-Wl,--whole-archive;-lwxbase31ud;-lwxtiffd;-lwxjpegd;-lwxpngd;-lwxzlibd;-lwxregexud;-Wl,--no-whole-archive;-lkernel32;-luser32;-lgdi32;-lcomdlg32;-lwinspool;-lwinmm;-lshell32;-lcomctl32;-lversion;-lshlwapi;-lole32;-loleaut32;-luuid;-lrpcrt4;-ladvapi32;-lwsock32" Required="yes">
         <LibraryPath Value="$(WXWIN)/lib/gcc_lib"/>
       </Linker>
       <ResourceCompiler Options="" Required="no"/>

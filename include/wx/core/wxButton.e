@@ -20,3 +20,8 @@ end type
 public function new( wxWindow parent, wxWindowID id, wxString title, wxPoint pos, wxSize size, atom style, atom validator, wxString name )
 	return wx_func( WXBUTTON_NEW, {parent,id,title,pos,size,style,validator,name} )
 end function
+
+public function Create( wxButton self, wxWindow parent, wxWindowID id, wxString title, wxPoint pos, wxSize size, atom style, atom validator, wxString name )
+	return wx_func( WXBUTTON_CREATE, {self,parent,id,title,pos,size,style,validator,name} )
+end function
+

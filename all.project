@@ -37,26 +37,6 @@
   </Plugins>
   <Description/>
   <Dependencies/>
-  <Dependencies Name="Win32-Debug">
-    <Project Name="base"/>
-    <Project Name="core"/>
-  </Dependencies>
-  <Dependencies Name="Win32-Release">
-    <Project Name="base"/>
-    <Project Name="core"/>
-  </Dependencies>
-  <Dependencies Name="Win64-Debug">
-    <Project Name="base"/>
-    <Project Name="core"/>
-  </Dependencies>
-  <Dependencies Name="Win64-Release">
-    <Project Name="base"/>
-    <Project Name="core"/>
-  </Dependencies>
-  <Dependencies Name="Linux64-Debug">
-    <Project Name="base"/>
-    <Project Name="core"/>
-  </Dependencies>
   <Settings Type="Executable">
     <GlobalSettings>
       <Compiler Options="" C_Options="" Assembler="">
@@ -263,4 +243,29 @@
       </Completion>
     </Configuration>
   </Settings>
+  <Dependencies Name="Win64-Debug">
+    <Project Name="base"/>
+    <Project Name="core"/>
+    <Project Name="xml"/>
+  </Dependencies>
+  <Dependencies Name="Linux64-Debug">
+    <Project Name="base"/>
+    <Project Name="core"/>
+    <Project Name="xml"/>
+  </Dependencies>
+  <Dependencies Name="Win32-Debug">
+    <Project Name="base"/>
+    <Project Name="core"/>
+    <Project Name="xml"/>
+  </Dependencies>
+  <Dependencies Name="Win32-Release">
+    <Project Name="base"/>
+    <Project Name="core"/>
+    <Project Name="xml"/>
+  </Dependencies>
+  <Dependencies Name="Win64-Release">
+    <Project Name="base"/>
+    <Project Name="core"/>
+    <Project Name="xml"/>
+  </Dependencies>
 </CodeLite_Project>

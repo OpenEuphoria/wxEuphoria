@@ -16,6 +16,7 @@ export constant
 	WXAPP_SETTOPWINDOW			= wx_define( core, "wxApp_SetTopWindow",         2, FALSE ),
 	WXAPP_WXMESSAGEBOX			= wx_define( core, "wxApp_wxMessageBox",         6, TRUE  ),
 	WXBUTTON_NEW				= wx_define( core, "wxButton_new",               8, TRUE  ),
+	WXBUTTON_CREATE				= wx_define( core, "wxButton_Create",            9, TRUE  ),
 	WXFRAME_NEW					= wx_define( core, "wxFrame_new",                7, TRUE  ),
 	WXFRAME_CREATE				= wx_define( core, "wxFrame_Create",             8, TRUE  ),
 	WXPANEL_NEW					= wx_define( core, "wxPanel_new",                6, TRUE  ),
