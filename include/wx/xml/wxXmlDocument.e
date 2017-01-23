@@ -92,3 +92,6 @@ public procedure SetVersion( wxXmlDocument self, wxString version )
 	wx_proc( WXXMLDOCUMENT_SETVERSION, {self,version} )
 end procedure
 
+public function GetLibraryVersionInfo()
+	return wx_func( WXXMLDOCUMENT_GETLIBRARYVERSIONINFO, {} )
+end function

@@ -4,6 +4,8 @@
 
 extern "C" {
 
+/* Public Member Functions */
+
 object WXEUAPI_XML wxXmlDocument_new( object filename, object encoding )
 {
 	wxXmlDocument* doc = NULL;
@@ -137,6 +139,16 @@ void WXEUAPI_XML wxXmlDocument_SetVersion( object self, object version )
 {
 	wxDeRef( version );
 	((wxXmlDocument*)self)->SetVersion( get_string(version) );
+}
+
+/* Static Public Member Functions */
+
+object WXEUAPI_XML wxXmlDocument_GetLibraryVersionInfo()
+{
+	wxVersionInfo* info = new wxVersionInfo();
+	*info = wxXmlDocument::GetLibraryVersionInfo();
+	
+	return BOX_INT( info );
 }
 
 };

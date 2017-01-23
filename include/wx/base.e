@@ -43,5 +43,15 @@ export constant
 	WXOBJECT_GETCLASSINFO							= wx_define( base, "wxObject_GetClassInfo",                         1, TRUE  ),
 	WXOBJECT_ISKINDOF								= wx_define( base, "wxObject_IsKindOf",                             2, TRUE  ),
 	WXOBJECT_ISSAMEAS								= wx_define( base, "wxObject_IsSameAs",                             2, TRUE  ),
+	WXVERSIONINFO_NEW								= wx_define( base, "wxVersionInfo_new",                             6, TRUE  ),
+	WXVERSIONINFO_GETNAME							= wx_define( base, "wxVersionInfo_GetName",                         1, TRUE  ),
+	WXVERSIONINFO_GETMAJOR							= wx_define( base, "wxVersionInfo_GetMajor",                        1, TRUE  ),
+	WXVERSIONINFO_GETMINOR							= wx_define( base, "wxVersionInfo_GetMinor",                        1, TRUE  ),
+	WXVERSIONINFO_GETMICRO							= wx_define( base, "wxVersionInfo_GetMicro",                        1, TRUE  ),
+	WXVERSIONINFO_TOSTRING							= wx_define( base, "wxVersionInfo_ToString",                        1, TRUE  ),
+	WXVERSIONINFO_GETVERSIONSTRING					= wx_define( base, "wxVersionInfo_GetVersionString",                1, TRUE  ),
+	WXVERSIONINFO_HASDESCRIPTION					= wx_define( base, "wxVersionInfo_HasDescription",                  1, TRUE  ),
+	WXVERSIONINFO_GETDESCRIPTION					= wx_define( base, "wxVersionInfo_GetDescription",                  1, TRUE  ),
+	WXVERSIONINFO_HASCOPYRIGHT						= wx_define( base, "wxVersionInfo_HasCopyright",                    1, TRUE  ),
+	WXVERSIONINFO_GETCOPYRIGHT						= wx_define( base, "wxVersionInfo_GetCopyright",                    1, TRUE  ),
 $
-

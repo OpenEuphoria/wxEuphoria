@@ -46,6 +46,7 @@
     <File Name="src/wxEvtHandler.cpp"/>
     <File Name="src/wxObject.cpp"/>
     <File Name="src/wxClassInfo.cpp"/>
+    <File Name="src/wxVersionInfo.cpp"/>
   </VirtualDirectory>
   <Dependencies Name="Win32-Debug"/>
   <Dependencies Name="Win32-Release"/>

@@ -1,6 +1,7 @@
 
 include "wx/init.e"
 include "wx/string.e"
+include "wx/versioninfo.e"
 include "wx/xml/xml.e"
 
 sequence cmd = command_line()
@@ -31,3 +32,9 @@ printf( 1, "isValid = %d\n", {isValid} )
 
 atom save = wxXmlDocument:Save( doc, "xml_temp.xml" )
 printf( 1, "save = %d\n", {save} )
+
+wxVersionInfo info = wxXmlDocument:GetLibraryVersionInfo()
+printf( 1, "info = #%08x\n", {info} )
+
+wxString version = wxVersionInfo:ToString( info )
+printf( 1, "version = '%s'\n", {version} )
