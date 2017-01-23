@@ -12,7 +12,7 @@ public function new( wxString className )
 	return wx_func( WXCLASSINFO_NEW, {className} )
 end function
 
-public function CreateObject( wxClassInfo self )
+public function CreateObject( object self )
 	return wx_func( WXCLASSINFO_CREATEOBJECT, {self} )
 end function
 
@@ -28,3 +28,6 @@ public function GetClassName( wxClassInfo self )
 	return wx_func( WXCLASSINFO_GETCLASSNAME, {self} )
 end function
 
+public function FindClass( wxString className )
+	return wx_func( WXCLASSINFO_FINDCLASS, {className} )
+end function

@@ -36,6 +36,7 @@ export constant
 	WXCLASSINFO_GETBASECLASSNAME1					= wx_define( base, "wxClassInfo_GetBaseClassName1",                 1, TRUE  ),
 	WXCLASSINFO_GETBASECLASSNAME2					= wx_define( base, "wxClassInfo_GetBaseClassName2",                 1, TRUE  ),
 	WXCLASSINFO_GETCLASSNAME						= wx_define( base, "wxClassInfo_GetClassName",                      1, TRUE  ),
+	WXCLASSINFO_FINDCLASS							= wx_define( base, "wxClassInfo_FindClass",                         1, TRUE  ),
 	WXEUPHORIA_INITIALIZE							= wx_define( base, "wxEuphoria_Initialize",                         1, FALSE ),
 	WXEVTHANDLER_CONNECT							= wx_define( base, "wxEvtHandler_Connect",                          4, FALSE ),
 	WXEVTHANDLER_GETOBJECT							= wx_define( base, "wxEvtHandler_GetObject",                        0, TRUE  ),
