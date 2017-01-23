@@ -16,5 +16,7 @@ base.mk
 base.txt
 core.mk
 core.txt
+xml.mk
+xml.txt
 ex.err
 Makefile

@@ -19,6 +19,7 @@ using namespace std;
 
 #define WXEUAPI_BASE WXEUAPI
 #define WXEUAPI_CORE WXEUAPI
+#define WXEUAPI_XML  WXEUAPI
 
 #ifdef LENGTH
 #undef LENGTH
