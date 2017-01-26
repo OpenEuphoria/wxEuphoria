@@ -3,7 +3,6 @@
 public include "wx/dll.e"
 public include "wx/base.e"
 public include "wx/core.e"
-public include "wx/init.e"
 
 -- base
 public include "wx/defs.e"
