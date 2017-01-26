@@ -5,6 +5,7 @@ include "wx/dll.e"
 include "wx/base.e"
 include "wx/defs.e"
 include "wx/string.e"
+include "wx/base/wxClassInfo.e"
 
 public include "wx/base/wxEvtHandler.e"
 public include "wx/base/wxObject.e"
@@ -12,8 +13,14 @@ public include "wx/base/wxObject.e"
 atom base = wx_library( "base" )
 public constant wxEVT_IDLE = wx_event( base, "wxEVT_IDLE" )
 
+constant wxAppConsoleInfo = wxClassInfo:FindClass( "wxAppConsole" )
+
 public type wxAppConsole( object x )
-	return wxEvtHandler(x)
+	if equal( x, NULL ) then
+		return 1
+	end if
+	
+	return wxObject:IsKindOf( x, wxAppConsoleInfo )
 end type
 
 public function new()

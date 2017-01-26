@@ -3,9 +3,10 @@ namespace wxClassInfo
 include "wx/dll.e"
 include "wx/base.e"
 include "wx/string.e"
+include "std/types.e"
 
 public type wxClassInfo( object x )
-	return 1
+	return atom(x) or string(x)
 end type
 
 public function new( wxString className )

@@ -5,6 +5,7 @@ include "wx/dll.e"
 include "wx/xml.e"
 include "wx/object.e"
 include "wx/string.e"
+include "wx/base/wxClassInfo.e"
 include "wx/xml/wxXmlDoctype.e"
 include "wx/xml/wxXmlNode.e"
 
@@ -16,8 +17,14 @@ public enum type wxXmlDocumentLoadFlag
 	wxXMLDOC_KEEP_WHITESPACE_NODES = 1
 end type
 
+constant wxXmlDocumentInfo = wxClassInfo:FindClass( "wxXmlDocument" )
+
 public type wxXmlDocument( object x )
-	return wxObject(x)
+	if equal( x, NULL ) then
+		return 1
+	end if
+	
+	return wxObject:IsKindOf( x, wxXmlDocumentInfo )
 end type
 
 public function new( wxString filename = wxEmptyString, wxString encoding = "UTF-8" )

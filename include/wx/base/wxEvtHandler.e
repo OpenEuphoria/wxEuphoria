@@ -5,11 +5,18 @@ include "wx/dll.e"
 include "wx/base.e"
 include "wx/defs.e"
 include "wx/event.e"
+include "wx/base/wxClassInfo.e"
 
 public include "wx/base/wxObject.e"
 
+constant wxEvtHandlerInfo = wxClassInfo:FindClass( "wxEvtHandler" )
+
 public type wxEvtHandler( object x )
-	return wxObject(x)
+	if equal( x, NULL ) then
+		return 1
+	end if
+	
+	return wxObject:IsKindOf( x, wxEvtHandlerInfo )
 end type
 
 export function GetObject()

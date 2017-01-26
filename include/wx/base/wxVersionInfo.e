@@ -7,7 +7,7 @@ include "wx/object.e"
 include "wx/string.e"
 
 public type wxVersionInfo( object x )
-	return wxObject(x)
+	return atom(x)
 end type
 
 public function new( wxString name = wxEmptyString, atom major = 0, atom minor = 0, atom micro = 0, wxString description = wxEmptyString, wxString copyright = wxEmptyString )

@@ -7,11 +7,22 @@ include "wx/string.e"
 include "wx/windowid.e"
 include "wx/gdicmn.e"
 include "wx/app.e"
+include "wx/base/wxClassInfo.e"
 
 public include "wx/core/wxTopLevelWindow.e"
+public include "wx/core/wxNonOwnedWindow.e"
+public include "wx/core/wxWindow.e"
+public include "wx/base/wxEvtHandler.e"
+public include "wx/base/wxObject.e"
+
+constant wxFrameInfo = wxClassInfo:FindClass( "wxFrame" )
 
 public type wxFrame( object x )
-	return wxTopLevelWindow(x)
+	if equal( x, NULL ) then
+		return 1
+	end if
+	
+	return wxObject:IsKindOf( x, wxFrameInfo )
 end type
 
 public function new( wxWindow parent, wxWindowID id, wxString title, wxPoint pos, wxSize size, atom style, wxString name )

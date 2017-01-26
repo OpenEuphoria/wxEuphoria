@@ -7,6 +7,7 @@ include "wx/core.e"
 include "wx/defs.e"
 include "wx/string.e"
 include "wx/window.e"
+include "wx/base/wxClassInfo.e"
 
 public include "wx/base/wxAppConsole.e"
 public include "wx/base/wxEvtHandler.e"
@@ -22,8 +23,14 @@ public constant
 	wxEVT_DIALUP_DISCONNECTED	= wx_event( core, "wxEVT_DIALUP_DISCONNECTED" ),
 $
 
+constant wxAppInfo = wxClassInfo:FindClass( "wxApp" )
+
 public type wxApp( object x )
-	return wxAppConsole(x)
+	if equal( x, NULL ) then
+		return 1
+	end if
+	
+	return wxObject:IsKindOf( x, wxAppInfo )
 end type
 
 public function new()

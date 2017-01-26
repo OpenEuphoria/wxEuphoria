@@ -3,11 +3,16 @@ namespace wxObject
 
 include "wx/dll.e"
 include "wx/base.e"
-
 include "wx/base/wxClassInfo.e"
 
+constant wxObjectInfo = wxClassInfo:FindClass( "wxObject" )
+
 public type wxObject( object x )
-	return 1
+	if equal( x, NULL ) then
+		return 1
+	end if
+	
+	return wx_func( WXOBJECT_ISKINDOF, {x,wxObjectInfo} )
 end type
 
 public function GetClassInfo( wxObject self )
