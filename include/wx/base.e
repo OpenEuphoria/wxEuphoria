@@ -39,6 +39,7 @@ export constant
 	WXCLASSINFO_FINDCLASS							= wx_define( base, "wxClassInfo_FindClass",                         1, TRUE  ),
 --	WXEUPHORIA_INITIALIZE							= wx_define( base, "wxEuphoria_Initialize",                         1, FALSE ),
 	WXEVTHANDLER_CONNECT							= wx_define( base, "wxEvtHandler_Connect",                          4, FALSE ),
+	WXEVTHANDLER_DISCONNECT							= wx_define( base, "wxEvtHandler_Disconnect",                       3, TRUE  ),
 	WXEVTHANDLER_GETOBJECT							= wx_define( base, "wxEvtHandler_GetObject",                        0, TRUE  ),
 	WXOBJECT_GETCLASSINFO							= wx_define( base, "wxObject_GetClassInfo",                         1, TRUE  ),
 	WXOBJECT_ISKINDOF								= wx_define( base, "wxObject_IsKindOf",                             2, TRUE  ),

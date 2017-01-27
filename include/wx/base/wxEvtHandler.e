@@ -37,3 +37,6 @@ public procedure Connect( wxEvtHandler self, wxWindowID window_id, wxEventType e
 	wx_proc( WXEVTHANDLER_CONNECT, {self,window_id,event_type,_routine_id} )
 end procedure
 
+public function Disconnect( wxEvtHandler self, wxWindowID window_id, wxEventType event_type )
+	return wx_func( WXEVTHANDLER_DISCONNECT, {self,window_id,event_type} )
+end function

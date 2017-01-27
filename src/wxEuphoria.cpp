@@ -22,6 +22,10 @@ void EuClientData::Add( intptr_t handler, wxWindowID window_id, wxEventType even
 	m_EvtType2Id[event_type][window_id] = wxObjRid( routine_id, handler );
 }
 
+void EuClientData::Del( wxWindowID window_id, wxEventType event_type ) {
+	m_EvtType2Id[event_type].erase( window_id );
+}
+
 void EuClientData::Get( wxWindowID window_id, wxEventType event_type, intptr_t* handler, intptr_t* routine_id ) {
 	
 	wxEvtType2Id::iterator evIt = m_EvtType2Id.find( event_type );

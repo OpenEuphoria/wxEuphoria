@@ -9,7 +9,10 @@ wxButton myButton = wxButton:new( myPanel, ID_Button, "Click me", {10,10}, {75,2
 
 procedure myButton_OnClick( atom handler, atom event_type, atom window_id, atom event_object )
 	
-	wxMessageBox( "Hello, world!", "Message Box", wxYES_NO+wxCANCEL+wxICON_EXCLAMATION )
+	wxMessageBox( "Hello, world!\n\nYou can only click that button once.",
+		"Message Box", wxYES_NO+wxCANCEL+wxICON_EXCLAMATION )
+	
+	wxButton:Disconnect( myButton, ID_Button, wxEVT_BUTTON )
 	
 end procedure
 wxButton:Connect( myButton, ID_Button, wxEVT_BUTTON, "myButton_OnClick" )

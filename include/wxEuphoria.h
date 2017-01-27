@@ -336,6 +336,7 @@ public:
 	/* event_type -> window_id -> (handler, routine_id, user_data) */
 	void Add( intptr_t handler, wxWindowID window_id, wxEventType event_type, intptr_t routine_id );
 	void Get( wxWindowID window_id, wxEventType event_type, intptr_t* handler, intptr_t* routine_id );
+	void Del( wxWindowID window_id, wxEventType event_type );
 private:
 	wxEvtType2Id m_EvtType2Id;
 };
