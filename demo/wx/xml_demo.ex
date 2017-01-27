@@ -1,5 +1,4 @@
 
-include "wx/init.e"
 include "wx/string.e"
 include "wx/versioninfo.e"
 include "wx/xml/xml.e"

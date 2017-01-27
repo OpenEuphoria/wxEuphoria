@@ -32,6 +32,21 @@
     <File Name="src/wxXmlDocument.cpp"/>
     <File Name="src/wxXmlDoctype.cpp"/>
   </VirtualDirectory>
+  <Dependencies Name="Win64-Debug">
+    <Project Name="base"/>
+  </Dependencies>
+  <Dependencies Name="Linux64-Debug">
+    <Project Name="base"/>
+  </Dependencies>
+  <Dependencies Name="Win32-Debug">
+    <Project Name="base"/>
+  </Dependencies>
+  <Dependencies Name="Win32-Release">
+    <Project Name="base"/>
+  </Dependencies>
+  <Dependencies Name="Win64-Release">
+    <Project Name="base"/>
+  </Dependencies>
   <Settings Type="Dynamic Library">
     <GlobalSettings>
       <Compiler Options="" C_Options="" Assembler="">
@@ -50,7 +65,7 @@
         <Preprocessor Value="ELINUX"/>
         <Preprocessor Value="WXEUGTK"/>
       </Compiler>
-      <Linker Options="-pthread;-Wl,-rpath=.;-Wl,--whole-archive;-lwxbase31ud_xml;-lwxexpatd;-Wl,--no-whole-archive;-lwxeud_base;-lgthread-2.0;-lX11;-lXxf86vm;-lSM;-lgtk-3;-lgdk-3;-lpangocairo-1.0;-lpango-1.0;-latk-1.0;-lcairo-gobject;-lcairo;-lgdk_pixbuf-2.0;-lgio-2.0;-lgobject-2.0;-lglib-2.0;-ldl;-lm" Required="yes">
+      <Linker Options="-pthread;-Wl,-rpath=.;-Wl,--whole-archive;-lwx_baseu_xml-3.1;-lwxexpat-3.1;-Wl,--no-whole-archive;-lwxeud_base;-lgthread-2.0;-lX11;-lXxf86vm;-lSM;-lgtk-3;-lgdk-3;-lpangocairo-1.0;-lpango-1.0;-latk-1.0;-lcairo-gobject;-lcairo;-lgdk_pixbuf-2.0;-lgio-2.0;-lgobject-2.0;-lglib-2.0;-ldl;-lm" Required="yes">
         <LibraryPath Value="$(WXWIN)/build/gtk-debug/lib"/>
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
@@ -258,19 +273,4 @@
       </Completion>
     </Configuration>
   </Settings>
-  <Dependencies Name="Win64-Debug">
-    <Project Name="base"/>
-  </Dependencies>
-  <Dependencies Name="Linux64-Debug">
-    <Project Name="base"/>
-  </Dependencies>
-  <Dependencies Name="Win32-Debug">
-    <Project Name="base"/>
-  </Dependencies>
-  <Dependencies Name="Win32-Release">
-    <Project Name="base"/>
-  </Dependencies>
-  <Dependencies Name="Win64-Release">
-    <Project Name="base"/>
-  </Dependencies>
 </CodeLite_Project>
