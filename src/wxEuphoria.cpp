@@ -102,13 +102,18 @@ void EuAppBase::Handler( wxEvent& event ) {
 		return;
 	}
 	
-	s1_ptr data = NewS1( 4 );
-	data->base[1] = BOX_INT( handler );
-	data->base[2] = BOX_INT( event_type );
-	data->base[3] = BOX_INT( window_id );
-	data->base[4] = BOX_INT( &event );
+//	s1_ptr data = NewS1( 4 );
+//	data->base[1] = BOX_INT( handler );
+//	data->base[2] = BOX_INT( event_type );
+//	data->base[3] = BOX_INT( window_id );
+//	data->base[4] = BOX_INT( &event );
+//
+//	EuAppBase::DoCallProc( routine_id, MAKE_SEQ(data) );
 	
-	EuAppBase::DoCallProc( routine_id, MAKE_SEQ(data) );
+	s1_ptr params = NewS1( 1 );
+	params->base[1] = BOX_INT( &event );
+	
+	EuAppBase::DoCallProc( routine_id, MAKE_SEQ(params) );
 }
 
 object EuAppBase::DoCallFunc( intptr_t id, object params )

@@ -1,6 +1,4 @@
 
+public include "wx/base/wxEvent.e"
+public include "wx/base/wxEventType.e"
 public include "wx/base/wxEvtHandler.e"
-
-public type wxEventType( object x )
-	return 1
-end type
