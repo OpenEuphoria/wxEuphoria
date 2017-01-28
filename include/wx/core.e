@@ -15,12 +15,24 @@ export constant
 	WXAPP_SETEXITONFRAMEDELETE	= wx_define( core, "wxApp_SetExitOnFrameDelete", 2, FALSE ),
 	WXAPP_SETTOPWINDOW			= wx_define( core, "wxApp_SetTopWindow",         2, FALSE ),
 	WXAPP_WXMESSAGEBOX			= wx_define( core, "wxApp_wxMessageBox",         6, TRUE  ),
-	WXBUTTON_NEW				= wx_define( core, "wxButton_new",               8, TRUE  ),
-	WXBUTTON_CREATE				= wx_define( core, "wxButton_Create",            9, TRUE  ),
-	WXFRAME_NEW					= wx_define( core, "wxFrame_new",                7, TRUE  ),
-	WXFRAME_CREATE				= wx_define( core, "wxFrame_Create",             8, TRUE  ),
-	WXPANEL_NEW					= wx_define( core, "wxPanel_new",                6, TRUE  ),
-	WXPANEL_CREATE				= wx_define( core, "wxPanel_Create",             7, TRUE  ),
-	WXWINDOW_SHOW				= wx_define( core, "wxWindow_Show",              2, TRUE  ),
+$
+
+export constant
+	WXBUTTON_NEW	= wx_define( core, "wxButton_new",      8, TRUE  ),
+	WXBUTTON_CREATE	= wx_define( core, "wxButton_Create",   9, TRUE  ),
+$
+
+export constant
+	WXFRAME_NEW		= wx_define( core, "wxFrame_new",       7, TRUE  ),
+	WXFRAME_CREATE	= wx_define( core, "wxFrame_Create",    8, TRUE  ),
+$
+
+export constant
+	WXPANEL_NEW		= wx_define( core, "wxPanel_new",       6, TRUE  ),
+	WXPANEL_CREATE	= wx_define( core, "wxPanel_Create",    7, TRUE  ),
+$
+
+export constant
+	WXWINDOW_SHOW	= wx_define( core, "wxWindow_Show", 2, TRUE  ),
 $
 

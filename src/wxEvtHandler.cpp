@@ -6,6 +6,11 @@ extern "C" {
 
 /* Public Member Functions */
 
+object WXEUAPI_BASE wxEvtHandler_GetObject()
+{
+	return EuAppBase::s_TheObject;
+}
+
 /* Event queuing and processing */
 
 void WXEUAPI_BASE wxEvtHandler_QueueEvent( object self, object event )
@@ -97,11 +102,6 @@ object WXEUAPI_BASE wxEvtHandler_Disconnect( object self, object window_id, obje
 		
 	}
 	
-}
-
-object WXEUAPI_BASE wxEvtHandler_GetObject()
-{
-	return EuAppBase::s_TheObject;
 }
 
 };

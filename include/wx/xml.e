@@ -4,13 +4,16 @@ include "wx/dll.e"
 atom xml = wx_library( "xml" )
 
 export constant
-	WXXMLDOCTYPE_NEW					= wx_define( xml, "wxXmlDoctype_new",                    3, TRUE  ),
-	WXXMLDOCTYPE_CLEAR					= wx_define( xml, "wxXmlDoctype_Clear",                  1, FALSE ),
-	WXXMLDOCTYPE_GETROOTNAME			= wx_define( xml, "wxXmlDoctype_GetRootName",            1, TRUE  ),
-	WXXMLDOCTYPE_GETSYSTEMID			= wx_define( xml, "wxXmlDoctype_GetSystemId",            1, TRUE  ),
-	WXXMLDOCTYPE_GETPUBLICID			= wx_define( xml, "wxXmlDoctype_GetPublicId",            1, TRUE  ),
-	WXXMLDOCTYPE_GETFULLSTRING			= wx_define( xml, "wxXmlDoctype_GetFullString",          1, TRUE  ),
-	WXXMLDOCTYPE_ISVALID				= wx_define( xml, "wxXmlDoctype_IsValid",                1, TRUE  ),
+	WXXMLDOCTYPE_NEW			= wx_define( xml, "wxXmlDoctype_new",           3, TRUE  ),
+	WXXMLDOCTYPE_CLEAR			= wx_define( xml, "wxXmlDoctype_Clear",         1, FALSE ),
+	WXXMLDOCTYPE_GETROOTNAME	= wx_define( xml, "wxXmlDoctype_GetRootName",   1, TRUE  ),
+	WXXMLDOCTYPE_GETSYSTEMID	= wx_define( xml, "wxXmlDoctype_GetSystemId",   1, TRUE  ),
+	WXXMLDOCTYPE_GETPUBLICID	= wx_define( xml, "wxXmlDoctype_GetPublicId",   1, TRUE  ),
+	WXXMLDOCTYPE_GETFULLSTRING	= wx_define( xml, "wxXmlDoctype_GetFullString", 1, TRUE  ),
+	WXXMLDOCTYPE_ISVALID		= wx_define( xml, "wxXmlDoctype_IsValid",       1, TRUE  ),
+$
+
+export constant
 	WXXMLDOCUMENT_NEW					= wx_define( xml, "wxXmlDocument_new",                   2, TRUE  ),
 	WXXMLDOCUMENT_APPENDTOPROLOG		= wx_define( xml, "wxXmlDocument_AppendToProlog",        1, FALSE ),
 	WXXMLDOCUMENT_COPY					= wx_define( xml, "wxXmlDocument_Copy",                  1, TRUE  ),

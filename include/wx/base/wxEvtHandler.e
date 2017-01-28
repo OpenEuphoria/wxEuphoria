@@ -6,6 +6,7 @@ include "wx/base.e"
 include "wx/defs.e"
 include "wx/event.e"
 include "wx/base/wxClassInfo.e"
+include "wx/base/wxEvent.e"
 
 public include "wx/base/wxObject.e"
 
@@ -31,6 +32,22 @@ export function CallProc( atom id )
 	call_proc( id, GetObject() )
 	return NULL
 end function
+
+public procedure QueueEvent( wxEvtHandler self, wxEvent event )
+	wx_proc( WXEVTHANDLER_QUEUEEVENT, {self,event} )
+end procedure
+
+public procedure AddPendingEvent( wxEvtHandler self, wxEvent event )
+	wx_proc( WXEVTHANDLER_ADDPENDINGEVENT, {self,event} )
+end procedure
+
+public procedure ProcessPendingEvents( wxEvtHandler self )
+	wx_proc( WXEVTHANDLER_PROCESSPENDINGEVENTS, {self} )
+end procedure
+
+public procedure DeletePendingEvents( wxEvtHandler self )
+	wx_proc( WXEVTHANDLER_DELETEPENDINGEVENTS, {self} )
+end procedure
 
 public procedure Connect( wxEvtHandler self, wxWindowID window_id, wxEventType event_type,
 		sequence routine_name, atom _routine_id = routine_id(routine_name) )

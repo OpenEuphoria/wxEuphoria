@@ -11,6 +11,10 @@ public include "wx/base/wxObject.e"
 constant wxEventInfo = wxClassInfo:FindClass( "wxEvent" )
 
 public type wxEvent( object x )
+	if equal( x, NULL ) then
+		return 1
+	end if
+	
 	return wxObject:IsKindOf( x, wxEventInfo )
 end type
 
