@@ -203,17 +203,20 @@ function check_cpp( sequence file )
 			& SLASH & "include" & SLASH & "wx" & SLASH & library_name )
 		sequence wrapper_file = library_path & SLASH & file_class & ".e"
 		
-		if not file_exists( wrapper_file ) then
-			
-			printf( STDERR, "%s\n", {wrapper_file} )
-			printf( STDERR, "class wrapper '%s' not found:\n%s\n", {file_class,wrapper_file} )
-			abort(0)
-			
-		end if
+		if not equal( file_class, "wxEuphoria" ) then
 		
-		integer found = check_eu( wrapper_file, func_info )
-		if not found then
-			not_found = append( not_found, {wrapper_file,func_name} )
+			if not file_exists( wrapper_file ) then
+				
+				printf( STDERR, "class wrapper '%s' not found:\n%s\n", {file_class,wrapper_file} )
+				abort(0)
+				
+			end if
+			
+			integer found = check_eu( wrapper_file, func_info )
+			if not found then
+				not_found = append( not_found, {wrapper_file,func_name} )
+			end if
+			
 		end if
 		
 	end for
@@ -245,10 +248,6 @@ function look_at( sequence path, sequence item )
 	
 	if wildcard:is_match( "wx?*.cpp", item[D_NAME] ) then
 		return check_cpp( path & SLASH & item[D_NAME] )
-		
---	elsif wildcard:is_match( "wx?*.e", item[D_NAME] ) then
---		return check_eu( path & SLASH & item[D_NAME] )
-		
 	end if
 	
 	return 0
