@@ -48,6 +48,8 @@
     <File Name="src/wxClassInfo.cpp"/>
     <File Name="src/wxVersionInfo.cpp"/>
     <File Name="src/wxEvent.cpp"/>
+    <File Name="src/wxAppTraits.cpp"/>
+    <File Name="src/wxStandardPaths.cpp"/>
   </VirtualDirectory>
   <Dependencies Name="Win32-Debug"/>
   <Dependencies Name="Win32-Release"/>

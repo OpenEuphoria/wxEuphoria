@@ -25,10 +25,25 @@ map m_libs = map:new()
 map m_defs = map:new()
 
 /* external memory allocator */
-function wx_malloc( atom size )
+public function wx_malloc( atom size )
 	return machine_func( M_ALLOC, size )
 end function
-constant malloc_cb = wx_callback( "wx_malloc" )
+export constant malloc_id = routine_id( "wx_malloc" )
+export constant malloc_cb = wx_callback( "wx_malloc" )
+
+/* external memory freer */
+public function wx_free( atom ptr )
+	machine_proc( M_FREE, ptr )
+	return NULL
+end function
+export constant free_id = routine_id( "wx_free" )
+export constant free_cb = wx_callback( "wx_free" )
+
+/* internal cleanup routine */
+public procedure wx_cleanup( atom ptr )
+	machine_proc( M_FREE, ptr )
+end procedure
+export constant cleanup_id = routine_id( "wx_cleanup" )
 
 /* load an external library */
 public function wx_library( sequence name )
@@ -53,8 +68,8 @@ public function wx_library( sequence name )
 			-- initialize the library
 			
 			atom initialize = wx_define( lib,
-				"wxEuphoria_Initialize", 1, 0 )
-			wx_proc( initialize, {malloc_cb} )
+				"wxEuphoria_Initialize", 2, FALSE )
+			wx_proc( initialize, {malloc_cb,free_cb} )
 			
 		end if
 		

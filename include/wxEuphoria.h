@@ -32,6 +32,7 @@ static inline intptr_t get_int( object x );
 #define BOX_INT(x) box_int( (intptr_t)x )
 #define UNBOX_INT(x) unbox_int( (intptr_t)x )
 #define LENGTH(s1) ((s1_ptr)SEQ_PTR(s1))->length
+#define EMPTY_SEQUENCE MAKE_SEQ( NewS1(0) )
 #define wxDeRefDS(a) {assert(DBL_PTR(a)->ref); --(DBL_PTR(a)->ref);}
 #define wxDeRef(a) if(IS_DBL_OR_SEQUENCE(a)){ wxDeRefDS(a); }
 
@@ -46,6 +47,7 @@ extern HANDLE default_heap;
 typedef object WXEUAPI (*EuCallFunc)(intptr_t);
 typedef   void WXEUAPI (*EuCallProc)(intptr_t);
 typedef object WXEUAPI (*MallocFunc)(intptr_t);
+typedef   void WXEUAPI (*FreeFunc)(intptr_t);
 
 /* shared class for wxEuphoria application */
 class EuAppBase : public wxEvtHandler
@@ -63,6 +65,7 @@ public:
 	static EuCallFunc s_CallFunc;
 	static EuCallProc s_CallProc;
 	static MallocFunc s_MallocFunc;
+	static FreeFunc s_FreeFunc;
 	static intptr_t s_RTFatal;
 	static intptr_t s_TheObject;
 };
@@ -73,6 +76,13 @@ static inline void* Malloc( intptr_t size )
 	assert( EuAppBase::s_MallocFunc );
 	object ptr = EuAppBase::s_MallocFunc( size );
 	return (void*)get_int( ptr );
+}
+
+/* use external function to free memory */
+static inline void Free( intptr_t ptr )
+{
+	assert( EuAppBase::s_FreeFunc );
+	EuAppBase::s_FreeFunc( ptr );
 }
 
 /* convert atom to char. *must avoid side effects in elem* */

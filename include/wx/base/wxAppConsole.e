@@ -5,7 +5,7 @@ include "wx/dll.e"
 include "wx/base.e"
 include "wx/defs.e"
 include "wx/string.e"
-include "wx/base/wxClassInfo.e"
+include "wx/object.e"
 
 public include "wx/base/wxEvtHandler.e"
 public include "wx/base/wxObject.e"
@@ -92,6 +92,10 @@ end function
 
 public function GetClassName( wxAppConsole self )
 	return wx_func( WXAPPCONSOLE_GETCLASSNAME, {self} )
+end function
+
+public function GetTraits( wxAppConsole self )
+	return wx_func( WXAPPCONSOLE_GETTRAITS, {self} )
 end function
 
 public function GetVendorDisplayName( wxAppConsole self )

@@ -3,7 +3,9 @@ namespace wxWindow
 
 include "wx/dll.e"
 include "wx/core.e"
-include "wx/base/wxClassInfo.e"
+include "wx/string.e"
+include "wx/object.e"
+include "wx/gdicmn.e"
 
 public include "wx/base/wxEvtHandler.e"
 public include "wx/base/wxObject.e"
@@ -17,6 +19,18 @@ public type wxWindow( object x )
 	
 	return wxObject:IsKindOf( x, wxWindowInfo )
 end type
+
+public function new( wxWindow parent, wxWindowID id, wxPoint pos, wxSize size, atom style, wxString name )
+	return wx_func( WXWINDOW_NEW, {parent,id,pos,size,style,name} )
+end function
+
+public function Create( wxWindow self, wxWindow parent, wxWindowID id, wxPoint pos, wxSize size, atom style, wxString name )
+	return wx_func( WXWINDOW_CREATE, {self,parent,id,pos,size,style,name} )
+end function
+
+public function AcceptsFocus( wxWindow self )
+	return wx_func( WXWINDOW_ACCEPTSFOCUS, {self} )
+end function
 
 public function Show( wxWindow self, atom show = TRUE )
 	return wx_func( WXWINDOW_SHOW, {self,show} )

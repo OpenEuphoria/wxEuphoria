@@ -123,11 +123,10 @@ object WXEUAPI_BASE wxAppConsole_GetClassName( object self )
 	return get_sequence( ((wxAppConsole*)self)->GetClassName() );
 }
 
-// TODO - implement wxAppTraits
-//object WXEUAPI_BASE wxAppConsole_GetTraits( object self )
-//{
-//	return BOX_INT( ((wxAppConsole*)self)->GetTraits() );
-//}
+object WXEUAPI_BASE wxAppConsole_GetTraits( object self )
+{
+	return BOX_INT( ((wxAppConsole*)self)->GetTraits() );
+}
 
 object WXEUAPI_BASE wxAppConsole_GetVendorDisplayName( object self )
 {

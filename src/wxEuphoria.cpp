@@ -13,6 +13,7 @@ EuAppBase* EuAppBase::s_EuAppBase;
 EuCallFunc EuAppBase::s_CallFunc;
 EuCallProc EuAppBase::s_CallProc;
 MallocFunc EuAppBase::s_MallocFunc;
+FreeFunc EuAppBase::s_FreeFunc;
 intptr_t EuAppBase::s_RTFatal;
 intptr_t EuAppBase::s_TheObject;
 
@@ -159,9 +160,10 @@ void __attribute__ ((destructor))  my_fini(void) {}
 
 extern "C" {
 
-void WXEUAPI_BASE wxEuphoria_Initialize( MallocFunc malloc_func )
+void WXEUAPI_BASE wxEuphoria_Initialize( object malloc_func, object free_func )
 {
-	EuAppBase::s_MallocFunc = malloc_func;
+	EuAppBase::s_MallocFunc = (MallocFunc)malloc_func;
+	EuAppBase::s_FreeFunc = (FreeFunc)free_func;
 }
 
 };

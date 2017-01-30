@@ -3,7 +3,7 @@ namespace wxObject
 
 include "wx/dll.e"
 include "wx/base.e"
-include "wx/base/wxClassInfo.e"
+include "wx/object.e"
 
 constant wxObjectInfo = wxClassInfo:FindClass( "wxObject" )
 

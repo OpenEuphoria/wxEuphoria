@@ -4,9 +4,8 @@ namespace wxEvtHandler
 include "wx/dll.e"
 include "wx/base.e"
 include "wx/defs.e"
+include "wx/object.e"
 include "wx/event.e"
-include "wx/base/wxClassInfo.e"
-include "wx/base/wxEvent.e"
 
 public include "wx/base/wxObject.e"
 

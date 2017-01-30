@@ -3,16 +3,16 @@
   <Project Name="all" Path="all.project" Active="Yes"/>
   <Project Name="core" Path="core.project" Active="No"/>
   <Project Name="base" Path="base.project" Active="No"/>
-  <Project Name="xml" Path="xml.project"/>
+  <Project Name="xml" Path="xml.project" Active="No"/>
   <BuildMatrix>
-    <WorkspaceConfiguration Name="Win64-Debug" Selected="no">
+    <WorkspaceConfiguration Name="Win64-Debug" Selected="yes">
       <Environment/>
       <Project Name="all" ConfigName="Win64-Debug"/>
       <Project Name="base" ConfigName="Win64-Debug"/>
       <Project Name="core" ConfigName="Win64-Debug"/>
       <Project Name="xml" ConfigName="Win64-Debug"/>
     </WorkspaceConfiguration>
-    <WorkspaceConfiguration Name="Win64-Release" Selected="yes">
+    <WorkspaceConfiguration Name="Win64-Release" Selected="no">
       <Environment/>
       <Project Name="all" ConfigName="Win64-Release"/>
       <Project Name="base" ConfigName="Win64-Release"/>

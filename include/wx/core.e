@@ -33,6 +33,9 @@ export constant
 $
 
 export constant
-	WXWINDOW_SHOW	= wx_define( core, "wxWindow_Show", 2, TRUE  ),
+	WXWINDOW_NEW			= wx_define( core, "wxWindow_new",          6, TRUE  ),
+	WXWINDOW_CREATE			= wx_define( core, "wxWindow_Create",       7, TRUE  ),
+	WXWINDOW_ACCEPTSFOCUS	= wx_define( core, "wxWindow_AcceptsFocus", 1, TRUE  ),
+	WXWINDOW_SHOW			= wx_define( core, "wxWindow_Show",         2, TRUE  ),
 $
 

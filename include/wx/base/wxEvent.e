@@ -3,8 +3,8 @@ namespace wxEvent
 
 include "wx/dll.e"
 include "wx/base.e"
-include "wx/base/wxClassInfo.e"
-include "wx/base/wxEventType.e"
+include "wx/object.e"
+include "wx/event.e"
 
 public include "wx/base/wxObject.e"
 
