@@ -5,12 +5,12 @@ include "wx/dll.e"
 include "wx/base.e"
 include "wx/defs.e"
 include "wx/string.e"
-include "wx/object.e"
 
-public include "wx/base/wxEvtHandler.e"
-public include "wx/base/wxObject.e"
+public include "wx/event.e"
+public include "wx/object.e"
 
 atom base = wx_library( "base" )
+
 public constant wxEVT_IDLE = wx_event( base, "wxEVT_IDLE" )
 
 constant wxAppConsoleInfo = wxClassInfo:FindClass( "wxAppConsole" )

@@ -2,20 +2,17 @@
 namespace wxButton
 
 include "wx/dll.e"
+include "wx/defs.e"
 include "wx/core.e"
 include "wx/string.e"
-include "wx/windowid.e"
 include "wx/gdicmn.e"
-include "wx/base/wxClassInfo.e"
+include "wx/button.e"
 
-public include "wx/core/wxAnyButton.e"
-public include "wx/core/wxControl.e"
-public include "wx/core/wxWindow.e"
-public include "wx/base/wxEvtHandler.e"
-public include "wx/base/wxObject.e"
-
-atom core = wx_library( "core" )
-public constant wxEVT_BUTTON = wx_event( core, "wxEVT_BUTTON" )
+public include "wx/anybutton.e"
+public include "wx/control.e"
+public include "wx/window.e"
+public include "wx/event.e"
+public include "wx/object.e"
 
 constant wxButtonInfo = wxClassInfo:FindClass( "wxButton" )
 

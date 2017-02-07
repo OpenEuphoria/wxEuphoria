@@ -4,10 +4,9 @@ namespace wxEvtHandler
 include "wx/dll.e"
 include "wx/base.e"
 include "wx/defs.e"
-include "wx/object.e"
 include "wx/event.e"
 
-public include "wx/base/wxObject.e"
+public include "wx/object.e"
 
 constant wxEvtHandlerInfo = wxClassInfo:FindClass( "wxEvtHandler" )
 

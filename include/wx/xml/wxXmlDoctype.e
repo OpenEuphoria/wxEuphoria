@@ -2,10 +2,11 @@
 namespace wxXmlDoctype
 
 include "wx/dll.e"
+include "wx/defs.e"
 include "wx/xml.e"
 include "wx/string.e"
 
-public include "wx/base/wxObject.e"
+public include "wx/object.e"
 
 public type wxXmlDoctype( object x )
 	return atom(x)

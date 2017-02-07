@@ -24,6 +24,8 @@ constant WX_LIBRARY_MASK = WX_LIBRARY_NAME & WX_LIBRARY_EXT
 map m_libs = map:new()
 map m_defs = map:new()
 
+atom init_func, delete_func
+
 /* external memory allocator */
 public function wx_malloc( atom size )
 	return machine_func( M_ALLOC, size )
@@ -67,9 +69,12 @@ public function wx_library( sequence name )
 		if equal( name, "base" ) then
 			-- initialize the library
 			
-			atom initialize = wx_define( lib,
+			init_func = wx_define( lib,
 				"wxEuphoria_Initialize", 2, FALSE )
-			wx_proc( initialize, {malloc_cb,free_cb} )
+			delete_func = wx_define( lib,
+				"wxEuphoria_DeleteObject", 1, FALSE )
+			
+			wx_proc( init_func, {malloc_cb,free_cb} )
 			
 		end if
 		
@@ -127,6 +132,16 @@ end function
 public function wx_event( atom lib, sequence name )
 	return peek4s( wx_define(lib,name) )
 end function
+
+/* get the value of a global string */
+public function wx_string( atom lib, sequence name )
+	return peek_string( wx_define(lib,name) )
+end function
+
+/* delete a wxWidgets object (wxObject*) */
+public procedure wx_delete( atom ptr )
+	wx_proc( delete_func, {ptr} )
+end procedure
 
 /* register an external callback */
 public function wx_callback( sequence name, atom id = routine_id(name) )

@@ -4,7 +4,7 @@ include "wx/wx.e"
 wxApp app = wxApp:new()
 
 wxFrame frame = wxClassInfo:CreateObject( "wxFrame" )
-wxFrame:Create( frame, NULL, wxID_ANY, "wxEuphoria", {-1,-1}, {720,480}, wxDEFAULT_FRAME_STYLE, "frame" )
+wxFrame:Create( frame, NULL, wxID_ANY, "wxEuphoria", wxDefaultPoint, wxDefaultSize, wxDEFAULT_FRAME_STYLE, "frame" )
 
 wxPanel panel = wxClassInfo:CreateObject( "wxPanel" )
 wxPanel:Create( panel, frame, wxID_ANY, {-1,-1}, {-1,-1}, wxTAB_TRAVERSAL, "panel" )

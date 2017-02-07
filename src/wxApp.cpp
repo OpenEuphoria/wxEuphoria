@@ -1,5 +1,6 @@
 
 #include <wx/app.h>
+#include <wx/image.h>
 #include <wx/frame.h>
 #include <wx/msgdlg.h>
 #include <wx/vidmode.h>
@@ -13,6 +14,10 @@ public:
 		: EuAppBase( func, proc, rtfatal ) {}
 	
 	bool OnInit() {
+		
+		wxInitialize();
+		wxInitAllImageHandlers();
+		
 		return true;
 	}
 	
@@ -30,8 +35,6 @@ object WXEUAPI_CORE wxApp_new( object func, object proc, object rtfatal )
 	
 	if ( app == NULL ) {
 		app = new EuApp( (EuCallFunc)func, (EuCallProc)proc, rtfatal );
-		
-		wxInitialize();
 		wxApp::SetInstance( app );
 	}
 	

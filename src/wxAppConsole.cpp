@@ -1,5 +1,6 @@
 
 #include <wx/app.h>
+#include <wx/image.h>
 #include "wxEuphoria.h"
 
 /* class for wxEuphoria console application */

@@ -260,6 +260,26 @@ static inline object get_sequence( const wxString& str )
 	return MAKE_SEQ( s );
 }
 
+/* convert a wxPoint to a Euphoria sequence */
+static inline object get_sequence( const wxPoint& pt )
+{
+	s1_ptr s = NewS1( 2 );
+	s->base[1] = BOX_INT( pt.x );
+	s->base[2] = BOX_INT( pt.y );
+	
+	return MAKE_SEQ( s );
+}
+
+/* convert a wxPoint to a Euphoria sequence */
+static inline object get_sequence( const wxSize& sz )
+{
+	s1_ptr s = NewS1( 2 );
+	s->base[1] = BOX_INT( sz.GetWidth() );
+	s->base[2] = BOX_INT( sz.GetHeight() );
+	
+	return MAKE_SEQ( s );
+}
+
 /* convert a Euphoria atom to a C double */
 static inline double get_double( object x )
 {
@@ -322,6 +342,45 @@ static inline wxSize get_size( object sz )
 	else {
 		return *(wxSize*)sz;
 	}
+}
+
+/* convert a Euphoria sequence into XPM data */
+static inline char** get_xpm( object x )
+{
+	s1_ptr xpm = SEQ_PTR( x );
+	intptr_t len = xpm->length;
+	
+	intptr_t* bits = new intptr_t[len+1];
+	intptr_t* ptr = bits;
+	
+	for ( intptr_t i = 1; i <= len; i++ )
+	{
+		s1_ptr xpm_ix = SEQ_PTR( xpm->base[i] );
+		intptr_t len_ix = xpm_ix->length;
+		
+		char* line = new char[len+1];
+		*ptr = (intptr_t)line;
+		
+		for ( intptr_t j = 1; j <= len_ix; j++ ) {
+			*(line++) = (char)xpm_ix->base[j];
+		}
+		
+		*line = '\0';
+		ptr++;
+	}
+	
+	*ptr = 0;
+	return (char**)bits;
+}
+
+/* delete an XPM object */
+static inline void free_xpm( char** xpm, intptr_t len )
+{
+	for( intptr_t i = 0; i < len; i++ ) {
+		delete[] xpm[i];
+	}
+	
+	delete[] xpm;
 }
 
 /* routine id lookup table entry structure */

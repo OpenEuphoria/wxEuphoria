@@ -2,14 +2,11 @@
 namespace wxXmlDocument
 
 include "wx/dll.e"
+include "wx/defs.e"
 include "wx/xml.e"
-include "wx/object.e"
 include "wx/string.e"
-include "wx/base/wxClassInfo.e"
-include "wx/xml/wxXmlDoctype.e"
-include "wx/xml/wxXmlNode.e"
 
-public include "wx/base/wxObject.e"
+public include "wx/object.e"
 
 -- flags for wxXmlDocument::Load
 public enum type wxXmlDocumentLoadFlag

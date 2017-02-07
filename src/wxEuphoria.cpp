@@ -166,4 +166,9 @@ void WXEUAPI_BASE wxEuphoria_Initialize( object malloc_func, object free_func )
 	EuAppBase::s_FreeFunc = (FreeFunc)free_func;
 }
 
+void WXEUAPI_BASE wxEuphoria_DeleteObject( object ptr )
+{
+	delete (wxObject*)ptr;
+}
+
 };

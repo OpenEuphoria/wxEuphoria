@@ -2,13 +2,13 @@
 namespace wxAnyButton
 
 include "wx/dll.e"
+include "wx/defs.e"
 include "wx/core.e"
-include "wx/base/wxClassInfo.e"
 
-public include "wx/core/wxControl.e"
-public include "wx/core/wxWindow.e"
-public include "wx/base/wxEvtHandler.e"
-public include "wx/base/wxObject.e"
+public include "wx/control.e"
+public include "wx/window.e"
+public include "wx/event.e"
+public include "wx/object.e"
 
 constant wxAnyButtonInfo = wxClassInfo:FindClass( "wxAnyButton" )
 

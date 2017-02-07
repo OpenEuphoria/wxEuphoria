@@ -29,6 +29,7 @@ constant SIMPLE_TEMPLATE = """
 namespace {class}
 
 include "wx/dll.e"
+include "wx/defs.e"
 include "wx/{library}.e"
 
 public type {class}( object x )
@@ -42,10 +43,10 @@ constant OBJECT_TEMPLATE = """
 namespace {class}
 
 include "wx/dll.e"
+include "wx/defs.e"
 include "wx/{library}.e"
-include "wx/base/wxClassInfo.e"
 
-public include "wx/base/wxObject.e"
+public include "wx/object.e"
 
 constant {class}Info = wxClassInfo:FindClass( "{class}" )
 

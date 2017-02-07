@@ -2,13 +2,13 @@
 namespace wxWindow
 
 include "wx/dll.e"
+include "wx/defs.e"
 include "wx/core.e"
 include "wx/string.e"
-include "wx/object.e"
 include "wx/gdicmn.e"
 
-public include "wx/base/wxEvtHandler.e"
-public include "wx/base/wxObject.e"
+public include "wx/event.e"
+public include "wx/object.e"
 
 constant wxWindowInfo = wxClassInfo:FindClass( "wxWindow" )
 

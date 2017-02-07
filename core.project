@@ -34,6 +34,8 @@
     <File Name="src/wxPanel.cpp"/>
     <File Name="src/wxButton.cpp"/>
     <File Name="src/wxWindow.cpp"/>
+    <File Name="src/wxTopLevelWindow.cpp"/>
+    <File Name="src/wxIcon.cpp"/>
   </VirtualDirectory>
   <Dependencies Name="Win32-Debug">
     <Project Name="base"/>

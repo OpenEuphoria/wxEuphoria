@@ -2,15 +2,14 @@
 namespace wxApp
 
 include "wx/dll.e"
-include "wx/base.e"
-include "wx/core.e"
 include "wx/defs.e"
+include "wx/core.e"
 include "wx/string.e"
 include "wx/window.e"
-include "wx/base/wxClassInfo.e"
 
-public include "wx/base/wxAppConsole.e"
-public include "wx/base/wxEvtHandler.e"
+public include "wx/app.e"
+public include "wx/event.e"
+public include "wx/object.e"
 
 atom core = wx_library( "core" )
 
