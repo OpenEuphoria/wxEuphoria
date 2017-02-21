@@ -155,11 +155,11 @@ void WXEUAPI_CORE wxFrame_SetToolBar( object self, object toolBar )
 
 object WXEUAPI_CORE wxFrame_MSWGetTaskBarButton( object self )
 {
-	wxTaskBarButton* btn = NULL;
 #ifdef WXEUMSW
-	btn = ((wxFrame*)self)->MSWGetTaskBarButton();
+	return BOX_INT( ((wxFrame*)self)->MSWGetTaskBarButton() );
+#else
+	return NULL;
 #endif
-	return BOX_INT( btn );
 }
 
 void WXEUAPI_CORE wxFrame_PushStatusText( object self, object text, object number )

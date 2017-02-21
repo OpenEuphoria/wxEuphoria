@@ -14,10 +14,6 @@ public:
 		: EuAppBase( func, proc, rtfatal ) {}
 	
 	bool OnInit() {
-		
-		wxInitialize();
-		wxInitAllImageHandlers();
-		
 		return true;
 	}
 	
@@ -35,6 +31,10 @@ object WXEUAPI_CORE wxApp_new( object func, object proc, object rtfatal )
 	
 	if ( app == NULL ) {
 		app = new EuApp( (EuCallFunc)func, (EuCallProc)proc, rtfatal );
+		
+		wxInitialize();
+		wxInitAllImageHandlers();
+		
 		wxApp::SetInstance( app );
 	}
 	

@@ -14,11 +14,8 @@ wxFrame:PushStatusText( myFrame, "Ready...", 0 )
 wxFrame:PushStatusText( myFrame, "Set...",   1 )
 wxFrame:PushStatusText( myFrame, "Go!",      2 )
 
---wxIcon icon = wxIcon:new( home_xpm )
-wxIcon icon = wxIcon:new( "bricks.png" )
-if icon != NULL then
-	wxFrame:SetIcon( myFrame, icon )
-end if
+wxIcon icon = wxIcon:CreateFromXPM( home_xpm )
+wxFrame:SetIcon( myFrame, icon )
 
 procedure myButton_OnClick( wxEvent event ) -- should be wxCommandEvent
 	

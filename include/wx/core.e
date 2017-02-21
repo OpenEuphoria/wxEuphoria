@@ -47,7 +47,20 @@ export constant
 $
 
 export constant
-	WXICON_NEW	= wx_define( core, "wxIcon_new", 4, TRUE  ),
+	WXICON_NEW					= wx_define( core, "wxIcon_new",               4, TRUE  ),
+	WXICON_CREATEFROMHICON		= wx_define( core, "wxIcon_CreateFromHICON",   2, TRUE  ),
+	WXICON_CREATEFROMICON		= wx_define( core, "wxIcon_CreateFromIcon",    1, TRUE  ),
+	WXICON_CREATEFROMXPM		= wx_define( core, "wxIcon_CreateFromXPM",     1, TRUE  ),
+	WXICON_CONVERTTODISABLED	= wx_define( core, "wxIcon_ConvertToDisabled", 2, TRUE  ),
+	WXICON_COPYFROMBITMAP		= wx_define( core, "wxIcon_CopyFromBitmap",    2, FALSE ),
+	WXICON_GETDEPTH				= wx_define( core, "wxIcon_GetDepth",          1, TRUE  ),
+	WXICON_GETWIDTH				= wx_define( core, "wxIcon_GetWidth",          1, TRUE  ),
+	WXICON_GETHEIGHT			= wx_define( core, "wxIcon_GetHeight",         1, TRUE  ),
+	WXICON_ISOK					= wx_define( core, "wxIcon_IsOk",              1, TRUE  ),
+	WXICON_LOADFILE				= wx_define( core, "wxIcon_LoadFile",          5, TRUE  ),
+	WXICON_SETDEPTH				= wx_define( core, "wxIcon_SetDepth",          2, FALSE ),
+	WXICON_SETHEIGHT			= wx_define( core, "wxIcon_SetHeight",         2, FALSE ),
+	WXICON_SETWIDTH				= wx_define( core, "wxIcon_SetWidth",          2, FALSE ),
 $
 
 export constant

@@ -56,6 +56,6 @@ public function GetIcon( wxTopLevelWindow self )
 	return wx_func( WXTOPLEVELWINDOW_GETICON, {self} )
 end function
 
-public procedure SetIcon( wxTopLevelWindow self, wxIcon icon )
+public procedure SetIcon( wxTopLevelWindow self, object icon )
 	wx_proc( WXTOPLEVELWINDOW_SETICON, {self,icon} )
 end procedure

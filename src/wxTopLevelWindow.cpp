@@ -63,7 +63,15 @@ object WXEUAPI_CORE wxTopLevelWindow_GetIcon( object self )
 
 void WXEUAPI_CORE wxTopLevelWindow_SetIcon( object self, object icon )
 {
-	((wxTopLevelWindow*)self)->SetIcon( *(wxIcon*)icon );
+	if ( IS_SEQUENCE(icon) )
+	{
+		wxDeRef( icon );
+		((wxTopLevelWindow*)self)->SetIcon( wxIcon(get_string(icon)) );
+	}
+	else
+	{
+		((wxTopLevelWindow*)self)->SetIcon( *(wxIcon*)icon );
+	}
 }
 
 };

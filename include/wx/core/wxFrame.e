@@ -10,7 +10,10 @@ include "wx/frame.e"
 include "wx/menu.e"
 include "wx/statusbr.e"
 include "wx/toolbar.e"
---include "wx/app.e"
+
+ifdef LINUX then
+include "wx/app.e"
+end ifdef
 
 public include "wx/toplevel.e"
 public include "wx/nonownedwnd.e"
@@ -29,7 +32,9 @@ public type wxFrame( object x )
 end type
 
 public function new( wxWindow parent, wxWindowID id, wxString title, wxPoint pos = wxDefaultPosition, wxSize size = wxDefaultSize, atom style = wxDEFAULT_FRAME_STYLE, wxString name = wxFrameNameStr )
---	if wxApp:GetInstance() = NULL then wxApp:new() end if
+ifdef LINUX then
+	if wxApp:GetInstance() = NULL then wxApp:new() end if
+end ifdef
 	return wx_func( WXFRAME_NEW, {parent,id,title,pos,size,style,name} )
 end function
 
@@ -42,7 +47,9 @@ public procedure Center( wxFrame self, atom direction = wxBOTH )
 end procedure
 
 public function Create( wxFrame self, wxWindow parent, wxWindowID id, wxString title, wxPoint pos = wxDefaultPosition, wxSize size = wxDefaultSize, atom style = wxDEFAULT_FRAME_STYLE, wxString name = wxFrameNameStr )
---	if wxApp:GetInstance() = NULL then wxApp:new() end if
+ifdef LINUX then
+	if wxApp:GetInstance() = NULL then wxApp:new() end if
+end ifdef
 	return wx_func( WXFRAME_CREATE, {self,parent,id,title,pos,size,style,name} )
 end function
 
