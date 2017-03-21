@@ -5,6 +5,10 @@ include "tbar_xpm.e"
 enum ID_Button = 1
 
 wxFrame myFrame = wxFrame:new( NULL, wxID_ANY, "wxEuphoria" )
+
+wxMenuBar myMenuBar = wxMenuBar:new( 0 )
+wxMenuBar:Attach( myMenuBar, myFrame )
+
 wxPanel myPanel = wxPanel:new( myFrame )
 wxButton myButton = wxButton:new( myPanel, ID_Button, "Click me", {10,10}, {75,23}, 0, NULL, "button" )
 

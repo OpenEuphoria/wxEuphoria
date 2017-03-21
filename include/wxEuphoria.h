@@ -344,6 +344,22 @@ static inline wxSize get_size( object sz )
 	}
 }
 
+/* convert a Euphoria object to a wxRect */
+static inline wxRect get_rect( object rc )
+{
+	if ( IS_SEQUENCE(rc) ) {
+		s1_ptr s = SEQ_PTR( rc );
+		intptr_t xx = s->base[1];
+		intptr_t yy = s->base[2];
+		intptr_t ww = s->base[3];
+		intptr_t hh = s->base[4];
+		return wxRect( xx, yy, ww, hh );
+	}
+	else {
+		return *(wxRect*)rc;
+	}
+}
+
 /* convert a Euphoria sequence into XPM data */
 static inline char** get_xpm( object x )
 {

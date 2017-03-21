@@ -20,3 +20,4 @@ xml.mk
 xml.txt
 ex.err
 Makefile
+*.swp
