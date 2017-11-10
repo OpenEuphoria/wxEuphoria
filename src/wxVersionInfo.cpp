@@ -19,52 +19,72 @@ object WXEUAPI_BASE wxVersionInfo_new( object name, object major, object minor, 
 
 object WXEUAPI_BASE wxVersionInfo_GetName( object self )
 {
-	return get_sequence( ((wxVersionInfo*)self)->GetName() );
+	wxString name = ((wxVersionInfo*)self)->GetName();
+	
+	return get_sequence( name );
 }
 
 object WXEUAPI_BASE wxVersionInfo_GetMajor( object self )
 {
-	return BOX_INT( ((wxVersionInfo*)self)->GetMajor() );
+	int major = ((wxVersionInfo*)self)->GetMajor();
+	
+	return BOX_INT( major );
 }
 
 object WXEUAPI_BASE wxVersionInfo_GetMinor( object self )
 {
-	return BOX_INT( ((wxVersionInfo*)self)->GetMinor() );
+	int minor = ((wxVersionInfo*)self)->GetMinor();
+	
+	return BOX_INT( minor );
 }
 
 object WXEUAPI_BASE wxVersionInfo_GetMicro( object self )
 {
-	return BOX_INT( ((wxVersionInfo*)self)->GetMicro() );
+	int micro = ((wxVersionInfo*)self)->GetMicro();
+	
+	return BOX_INT( micro );
 }
 
 object WXEUAPI_BASE wxVersionInfo_ToString( object self )
 {
-	return get_sequence( ((wxVersionInfo*)self)->ToString() );
+	wxString string = ((wxVersionInfo*)self)->ToString();
+	
+	return get_sequence( string );
 }
 
 object WXEUAPI_BASE wxVersionInfo_GetVersionString( object self )
 {
-	return get_sequence( ((wxVersionInfo*)self)->GetVersionString() );
+	wxString version = ((wxVersionInfo*)self)->GetVersionString();
+	
+	return get_sequence( version );
 }
 
 object WXEUAPI_BASE wxVersionInfo_HasDescription( object self )
 {
-	return BOX_INT( ((wxVersionInfo*)self)->HasDescription() );
+	bool result = ((wxVersionInfo*)self)->HasDescription();
+	
+	return BOX_INT( result );
 }
 
 object WXEUAPI_BASE wxVersionInfo_GetDescription( object self )
 {
-	return get_sequence( ((wxVersionInfo*)self)->GetDescription() );
+	wxString description = ((wxVersionInfo*)self)->GetDescription();
+	
+	return get_sequence( description );
 }
 
 object WXEUAPI_BASE wxVersionInfo_HasCopyright( object self )
 {
-	return BOX_INT( ((wxVersionInfo*)self)->HasCopyright() );
+	bool result = ((wxVersionInfo*)self)->HasCopyright();
+	
+	return BOX_INT( result );
 }
 
 object WXEUAPI_BASE wxVersionInfo_GetCopyright( object self )
 {
-	return get_sequence( ((wxVersionInfo*)self)->GetCopyright() );
+	wxString copyright = ((wxVersionInfo*)self)->GetCopyright();
+	
+	return get_sequence( copyright );
 }
 
 };

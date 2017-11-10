@@ -6,11 +6,8 @@ enum ID_Button = 1
 
 wxFrame myFrame = wxFrame:new( NULL, wxID_ANY, "wxEuphoria" )
 
-wxMenuBar myMenuBar = wxMenuBar:new( 0 )
-wxMenuBar:Attach( myMenuBar, myFrame )
-
 wxPanel myPanel = wxPanel:new( myFrame )
-wxButton myButton = wxButton:new( myPanel, ID_Button, "Click me", {10,10}, {75,23}, 0, NULL, "button" )
+wxAnyButton myButton = wxButton:new( myPanel, ID_Button, "Click me", {10,10}, {75,23}, 0, NULL, "myButton" )
 
 wxStatusBar myStatusBar = wxFrame:CreateStatusBar( myFrame, 4 )
 wxFrame:SetStatusWidths( myFrame, {64,48,32,-1} )
@@ -22,12 +19,12 @@ wxIcon icon = wxIcon:CreateFromXPM( home_xpm )
 wxFrame:SetIcon( myFrame, icon )
 
 procedure myButton_OnClick( wxEvent event ) -- should be wxCommandEvent
-	
+
 	wxMessageBox( "Hello, world!\n\nYou can only click that button once.",
 		"Message Box", wxYES_NO+wxCANCEL+wxICON_EXCLAMATION )
-	
+
 	wxButton:Disconnect( myButton, ID_Button, wxEVT_BUTTON )
-	
+
 end procedure
 wxButton:Connect( myButton, ID_Button, wxEVT_BUTTON, "myButton_OnClick" )
 

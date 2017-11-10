@@ -1,6 +1,7 @@
 
 #include <wx/app.h>
 #include <wx/frame.h>
+#include <wx/taskbarbutton.h>
 #include "wxEuphoria.h"
 
 class EuApp : public wxApp, public EuAppBase
@@ -87,32 +88,43 @@ object WXEUAPI_CORE wxFrame_CreateToolBar( object self, object style, object id,
 object WXEUAPI_CORE wxFrame_GetClientAreaOrigin( object self )
 {
 	wxPoint pt = ((wxFrame*)self)->GetClientAreaOrigin();
+	
 	return get_sequence( pt );
 }
 
 object WXEUAPI_CORE wxFrame_GetMenuBar( object self )
 {
-	return BOX_INT( ((wxFrame*)self)->GetMenuBar() );
+	wxMenuBar* menuBar = ((wxFrame*)self)->GetMenuBar();
+	
+	return BOX_INT( menuBar );
 }
 
 object WXEUAPI_CORE wxFrame_GetStatusBar( object self )
 {
-	return BOX_INT( ((wxFrame*)self)->GetStatusBar() );
+	wxStatusBar* statusBar = ((wxFrame*)self)->GetStatusBar();
+	
+	return BOX_INT( statusBar );
 }
 
 object WXEUAPI_CORE wxFrame_GetStatusBarPane( object self )
 {
-	return BOX_INT( ((wxFrame*)self)->GetStatusBarPane() );
+	int result = ((wxFrame*)self)->GetStatusBarPane();
+	
+	return BOX_INT( result );
 }
 
 object WXEUAPI_CORE wxFrame_GetToolBar( object self )
 {
-	return BOX_INT( ((wxFrame*)self)->GetToolBar() );
+	wxToolBar* toolBar = ((wxFrame*)self)->GetToolBar();
+	
+	return BOX_INT( toolBar );
 }
 
 object WXEUAPI_CORE wxFrame_ProcessCommand( object self, object id )
 {
-	return BOX_INT( ((wxFrame*)self)->ProcessCommand( get_int(id) ) );
+	bool result = ((wxFrame*)self)->ProcessCommand( get_int(id) );
+	
+	return BOX_INT( result );
 }
 
 void WXEUAPI_CORE wxFrame_SetMenuBar( object self, object menuBar )
@@ -156,9 +168,11 @@ void WXEUAPI_CORE wxFrame_SetToolBar( object self, object toolBar )
 object WXEUAPI_CORE wxFrame_MSWGetTaskBarButton( object self )
 {
 #ifdef WXEUMSW
-	return BOX_INT( ((wxFrame*)self)->MSWGetTaskBarButton() );
+	wxTaskBarButton* button = ((wxFrame*)self)->MSWGetTaskBarButton();
+	
+	return BOX_INT( button );
 #else
-	return NULL;
+	return BOX_INT( NULL );
 #endif
 }
 

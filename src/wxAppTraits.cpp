@@ -7,7 +7,9 @@ extern "C" {
 
 object WXEUAPI_BASE wxAppTraits_GetDesktopEnvironment( object self )
 {
-	return get_sequence( ((wxAppTraits*)self)->GetDesktopEnvironment() );
+	wxString desktop = ((wxAppTraits*)self)->GetDesktopEnvironment();
+	
+	return get_sequence( desktop );
 }
 
 object WXEUAPI_BASE wxAppTraits_GetStandardPaths( object self )
@@ -32,18 +34,24 @@ object WXEUAPI_BASE wxAppTraits_GetToolkitVersion( object self )
 
 object WXEUAPI_BASE wxAppTraits_HasStderr( object self )
 {
-	return BOX_INT( ((wxAppTraits*)self)->HasStderr() );
+	bool result = ((wxAppTraits*)self)->HasStderr();
+	
+	return BOX_INT( result );
 }
 
 object WXEUAPI_BASE wxAppTraits_IsUsingUniversalWidgets( object self )
 {
-	return BOX_INT( ((wxAppTraits*)self)->IsUsingUniversalWidgets() );
+	bool result = ((wxAppTraits*)self)->IsUsingUniversalWidgets();
+	
+	return BOX_INT( result );
 }
 
 object WXEUAPI_BASE wxAppTraits_ShowAssertDialog( object self, object msg )
 {
-	wxDeRefDS( msg );
-	return BOX_INT( ((wxAppTraits*)self)->ShowAssertDialog(get_string(msg)) );
+	bool result = ((wxAppTraits*)self)->ShowAssertDialog( get_string(msg) );
+	
+	wxDeRef( msg );
+	return BOX_INT( result );
 }
 
 };

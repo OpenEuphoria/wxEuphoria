@@ -30,6 +30,7 @@ atom init_func, delete_func
 public function wx_malloc( atom size )
 	return machine_func( M_ALLOC, size )
 end function
+
 export constant malloc_id = routine_id( "wx_malloc" )
 export constant malloc_cb = wx_callback( "wx_malloc" )
 
@@ -38,6 +39,7 @@ public function wx_free( atom ptr )
 	machine_proc( M_FREE, ptr )
 	return NULL
 end function
+
 export constant free_id = routine_id( "wx_free" )
 export constant free_cb = wx_callback( "wx_free" )
 
@@ -45,86 +47,89 @@ export constant free_cb = wx_callback( "wx_free" )
 public procedure wx_cleanup( atom ptr )
 	machine_proc( M_FREE, ptr )
 end procedure
+
 export constant cleanup_id = routine_id( "wx_cleanup" )
 
 /* load an external library */
 public function wx_library( sequence name )
-	
+
 	sequence list = name
 	if types:string( list ) then
 		list = {list}
 	end if
-	
+
 	atom lib = map:get( m_libs, name, NULL )
 	if lib != NULL then return lib end if
-	
+
 	for i = 1 to length( list ) do
 		list[i] = sprintf( WX_LIBRARY_MASK, {list[i]} )
-		
+
 		lib = open_dll( list[i] )
 		if lib = NULL then
 			continue
 		end if
-		
+
+		wxDebugf( "0x%08x %s\n", {lib,list[i]} )
+
 		if equal( name, "base" ) then
 			-- initialize the library
-			
+
 			init_func = wx_define( lib,
 				"wxEuphoria_Initialize", 2, FALSE )
 			delete_func = wx_define( lib,
 				"wxEuphoria_DeleteObject", 1, FALSE )
-			
+
 			wx_proc( init_func, {malloc_cb,free_cb} )
-			
+
 		end if
-		
+
 		map:put( m_libs, name, lib )
 		map:put( m_libs, lib, name )
-		
+
 	end for
-	
+
 	if lib = NULL then
 		wxCrash( "library %s not found\n", {name} )
 	end if
-	
+
 	return lib
 end function
 
 /* define an external var, func, or proc */
 public function wx_define( atom lib, sequence name, object params = -1, atom return_type = FALSE )
-	
+
 	atom id = -1
-	
+
 	if atom( params ) and params != -1 then
 		params = repeat( E_OBJECT, params )
 	end if
-	
+
 	if equal( {params,return_type}, {-1,FALSE} ) then
 		id = define_c_var( lib, name )
 		if id != -1 then
-			wxDebugf( "%5d %s\n", {peek4s(id),name} )
+			wxDebugf( "0x%08x %s\n", {id,name} )
 		end if
-		
+
 	elsif return_type = FALSE then
 		id = define_c_proc( lib, '+' & name, params )
 		if id != -1 then
-			wxDebugf( "%5d %s\n", {id,name} )
+			wxDebugf( "%d %s\n", {id,name} )
 		end if
-		
+
 	else
 		id = define_c_func( lib, '+' & name, params, E_OBJECT )
 		if id != -1 then
-			wxDebugf( "%5d %s\n", {id,name} )
+			wxDebugf( "%d %s\n", {id,name} )
 		end if
-		
+
 	end if
-	
+
 	map:put( m_defs, id, name )
 	map:put( m_defs, name, {id,lib,params,return_type} )
-	
+
 	sequence libname = map:get( m_libs, lib, "unknown" )
 	wxAssert( (id > 0), "export '%s' not found in %s library", {name,libname} )
-	
+
 	return id
 end function
 

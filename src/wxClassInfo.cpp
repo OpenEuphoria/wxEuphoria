@@ -41,25 +41,33 @@ object WXEUAPI_BASE wxClassInfo_CreateObject( object self )
 
 object WXEUAPI_BASE wxClassInfo_GetBaseClassName1( object self )
 {
-	return get_sequence( ((wxClassInfo*)self)->GetBaseClassName1() );
+	wxString className = ((wxClassInfo*)self)->GetBaseClassName1();
+	
+	return get_sequence( className );
 }
 
 object WXEUAPI_BASE wxClassInfo_GetBaseClassName2( object self )
 {
-	return get_sequence( ((wxClassInfo*)self)->GetBaseClassName2() );
+	wxString className = ((wxClassInfo*)self)->GetBaseClassName2();
+	
+	return get_sequence( className );
 }
 
 object WXEUAPI_BASE wxClassInfo_GetClassName( object self )
 {
-	return get_sequence( ((wxClassInfo*)self)->GetClassName() );
+	wxString className = ((wxClassInfo*)self)->GetClassName();
+	
+	return get_sequence( className );
 }
 
 /* Static Public Member Functions */
 
 object WXEUAPI_BASE wxClassInfo_FindClass( object className )
 {
+	wxClassInfo* info = wxClassInfo::FindClass( get_string(className) );
+	
 	wxDeRef( className );
-	return BOX_INT( wxClassInfo::FindClass( get_string(className) ) );
+	return BOX_INT( info );
 }
 
 };

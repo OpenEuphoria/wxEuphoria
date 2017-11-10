@@ -14,13 +14,15 @@ atom base = wx_library( "base" )
 public constant wxEVT_IDLE = wx_event( base, "wxEVT_IDLE" )
 
 constant wxAppConsoleInfo = wxClassInfo:FindClass( "wxAppConsole" )
+constant wxEvtHandlerInfo = wxClassInfo:FindClass( "wxEvtHandler" )
 
 public type wxAppConsole( object x )
 	if equal( x, NULL ) then
 		return 1
 	end if
-	
+
 	return wxObject:IsKindOf( x, wxAppConsoleInfo )
+	    or wxObject:IsKindOf( x, wxEvtHandlerInfo )
 end type
 
 public function new()

@@ -6,47 +6,65 @@ extern "C" {
 
 object WXEUAPI_BASE wxEvent_Clone( object self )
 {
-	return BOX_INT( ((wxEvent*)self)->Clone() );
+	wxEvent* clone = ((wxEvent*)self)->Clone();
+	
+	return BOX_INT( clone );
 }
 
 object WXEUAPI_BASE wxEvent_GetEventObject( object self )
 {
-	return BOX_INT( ((wxEvent*)self)->GetEventObject() );
+	wxObject* eventObject = ((wxEvent*)self)->GetEventObject();
+	
+	return BOX_INT( eventObject );
 }
 
 object WXEUAPI_BASE wxEvent_GetEventType( object self )
 {
-	return BOX_INT( ((wxEvent*)self)->GetEventType() );
+	wxEventType eventType = ((wxEvent*)self)->GetEventType();
+	
+	return BOX_INT( eventType );
 }
 
 object WXEUAPI_BASE wxEvent_GetEventCategory( object self )
 {
-	return BOX_INT( ((wxEvent*)self)->GetEventCategory() );
+	wxEventCategory eventCategory = ((wxEvent*)self)->GetEventCategory();
+	
+	return BOX_INT( eventCategory );
 }
 
 object WXEUAPI_BASE wxEvent_GetId( object self )
 {
-	return BOX_INT( ((wxEvent*)self)->GetId() );
+	int id = ((wxEvent*)self)->GetId();
+	
+	return BOX_INT( id );
 }
 
 object WXEUAPI_BASE wxEvent_GetEventUserData( object self )
 {
-	return BOX_INT( ((wxEvent*)self)->GetEventUserData() );
+	wxObject* userData = ((wxEvent*)self)->GetEventUserData();
+	
+	return BOX_INT( userData );
 }
 
 object WXEUAPI_BASE wxEvent_GetSkipped( object self )
 {
-	return BOX_INT( ((wxEvent*)self)->GetSkipped() );
+	bool result = ((wxEvent*)self)->GetSkipped();
+	
+	return BOX_INT( result );
 }
 
 object WXEUAPI_BASE wxEvent_GetTimestamp( object self )
 {
-	return BOX_INT( ((wxEvent*)self)->GetTimestamp() );
+	long timestamp = ((wxEvent*)self)->GetTimestamp();
+	
+	return BOX_INT( timestamp );
 }
 
 object WXEUAPI_BASE wxEvent_IsCommandEvent( object self )
 {
-	return BOX_INT( ((wxEvent*)self)->IsCommandEvent() );
+	bool result = ((wxEvent*)self)->IsCommandEvent();
+	
+	return BOX_INT( result );
 }
 
 void WXEUAPI_BASE wxEvent_ResumePropagation( object self, object propagationLevel )
@@ -76,7 +94,9 @@ void WXEUAPI_BASE wxEvent_SetTimestamp( object self, object timeStamp )
 
 object WXEUAPI_BASE wxEvent_ShouldPropagate( object self )
 {
-	return BOX_INT( ((wxEvent*)self)->ShouldPropagate() );
+	bool result = ((wxEvent*)self)->ShouldPropagate();
+	
+	return BOX_INT( result );
 }
 
 void WXEUAPI_BASE wxEvent_Skip( object self, object skip )
@@ -86,7 +106,9 @@ void WXEUAPI_BASE wxEvent_Skip( object self, object skip )
 
 object WXEUAPI_BASE wxEvent_StopPropagation( object self )
 {
-	return BOX_INT( ((wxEvent*)self)->StopPropagation() );
+	int result = ((wxEvent*)self)->StopPropagation();
+	
+	return BOX_INT( result );
 }
 
 };

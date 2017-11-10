@@ -30,7 +30,9 @@ object WXEUAPI_CORE wxTopLevelWindow_Create( object self, object parent, object 
 
 object WXEUAPI_CORE wxTopLevelWindow_CanSetTransparent( object self )
 {
-	return BOX_INT( ((wxTopLevelWindow*)self)->CanSetTransparent() );
+	bool result = ((wxTopLevelWindow*)self)->CanSetTransparent();
+	
+	return BOX_INT( result );
 }
 
 void WXEUAPI_CORE wxTopLevelWindow_CenterOnScreen( object self, object direction )
@@ -45,12 +47,16 @@ void WXEUAPI_CORE wxTopLevelWindow_CentreOnScreen( object self, object direction
 
 object WXEUAPI_CORE wxTopLevelWindow_EnableCloseButton( object self, object enable )
 {
-	return BOX_INT( ((wxTopLevelWindow*)self)->EnableCloseButton( get_int(enable) ) );
+	bool result = ((wxTopLevelWindow*)self)->EnableCloseButton( get_int(enable) );
+	
+	return BOX_INT( result );
 }
 
 object WXEUAPI_CORE wxTopLevelWindow_GetDefaultItem( object self )
 {
-	return BOX_INT( ((wxTopLevelWindow*)self)->GetDefaultItem() );
+	wxWindow* defaultItem = ((wxTopLevelWindow*)self)->GetDefaultItem();
+	
+	return BOX_INT( defaultItem );
 }
 
 object WXEUAPI_CORE wxTopLevelWindow_GetIcon( object self )

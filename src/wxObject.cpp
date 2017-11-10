@@ -13,7 +13,9 @@ extern "C" {
 
 object WXEUAPI_BASE wxObject_GetClassInfo( object self )
 {
-	return BOX_INT( ((wxObject*)self)->GetClassInfo() );
+	wxClassInfo* classInfo = ((wxObject*)self)->GetClassInfo();
+	
+	return BOX_INT( classInfo );
 }
 
 // TODO - do we need ref data?
@@ -54,7 +56,9 @@ object WXEUAPI_BASE wxObject_IsKindOf( object self, object info )
 
 object WXEUAPI_BASE wxObject_IsSameAs( object self, object obj )
 {
-	return BOX_INT( ((wxObject*)self)->IsSameAs(*(wxObject*)obj) );
+	bool result = ((wxObject*)self)->IsSameAs(*(wxObject*)obj);
+	
+	return BOX_INT( result );
 }
 
 // TODO - do we need ref data?

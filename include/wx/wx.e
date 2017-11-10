@@ -45,6 +45,7 @@ public include "wx/core/wxButton.e"
 
 public include "wx/menu.e"
 public include "wx/core/wxMenuBar.e"
+public include "wx/core/wxMenu.e"
 
 public include "wx/icon.e"
 public include "wx/core/wxIcon.e"

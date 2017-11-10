@@ -22,27 +22,37 @@ void WXEUAPI_XML wxXmlDoctype_Clear( object self )
 
 object WXEUAPI_XML wxXmlDoctype_GetRootName( object self )
 {
-	return get_sequence( ((wxXmlDoctype*)self)->GetRootName() );
+	wxString rootName = ((wxXmlDoctype*)self)->GetRootName();
+	
+	return get_sequence( rootName );
 }
 
 object WXEUAPI_XML wxXmlDoctype_GetSystemId( object self )
 {
-	return get_sequence( ((wxXmlDoctype*)self)->GetSystemId() );
+	wxString systemId = ((wxXmlDoctype*)self)->GetSystemId();
+	
+	return get_sequence( systemId );
 }
 
 object WXEUAPI_XML wxXmlDoctype_GetPublicId( object self )
 {
-	return get_sequence( ((wxXmlDoctype*)self)->GetPublicId() );
+	wxString publicId = ((wxXmlDoctype*)self)->GetPublicId();
+	
+	return get_sequence( publicId );
 }
 
 object WXEUAPI_XML wxXmlDoctype_GetFullString( object self )
 {
-	return get_sequence( ((wxXmlDoctype*)self)->GetFullString() );
+	wxString fullString = ((wxXmlDoctype*)self)->GetFullString();
+	
+	return get_sequence( fullString );
 }
 
 object WXEUAPI_XML wxXmlDoctype_IsValid( object self )
 {
-	return BOX_INT( ((wxXmlDoctype*)self)->IsValid() );
+	bool result = ((wxXmlDoctype*)self)->IsValid();
+	
+	return BOX_INT( result );
 }
 
 };

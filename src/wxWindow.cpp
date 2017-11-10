@@ -32,14 +32,18 @@ object WXEUAPI_CORE wxWindow_Create( object self, object parent, object id, obje
 
 object WXEUAPI_CORE wxWindow_AcceptsFocus( object self )
 {
-	return BOX_INT( ((wxWindow*)self)->AcceptsFocus() );
+	bool result = ((wxWindow*)self)->AcceptsFocus();
+	
+	return BOX_INT( result );
 }
 
 /* Window status functions */
 
 object WXEUAPI_CORE wxWindow_Show( object self, object show )
 {
-	return BOX_INT( ((wxWindow*)self)->Show( show ) );
+	bool result = ((wxWindow*)self)->Show( show );
+	
+	return BOX_INT( result );
 }
 
 };

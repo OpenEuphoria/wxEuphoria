@@ -15,36 +15,45 @@ void WXEUAPI_BASE wxStandardPaths_DontIgnoreAppSubDir( object self )
 
 object WXEUAPI_BASE wxStandardPaths_GetAppDocumentsDir( object self )
 {
-	return get_sequence( ((wxStandardPaths*)self)->GetAppDocumentsDir() );
+	wxString documentsDir =((wxStandardPaths*)self)->GetAppDocumentsDir();
+	
+	return get_sequence( documentsDir );
 }
 
 object WXEUAPI_BASE wxStandardPaths_GetConfigDir( object self )
 {
 	wxString configDir = ((wxStandardPaths*)self)->GetConfigDir();
-	wxPrintf( "configDir = '%s'\n", configDir );
 	
 	return get_sequence( configDir );
 }
 
 object WXEUAPI_BASE wxStandardPaths_GetDataDir( object self )
 {
-	return get_sequence( ((wxStandardPaths*)self)->GetDataDir() );
+	wxString dataDir = ((wxStandardPaths*)self)->GetDataDir();
+	
+	return get_sequence( dataDir );
 }
 
 object WXEUAPI_BASE wxStandardPaths_GetDocumentsDir( object self )
 {
-	return get_sequence( ((wxStandardPaths*)self)->GetDocumentsDir() );
+	wxString documentsDir = ((wxStandardPaths*)self)->GetDocumentsDir();
+	
+	return get_sequence( documentsDir );
 }
 
 object WXEUAPI_BASE wxStandardPaths_GetExecutablePath( object self )
 {
-	return get_sequence( ((wxStandardPaths*)self)->GetExecutablePath() );
+	wxString executablePath = ((wxStandardPaths*)self)->GetExecutablePath();
+	
+	return get_sequence( executablePath );
 }
 
 object WXEUAPI_BASE wxStandardPaths_GetInstallPrefix( object self )
 {
 #ifdef WXEUGTK
-	return get_sequence( ((wxStandardPaths*)self)->GetInstallPrefix() );
+	wxString prefix = ((wxStandardPaths*)self)->GetInstallPrefix();
+	
+	return get_sequence( prefix );
 #else
 	return EMPTY_SEQUENCE;
 #endif
@@ -52,49 +61,67 @@ object WXEUAPI_BASE wxStandardPaths_GetInstallPrefix( object self )
 
 object WXEUAPI_BASE wxStandardPaths_GetLocalDataDir( object self )
 {
-	return get_sequence( ((wxStandardPaths*)self)->GetLocalDataDir() );
+	wxString dataDir = ((wxStandardPaths*)self)->GetLocalDataDir();
+	
+	return get_sequence( dataDir );
 }
 
 object WXEUAPI_BASE wxStandardPaths_GetLocalizedResourcesDir( object self, object lang, object category )
 {
+	wxString resourcesDir = ((wxStandardPaths*)self)->GetLocalizedResourcesDir(
+		get_string(lang), (wxStandardPaths::ResourceCat)category );
+	
 	wxDeRef( lang );
-	return get_sequence( ((wxStandardPaths*)self)->GetLocalizedResourcesDir(
-		get_string(lang), (wxStandardPaths::ResourceCat)category ) );
+	return get_sequence( resourcesDir );
 }
 
 object WXEUAPI_BASE wxStandardPaths_GetPluginsDir( object self )
 {
-	return get_sequence( ((wxStandardPaths*)self)->GetPluginsDir() );
+	wxString pluginsDir = ((wxStandardPaths*)self)->GetPluginsDir();
+	
+	return get_sequence( pluginsDir );
 }
 
 object WXEUAPI_BASE wxStandardPaths_GetResourcesDir( object self )
 {
-	return get_sequence( ((wxStandardPaths*)self)->GetResourcesDir() );
+	wxString resourcesDir = ((wxStandardPaths*)self)->GetResourcesDir();
+	
+	return get_sequence( resourcesDir );
 }
 
 object WXEUAPI_BASE wxStandardPaths_GetTempDir( object self )
 {
-	return get_sequence( ((wxStandardPaths*)self)->GetTempDir() );
+	wxString tempDir = ((wxStandardPaths*)self)->GetTempDir();
+	
+	return get_sequence( tempDir );
 }
 
 object WXEUAPI_BASE wxStandardPaths_GetUserConfigDir( object self )
 {
-	return get_sequence( ((wxStandardPaths*)self)->GetUserConfigDir() );
+	wxString configDir = ((wxStandardPaths*)self)->GetUserConfigDir();
+	
+	return get_sequence( configDir );
 }
 
 object WXEUAPI_BASE wxStandardPaths_GetUserDataDir( object self )
 {
-	return get_sequence( ((wxStandardPaths*)self)->GetUserDataDir() );
+	wxString dataDir = ((wxStandardPaths*)self)->GetUserDataDir();
+	
+	return get_sequence( dataDir );
 }
 
 object WXEUAPI_BASE wxStandardPaths_GetUserDir( object self, object userDir )
 {
-	return get_sequence( ((wxStandardPaths*)self)->GetUserDir( (wxStandardPaths::Dir)userDir ) );
+	wxString value = ((wxStandardPaths*)self)->GetUserDir( (wxStandardPaths::Dir)userDir );
+	
+	return get_sequence( value );
 }
 
 object WXEUAPI_BASE wxStandardPaths_GetUserLocalDataDir( object self )
 {
-	return get_sequence( ((wxStandardPaths*)self)->GetUserLocalDataDir() );
+	wxString dataDir = ((wxStandardPaths*)self)->GetUserLocalDataDir();
+	
+	return get_sequence( dataDir );
 }
 
 void WXEUAPI_BASE wxStandardPaths_IgnoreAppSubDir( object self, object subdirPattern )

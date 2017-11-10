@@ -33,30 +33,39 @@ void WXEUAPI_XML wxXmlDocument_AppendToProlog( object self, object node )
 
 object WXEUAPI_XML wxXmlDocument_Copy( object self )
 {
-	wxXmlDocument doc = *(wxXmlDocument*)self;
-	return BOX_INT( new wxXmlDocument(doc) );
+	wxXmlDocument* doc = new wxXmlDocument( *(wxXmlDocument*)self );
+	
+	return BOX_INT( doc );
 }
 
 object WXEUAPI_XML wxXmlDocument_DetachDocumentNode( object self )
 {
-	return BOX_INT( ((wxXmlDocument*)self)->DetachDocumentNode() );
+	wxXmlNode* node = ((wxXmlDocument*)self)->DetachDocumentNode();
+	
+	return BOX_INT( node );
 }
 
 object WXEUAPI_XML wxXmlDocument_DetachRoot( object self )
 {
-	return BOX_INT( ((wxXmlDocument*)self)->DetachRoot() );
+	wxXmlNode* root = ((wxXmlDocument*)self)->DetachRoot();
+	
+	return BOX_INT( root );
 }
 
 // this is meaningless in Unicode build where data are stored as wchar_t*.
 // http://docs.wxwidgets.org/3.1.0/classwx_xml_document.html#a8bfe22961e0bd50124bcbd2fa3cd4dfd
 //object WXEUAPI_XML wxXmlDocument_GetEncoding( object self )
 //{
-//    return get_sequence( ((wxXmlDocument*)self)->GetEncoding() );
+//    wxString encoding = ((wxXmlDocument*)self)->GetEncoding();
+//    
+//    return get_sequence( encoding );
 //}
 
 object WXEUAPI_XML wxXmlDocument_GetFileEncoding( object self )
 {
-	return get_sequence( ((wxXmlDocument*)self)->GetFileEncoding() );
+	wxString encoding = ((wxXmlDocument*)self)->GetFileEncoding();
+	
+	return get_sequence( encoding );
 }
 
 object WXEUAPI_XML wxXmlDocument_GetDoctype( object self )
@@ -69,22 +78,30 @@ object WXEUAPI_XML wxXmlDocument_GetDoctype( object self )
 
 object WXEUAPI_XML wxXmlDocument_GetDocumentNode( object self )
 {
-	return BOX_INT( ((wxXmlDocument*)self)->GetDocumentNode() );
+	wxXmlNode* node = ((wxXmlDocument*)self)->GetDocumentNode();
+	
+	return BOX_INT( node );
 }
 
 object WXEUAPI_XML wxXmlDocument_GetRoot( object self )
 {
-	return BOX_INT( ((wxXmlDocument*)self)->GetRoot() );
+	wxXmlNode* root = ((wxXmlDocument*)self)->GetRoot();
+	
+	return BOX_INT( root );
 }
 
 object WXEUAPI_XML wxXmlDocument_GetVersion( object self )
 {
-	return get_sequence( ((wxXmlDocument*)self)->GetVersion() );
+	wxString version = ((wxXmlDocument*)self)->GetVersion();
+	
+	return get_sequence( version );
 }
 
 object WXEUAPI_XML wxXmlDocument_IsOk( object self )
 {
-	return BOX_INT( ((wxXmlDocument*)self)->IsOk() );
+	bool result = ((wxXmlDocument*)self)->IsOk();
+	
+	return BOX_INT( result );
 }
 
 object WXEUAPI_XML wxXmlDocument_Load( object self, object filename, object encoding, object flags )
