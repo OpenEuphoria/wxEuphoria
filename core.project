@@ -37,6 +37,7 @@
     <File Name="src/wxTopLevelWindow.cpp"/>
     <File Name="src/wxIcon.cpp"/>
     <File Name="src/wxMenuBar.cpp"/>
+    <File Name="src/wxMenu.cpp"/>
   </VirtualDirectory>
   <Dependencies Name="Win32-Debug">
     <Project Name="base"/>
