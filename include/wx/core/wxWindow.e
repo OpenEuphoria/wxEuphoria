@@ -16,7 +16,7 @@ public type wxWindow( object x )
 	if equal( x, NULL ) then
 		return 1
 	end if
-	
+
 	return wxObject:IsKindOf( x, wxWindowInfo )
 end type
 
@@ -30,6 +30,10 @@ end function
 
 public function AcceptsFocus( wxWindow self )
 	return wx_func( WXWINDOW_ACCEPTSFOCUS, {self} )
+end function
+
+public function Close( wxWindow self, atom force = FALSE )
+	return wx_func( WXWINDOW_CLOSE, {self,force} )
 end function
 
 public function Show( wxWindow self, atom show = TRUE )

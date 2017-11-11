@@ -17,7 +17,7 @@ public type wxMenuBar( object x )
 	return wxObject:IsKindOf( x, wxMenuBarInfo )
 end type
 
-public function new( atom style )
+public function new( atom style = 0 )
 	return wx_func( WXMENUBAR_NEW, {style} )
 end function
 

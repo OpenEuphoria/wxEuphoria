@@ -21,7 +21,14 @@ object WXEUAPI_CORE wxMenu_new( object title, object style )
 	return BOX_INT( menu );
 }
 
-object WXEUAPI_CORE wxMenu_Append( object self, object id, object text, object help, object kind )
+object WXEUAPI_CORE wxMenu_Append( object self, object menuItem )
+{
+	wxMenuItem* item = ((wxMenu*)self)->Append( (wxMenuItem*)menuItem );
+
+	return BOX_INT( item );
+}
+
+object WXEUAPI_CORE wxMenu_AppendItem( object self, object id, object text, object help, object kind )
 {
 	wxMenuItem* item = ((wxMenu*)self)->Append( get_int(id), get_string(text), get_string(help), (wxItemKind)get_int(kind) );
 
@@ -37,13 +44,6 @@ object WXEUAPI_CORE wxMenu_AppendCheckItem( object self, object id, object text,
 
 	wxDeRef( text );
 	wxDeRef( help );
-
-	return BOX_INT( item );
-}
-
-object WXEUAPI_CORE wxMenu_AppendMenuItem( object self, object menuItem )
-{
-	wxMenuItem* item = ((wxMenu*)self)->Append( (wxMenuItem*)menuItem );
 
 	return BOX_INT( item );
 }

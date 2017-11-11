@@ -5,6 +5,7 @@ include "wx/dll.e"
 include "wx/defs.e"
 include "wx/core.e"
 include "wx/menu.e"
+include "wx/event.e"
 include "wx/string.e"
 include "wx/window.e"
 
@@ -16,20 +17,20 @@ public type wxMenu( object x )
 	return wxObject:IsKindOf( x, wxMenuInfo )
 end type
 
-public function new( object title, atom style )
+public function new( object title = 0, atom style = 0 )
 	return wx_func( WXMENU_NEW, {title,style} )
 end function
 
-public function Append( wxMenu self, atom id, wxString text = wxEmptyString, wxString help = wxEmptyString, wxItemKind item = wxITEM_NORMAL )
-	return wx_func( WXMENU_APPEND, {self,id,text,help,item} )
+public function Append( wxMenu self, wxMenuItem menuItem )
+	return wx_func( WXMENU_APPEND, {self,menuItem} )
+end function
+
+public function AppendItem( wxMenu self, atom id, wxString text = wxEmptyString, wxString help = wxEmptyString, wxItemKind item = wxITEM_NORMAL )
+	return wx_func( WXMENU_APPENDITEM, {self,id,text,help,item} )
 end function
 
 public function AppendCheckItem( wxMenu self, atom id, wxString text, wxString help = wxEmptyString )
 	return wx_func( WXMENU_APPENDCHECKITEM, {self,id,text,help} )
-end function
-
-public function AppendMenuItem( wxMenu self, wxMenuItem menuItem )
-	return wx_func( WXMENU_APPENDMENUITEM, {self,menuItem} )
 end function
 
 public function AppendRadioItem( wxMenu self, atom id, wxString text, wxString help = wxEmptyString )
