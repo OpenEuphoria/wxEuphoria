@@ -15,7 +15,7 @@ $
 
 export constant
 	WXXMLDOCUMENT_NEW					= wx_define( xml, "wxXmlDocument_new",                   2, TRUE  ),
-	WXXMLDOCUMENT_APPENDTOPROLOG		= wx_define( xml, "wxXmlDocument_AppendToProlog",        1, FALSE ),
+	WXXMLDOCUMENT_APPENDTOPROLOG		= wx_define( xml, "wxXmlDocument_AppendToProlog",        2, FALSE ),
 	WXXMLDOCUMENT_COPY					= wx_define( xml, "wxXmlDocument_Copy",                  1, TRUE  ),
 	WXXMLDOCUMENT_DETACHDOCUMENTNODE	= wx_define( xml, "wxXmlDocument_DetachDocumentNode",    1, TRUE  ),
 	WXXMLDOCUMENT_DETACHROOT			= wx_define( xml, "wxXmlDocument_DetachRoot",            1, TRUE  ),

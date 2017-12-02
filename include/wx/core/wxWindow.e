@@ -28,6 +28,10 @@ public function Create( wxWindow self, wxWindow parent, wxWindowID id, wxPoint p
 	return wx_func( WXWINDOW_CREATE, {self,parent,id,pos,size,style,name} )
 end function
 
+public function GetClientSize( wxWindow self )
+	return wx_func( WXWINDOW_GETCLIENTSIZE, {self} )
+end function
+
 public function AcceptsFocus( wxWindow self )
 	return wx_func( WXWINDOW_ACCEPTSFOCUS, {self} )
 end function

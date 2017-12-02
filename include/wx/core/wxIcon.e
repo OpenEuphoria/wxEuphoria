@@ -21,8 +21,8 @@ public function new( object iconData, wxBitmapType iconType = wxBITMAP_TYPE_ANY,
 	return wx_func( WXICON_NEW, {iconData,iconType,desiredWidth,desiredHeight} )
 end function
 
-public function CreateFromHICON( wxIcon self, atom icon )
-	return wx_func( WXICON_CREATEFROMHICON, {self,icon} )
+public function CreateFromHICON( atom icon )
+	return wx_func( WXICON_CREATEFROMHICON, {icon} )
 end function
 
 public function CreateFromIcon( wxIcon orig )

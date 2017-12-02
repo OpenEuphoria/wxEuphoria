@@ -27,7 +27,7 @@ public type wxFrame( object x )
 	if equal( x, NULL ) then
 		return 1
 	end if
-	
+
 	return wxObject:IsKindOf( x, wxFrameInfo )
 end type
 

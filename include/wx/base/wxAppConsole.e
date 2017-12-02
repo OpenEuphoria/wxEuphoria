@@ -25,10 +25,7 @@ public type wxAppConsole( object x )
 	    or wxObject:IsKindOf( x, wxEvtHandlerInfo )
 end type
 
-public function new()
-	atom func = wx_callback( "wxEvtHandler:CallFunc" )
-	atom proc = wx_callback( "wxEvtHandler:CallProc" )
-	atom rtfatal = routine_id( "RTFatal" )
+public function new( atom func = wx_callback("wxEvtHandler:CallFunc"), atom proc = wx_callback("wxEvtHandler:CallProc"), atom rtfatal = routine_id("RTFatal") )
 	return wx_func( WXAPPCONSOLE_NEW, {func,proc,rtfatal} )
 end function
 

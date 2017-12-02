@@ -10,8 +10,8 @@ public type wxClassInfo( object x )
 	return atom(x) or string(x)
 end type
 
-public function new( wxString className )
-	return wx_func( WXCLASSINFO_NEW, {className} )
+public function new( wxString className, wxString baseClass1, wxString baseClass2, atom size, atom fn )
+	return wx_func( WXCLASSINFO_NEW, {className,baseClass1,baseClass2,size,fn} )
 end function
 
 public function CreateObject( object self )

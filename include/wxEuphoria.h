@@ -56,11 +56,11 @@ public:
 	EuAppBase( EuCallFunc func, EuCallProc proc, intptr_t rtfatal );
 	void Handler( wxEvent& event );
 	static object GetTheObject();
-	
+
 	static object DoCallFunc( intptr_t id, object params );
 	static void DoCallProc( intptr_t id, object params );
 	static void DoRTFatal( wxString& msg );
-	
+
 	static EuAppBase* s_EuAppBase;
 	static EuCallFunc s_CallFunc;
 	static EuCallProc s_CallProc;
@@ -87,14 +87,14 @@ static inline void Free( intptr_t ptr )
 
 /* convert atom to char. *must avoid side effects in elem* */
 #define Char(elem) ((IS_ATOM_INT(elem)) \
-	? ((char)INT_VAL(elem)) : doChar(elem)) 
+	? ((char)INT_VAL(elem)) : doChar(elem))
 
 /* convert to char (int done inline) */
 static inline char doChar( object elem )
 {
 	if ( IS_ATOM_INT(elem) )
 		return (char)elem;
-	
+
 	if ( IS_ATOM(elem) )
 	{
 		return (char)(DBL_PTR(elem)->dbl);
@@ -112,7 +112,7 @@ static inline void MakeCString( char *s, object obj )
 {
 	object_ptr elem;
 	object x;
-	
+
 	if ( IS_ATOM(obj) )
 	{
 		*s++ = Char(obj);
@@ -121,9 +121,9 @@ static inline void MakeCString( char *s, object obj )
 	{
 		obj = (object)SEQ_PTR(obj);
 		elem = ((s1_ptr)obj)->base;
-		
+
 		while (TRUE)
-		{ 
+		{
 			x = *(++elem);
 			if ( IS_ATOM_INT(x) )
 			{
@@ -137,7 +137,7 @@ static inline void MakeCString( char *s, object obj )
 			}
 		}
 	}
-	
+
 	*s = '\0';
 }
 
@@ -148,7 +148,7 @@ static inline object NewDouble( double dbl )
 	d->ref = 1;
 	d->dbl = dbl;
 	d->cleanup = 0;
-	
+
 	return MAKE_DBL( d );
 }
 
@@ -157,7 +157,7 @@ static inline object NewDouble( double dbl )
 static inline s1_ptr NewS1( size_t size )
 {
 	size_t s1_size = sizeof(struct s1) + (size+1) * sizeof(object);
-	
+
 	s1_ptr s1 = (s1_ptr)Malloc( (long)s1_size );
 	s1->ref = 1;
 	s1->base = (object_ptr)(s1 + 1);
@@ -166,7 +166,7 @@ static inline s1_ptr NewS1( size_t size )
 	s1->cleanup = 0;
 	*(s1->base + size) = NOVALUE;
 	s1->base--;
-	
+
 	return s1;
 }
 
@@ -176,11 +176,11 @@ static inline object NewString( unsigned char* s )
 	int len = strlen( (char *)s );
 	s1_ptr s1 = NewS1( (size_t)len );
 	object_ptr obj_ptr = (object_ptr)s1->base;
-	
+
 	if (len > 0) do {
 		*(++obj_ptr) = (unsigned char)*s++;
 	} while (--len > 0);
-	
+
 	return MAKE_SEQ( s1 );
 }
 
@@ -190,11 +190,11 @@ static inline object NewStringConst( const unsigned char* s )
 	int len = strlen( (char *)s );
 	s1_ptr s1 = NewS1((long)len);
 	object_ptr obj_ptr = (object_ptr)s1->base;
-	
+
 	if (len > 0) do {
 	    *(++obj_ptr) = (unsigned char)*s++;
 	} while (--len > 0);
-	
+
 	return MAKE_SEQ( s1 );
 }
 
@@ -203,7 +203,7 @@ static inline object box_int( intptr_t x )
 {
 	if ( x > NOVALUE && x < TOO_BIG_INT )
 		return (object)x;
-	
+
 	return NewDouble( (eudouble)x );
 }
 
@@ -214,29 +214,29 @@ static inline wxString get_string( object seq )
 	//	EuApp::RTFatal("expected a sequence");
 		return wxEmptyString;
 	}
-	
+
 	s1_ptr s1 = SEQ_PTR( seq );
 	int len = s1->length;
-	
+
 	wxChar* str = new wxChar[len+1];
 	for( int i = 1; i <= len; i++ )
 	{
 		object x = s1->base[i];
-		
+
 		if ( IS_SEQUENCE(x) ) {
 			return wxEmptyString;
 		}
-		
+
 		if ( !IS_ATOM_INT(x) ) {
 			x = (intptr_t)DBL_PTR(x)->dbl;
 		}
-		
+
 		str[i-1] = (wxChar)x;
 	}
-	
+
 	str[len] = 0;
 	wxString s( str );
-	
+
 	delete[] str;
 	return s;
 }
@@ -247,16 +247,22 @@ static inline wxString get_string( object seq, intptr_t index )
 	return get_string( (object)SEQ_PTR(seq)->base[index] );
 }
 
+/* convert a double to a Euphoria atom */
+static inline object get_atom( double dbl )
+{
+	return NewDouble( dbl );
+}
+
 /* convert a wxString to a Euphoria sequence */
 static inline object get_sequence( const wxString& str )
 {
 	s1_ptr s = NewS1( str.length() );
-	
+
 	for ( int i = 0; i < str.length(); i++ ) {
 		wxChar ch = str.GetChar( i );
 		s->base[i+1] = BOX_INT( ch );
 	}
-	
+
 	return MAKE_SEQ( s );
 }
 
@@ -266,7 +272,7 @@ static inline object get_sequence( const wxPoint& pt )
 	s1_ptr s = NewS1( 2 );
 	s->base[1] = BOX_INT( pt.x );
 	s->base[2] = BOX_INT( pt.y );
-	
+
 	return MAKE_SEQ( s );
 }
 
@@ -276,7 +282,7 @@ static inline object get_sequence( const wxSize& sz )
 	s1_ptr s = NewS1( 2 );
 	s->base[1] = BOX_INT( sz.GetWidth() );
 	s->base[2] = BOX_INT( sz.GetHeight() );
-	
+
 	return MAKE_SEQ( s );
 }
 
@@ -285,7 +291,7 @@ static inline double get_double( object x )
 {
 	if ( IS_SEQUENCE(x) ) return 0.0;
 //		EuApp::RTFatal("expected an integer");
-	
+
 	if ( x > NOVALUE && x < TOO_BIG_INT )
 		return (double)x; // a double
 	else
@@ -303,7 +309,7 @@ static inline intptr_t get_int( object x )
 {
 	if ( IS_SEQUENCE(x) ) return 0;
 //		EuApp::RTFatal("expected an integer");
-	
+
 	if ( x > NOVALUE && x < TOO_BIG_INT )
 		return (intptr_t)x; // an integer
 	else
@@ -365,26 +371,26 @@ static inline char** get_xpm( object x )
 {
 	s1_ptr xpm = SEQ_PTR( x );
 	intptr_t len = xpm->length;
-	
+
 	intptr_t* bits = new intptr_t[len+1];
 	intptr_t* ptr = bits;
-	
+
 	for ( intptr_t i = 1; i <= len; i++ )
 	{
 		s1_ptr xpm_ix = SEQ_PTR( xpm->base[i] );
 		intptr_t len_ix = xpm_ix->length;
-		
+
 		char* line = new char[len+1];
 		*ptr = (intptr_t)line;
-		
+
 		for ( intptr_t j = 1; j <= len_ix; j++ ) {
 			*(line++) = (char)xpm_ix->base[j];
 		}
-		
+
 		*line = '\0';
 		ptr++;
 	}
-	
+
 	*ptr = 0;
 	return (char**)bits;
 }
@@ -395,7 +401,7 @@ static inline void free_xpm( char** xpm, intptr_t len )
 	for( intptr_t i = 0; i < len; i++ ) {
 		delete[] xpm[i];
 	}
-	
+
 	delete[] xpm;
 }
 

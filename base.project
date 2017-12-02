@@ -112,6 +112,50 @@
         <SearchPaths/>
       </Completion>
     </Configuration>
+    <Configuration Name="Linux64-Release" CompilerType="GCC" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-g;-fPIC;$(shell $(WXWIN)/build/gtk-release/wx-config --cxxflags --unicode=yes)" C_Options="-g;-fPIC;$(shell $(WXWIN)/build/gtk-release/wx-config --cflags --unicode=yes)" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+        <Preprocessor Value="ELINUX"/>
+        <Preprocessor Value="WXEUGTK"/>
+      </Compiler>
+      <Linker Options="-pthread;-Wl,--whole-archive;-lwx_baseu-3.1;-lwxregexu-3.1;-lwxexpat-3.1;-lwxtiff-3.1;-lwxjpeg-3.1;-lwxpng-3.1;-lwxzlib-3.1;-Wl,--no-whole-archive;-ldl;-lm" Required="yes">
+        <LibraryPath Value="$(WXWIN)/build/gtk-release/lib"/>
+      </Linker>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="./bin/$(ConfigurationName)/libwxeu_$(ProjectName).so" IntermediateDirectory="./build/$(ProjectName)/$(ConfigurationName)" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="" PauseExecWhenProcTerminates="no" IsGUIProgram="no" IsEnabled="yes"/>
+      <BuildSystem Name="Default"/>
+      <Environment EnvVarSetName="wxWidgets-3.1.0 (64-bit)" DbgSetName="&lt;Use Defaults&gt;">
+        <![CDATA[]]>
+      </Environment>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="no">
+        <DebuggerSearchPaths/>
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild>
+        <Command Enabled="yes">cp -vp $(OutputFile) /usr/local/lib/</Command>
+      </PostBuild>
+      <CustomBuild Enabled="no">
+        <RebuildCommand/>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+      <Completion EnableCpp11="no" EnableCpp14="no">
+        <ClangCmpFlagsC/>
+        <ClangCmpFlags/>
+        <ClangPP/>
+        <SearchPaths/>
+      </Completion>
+    </Configuration>
     <Configuration Name="Win32-Debug" CompilerType="MinGW ( TDM-GCC-32 )" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-g;-m32;$(shell wx-config --cxxflags --debug=yes --unicode=yes)" C_Options="-g;-m32;$(shell wx-config --cflags --debug=yes --unicode=yes)" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <Preprocessor Value="EDEBUG"/>

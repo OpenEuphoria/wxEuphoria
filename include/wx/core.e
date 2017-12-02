@@ -48,7 +48,7 @@ $
 
 export constant
 	WXICON_NEW					= wx_define( core, "wxIcon_new",                4, TRUE ),
-	WXICON_CREATEFROMHICON		= wx_define( core, "wxIcon_CreateFromHICON",    2, TRUE ),
+	WXICON_CREATEFROMHICON		= wx_define( core, "wxIcon_CreateFromHICON",    1, TRUE ),
 	WXICON_CREATEFROMICON		= wx_define( core, "wxIcon_CreateFromIcon",     1, TRUE ),
 	WXICON_CREATEFROMXPM		= wx_define( core, "wxIcon_CreateFromXPM",      1, TRUE ),
 	WXICON_CONVERTTODISABLED	= wx_define( core, "wxIcon_ConvertToDisabled",  2, TRUE ),
@@ -170,10 +170,11 @@ export constant
 $
 
 export constant
-	WXWINDOW_NEW			= wx_define( core, "wxWindow_new",          6, TRUE ),
-	WXWINDOW_CREATE			= wx_define( core, "wxWindow_Create",       7, TRUE ),
-	WXWINDOW_ACCEPTSFOCUS	= wx_define( core, "wxWindow_AcceptsFocus", 1, TRUE ),
-	WXWINDOW_CLOSE			= wx_define( core, "wxWindow_Close",        2, TRUE ),
-	WXWINDOW_SHOW			= wx_define( core, "wxWindow_Show",         2, TRUE ),
+	WXWINDOW_NEW			= wx_define( core, "wxWindow_new",              6, TRUE ),
+	WXWINDOW_CREATE			= wx_define( core, "wxWindow_Create",           7, TRUE ),
+	WXWINDOW_GETCLIENTSIZE	= wx_define( core, "wxWindow_GetClientSize",    1, TRUE ),
+	WXWINDOW_ACCEPTSFOCUS	= wx_define( core, "wxWindow_AcceptsFocus",     1, TRUE ),
+	WXWINDOW_CLOSE			= wx_define( core, "wxWindow_Close",            2, TRUE ),
+	WXWINDOW_SHOW			= wx_define( core, "wxWindow_Show",             2, TRUE ),
 $
 

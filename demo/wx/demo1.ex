@@ -49,6 +49,11 @@ procedure fileMenu_OnClick( wxEvent event ) -- should be wxMenuEvent
 
 	switch id do
 
+		case wxID_NEW then
+			sequence size = wxFrame:GetClientSize( myFrame )
+			wxMessageBox( sprintf("width = %d, height = %d", size),
+				"GetClientSize", wxOK+wxICON_INFORMATION )
+
 		case wxID_EXIT then
 			wxFrame:Close( myFrame )
 

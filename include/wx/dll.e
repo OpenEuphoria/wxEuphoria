@@ -70,6 +70,7 @@ public function wx_library( sequence name )
 		end if
 
 		wxDebugf( "0x%08x %s\n", {lib,list[i]} )
+--		printf( 1, "0x%08x %s\n", {lib,list[i]} )
 
 		if equal( name, "base" ) then
 			-- initialize the library

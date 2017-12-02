@@ -5,7 +5,7 @@ atom base = wx_library( "base" )
 
 export constant
 	WXAPPCONSOLE_NEW								= wx_define( base, "wxAppConsole_new",                              3, TRUE  ),
-	WXAPPCONSOLE_YIELD								= wx_define( base, "wxAppConsole_Yield",                            1, TRUE  ),
+	WXAPPCONSOLE_YIELD								= wx_define( base, "wxAppConsole_Yield",                            2, TRUE  ),
 	WXAPPCONSOLE_SETCLOCALE							= wx_define( base, "wxAppConsole_SetCLocale",                       1, FALSE ),
 	WXAPPCONSOLE_MAINLOOP							= wx_define( base, "wxAppConsole_MainLoop",                         1, TRUE  ),
 	WXAPPCONSOLE_EXITMAINLOOP						= wx_define( base, "wxAppConsole_ExitMainLoop",                     1, FALSE ),
@@ -44,7 +44,7 @@ export constant
 $
 
 export constant
-	WXCLASSINFO_NEW					= wx_define( base, "wxClassInfo_new",               1, TRUE  ),
+	WXCLASSINFO_NEW					= wx_define( base, "wxClassInfo_new",               5, TRUE  ),
 	WXCLASSINFO_CREATEOBJECT		= wx_define( base, "wxClassInfo_CreateObject",      1, TRUE  ),
 	WXCLASSINFO_GETBASECLASSNAME1	= wx_define( base, "wxClassInfo_GetBaseClassName1", 1, TRUE  ),
 	WXCLASSINFO_GETBASECLASSNAME2	= wx_define( base, "wxClassInfo_GetBaseClassName2", 1, TRUE  ),
@@ -77,6 +77,7 @@ export constant
 	WXEVTHANDLER_ADDPENDINGEVENT		= wx_define( base, "wxEvtHandler_AddPendingEvent",      2, FALSE ),
 	WXEVTHANDLER_PROCESSPENDINGEVENTS	= wx_define( base, "wxEvtHandler_ProcessPendingEvents", 1, FALSE ),
 	WXEVTHANDLER_DELETEPENDINGEVENTS	= wx_define( base, "wxEvtHandler_DeletePendingEvents",  1, FALSE ),
+--	WXEVTHANDLER_CONNECT				= wx_define( base, "wxEvtHandler_Connect",              5, FALSE ),
 	WXEVTHANDLER_CONNECT				= wx_define( base, "wxEvtHandler_Connect",              4, FALSE ),
 	WXEVTHANDLER_DISCONNECT				= wx_define( base, "wxEvtHandler_Disconnect",           3, TRUE  ),
 	WXEVTHANDLER_GETOBJECT				= wx_define( base, "wxEvtHandler_GetObject",            0, TRUE  ),
@@ -103,7 +104,7 @@ export constant
 	WXSTANDARDPATHS_GETTEMPDIR					= wx_define( base, "wxStandardPaths_GetTempDir",                1, TRUE  ),
 	WXSTANDARDPATHS_GETUSERCONFIGDIR			= wx_define( base, "wxStandardPaths_GetUserConfigDir",          1, TRUE  ),
 	WXSTANDARDPATHS_GETUSERDATADIR				= wx_define( base, "wxStandardPaths_GetUserDataDir",            1, TRUE  ),
-	WXSTANDARDPATHS_GETUSERDIR					= wx_define( base, "wxStandardPaths_GetUserDir",                1, TRUE  ),
+	WXSTANDARDPATHS_GETUSERDIR					= wx_define( base, "wxStandardPaths_GetUserDir",                2, TRUE  ),
 	WXSTANDARDPATHS_GETUSERLOCALDATADIR			= wx_define( base, "wxStandardPaths_GetUserLocalDataDir",       1, TRUE  ),
 	WXSTANDARDPATHS_IGNOREAPPSUBDIR				= wx_define( base, "wxStandardPaths_IgnoreAppSubDir",           2, FALSE ),
 	WXSTANDARDPATHS_IGNOREAPPBUILDSUBDIRS		= wx_define( base, "wxStandardPaths_IgnoreAppBuildSubDirs",     1, FALSE ),

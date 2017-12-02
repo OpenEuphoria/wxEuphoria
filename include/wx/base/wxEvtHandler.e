@@ -14,7 +14,7 @@ public type wxEvtHandler( object x )
 	if equal( x, NULL ) then
 		return 1
 	end if
-	
+
 	return wxObject:IsKindOf( x, wxEvtHandlerInfo )
 end type
 
@@ -47,6 +47,8 @@ public procedure DeletePendingEvents( wxEvtHandler self )
 	wx_proc( WXEVTHANDLER_DELETEPENDINGEVENTS, {self} )
 end procedure
 
+--public procedure Connect( wxEvtHandler self, wxWindowID window_id, wxEventType event_type,
+--		sequence routine_name, atom _routine_id = routine_id(routine_name) )
 public procedure Connect( wxEvtHandler self, wxWindowID window_id, wxEventType event_type,
 		sequence routine_name, atom _routine_id = routine_id(routine_name) )
 	wx_proc( WXEVTHANDLER_CONNECT, {self,window_id,event_type,_routine_id} )

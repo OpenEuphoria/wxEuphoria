@@ -40,5 +40,12 @@
       <Project Name="base" ConfigName="Linux64-Debug"/>
       <Project Name="all" ConfigName="Linux64-Debug"/>
     </WorkspaceConfiguration>
+    <WorkspaceConfiguration Name="Linux64-Release" Selected="no">
+      <Environment/>
+      <Project Name="all" ConfigName="Linux64-Release"/>
+      <Project Name="base" ConfigName="Linux64-Release"/>
+      <Project Name="core" ConfigName="Linux64-Release"/>
+      <Project Name="xml" ConfigName="Linux64-Release"/>
+    </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>

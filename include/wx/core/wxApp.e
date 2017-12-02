@@ -32,10 +32,7 @@ public type wxApp( object x )
 	return wxObject:IsKindOf( x, wxAppInfo )
 end type
 
-public function new()
-	atom func = wx_callback( "wxEvtHandler:CallFunc" )
-	atom proc = wx_callback( "wxEvtHandler:CallProc" )
-	atom rtfatal = routine_id( "RTFatal" )
+public function new( atom func = wx_callback("wxEvtHandler:CallFunc"), atom proc = wx_callback("wxEvtHandler:CallProc"), atom rtfatal = routine_id("RTFatal") )
 	return wx_func( WXAPP_NEW, {func,proc,rtfatal} )
 end function
 

@@ -15,7 +15,7 @@ object WXEUAPI_CORE wxIcon_new( object iconName, object iconType, object desired
 		get_int(desiredWidth),
 		get_int(desiredHeight)
 	);
-	
+
 	wxDeRef( iconName );
 	return BOX_INT( icon );
 }
@@ -23,7 +23,7 @@ object WXEUAPI_CORE wxIcon_new( object iconName, object iconType, object desired
 object WXEUAPI_CORE wxIcon_CreateFromHICON( object hicon )
 {
 	wxIcon* icon = NULL;
-	
+
 #ifdef WXEUMSW
 	wxIcon* temp = new wxIcon();
 	if ( temp->CreateFromHICON((WXHICON)hicon) ) {
@@ -37,7 +37,7 @@ object WXEUAPI_CORE wxIcon_CreateFromHICON( object hicon )
 object WXEUAPI_CORE wxIcon_CreateFromIcon( object orig )
 {
 	wxIcon* icon = new wxIcon( *(wxIcon*)orig );
-	
+
 	return BOX_INT( icon );
 }
 
@@ -45,24 +45,24 @@ object WXEUAPI_CORE wxIcon_CreateFromXPM( object data )
 {
 	char** xpm = get_xpm( data );
 	intptr_t len = LENGTH( data );
-	
+
 	wxIcon* icon = new wxIcon( xpm );
-	
+
 	wxDeRef( data );
 	free_xpm( xpm, len );
-	
+
 	return BOX_INT( icon );
 }
 
 object WXEUAPI_CORE wxIcon_ConvertToDisabled( object self, object brightness )
 {
 	wxIcon* icon = NULL;
-	
+
 #ifdef WXEUMSW
 	icon = new wxIcon();
 	*icon = ((wxIcon*)self)->ConvertToDisabled( get_int(brightness) );
 #endif
-	
+
 	return BOX_INT( icon );
 }
 
@@ -74,28 +74,28 @@ void WXEUAPI_CORE wxIcon_CopyFromBitmap( object self, object bmp )
 object WXEUAPI_CORE wxIcon_GetDepth( object self )
 {
 	int depth = ((wxIcon*)self)->GetDepth();
-	
+
 	return BOX_INT( depth );
 }
 
 object WXEUAPI_CORE wxIcon_GetHeight( object self )
 {
 	int height = ((wxIcon*)self)->GetHeight();
-	
+
 	return BOX_INT( height );
 }
 
 object WXEUAPI_CORE wxIcon_GetWidth( object self )
 {
 	int width = ((wxIcon*)self)->GetWidth();
-	
+
 	return BOX_INT( width );
 }
 
 object WXEUAPI_CORE wxIcon_IsOk( object self )
 {
 	bool result = ((wxIcon*)self)->IsOk();
-	
+
 	return BOX_INT( result );
 }
 
@@ -107,9 +107,9 @@ object WXEUAPI_CORE wxIcon_LoadFile( object self, object name, object iconType, 
 		get_int(desiredWidth),
 		get_int(desiredHeight)
 	);
-	
+
 	wxDeRef( name );
-	
+
 	return BOX_INT( result );
 }
 
