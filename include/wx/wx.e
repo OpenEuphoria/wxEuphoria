@@ -40,6 +40,10 @@ public include "wx/gdicmn.e"
 public include "wx/base/wxPoint.e"
 public include "wx/base/wxSize.e"
 
+public include "wx/font.e"
+public include "wx/fontenc.e"
+public include "wx/core/wxFont.e"
+
 public include "wx/button.e"
 public include "wx/core/wxButton.e"
 
@@ -55,3 +59,9 @@ public include "wx/core/wxToolBar.e"
 
 public include "wx/statusbr.e"
 public include "wx/core/wxStatusBar.e"
+
+public include "wx/textctrl.e"
+public include "wx/core/wxTextCtrl.e"
+
+public include "wx/validate.e"
+public include "wx/core/wxValidator.e"

@@ -4,7 +4,7 @@ include "tbar_xpm.e"
 
 enum ID_Button = 1
 
-wxFrame myFrame = wxFrame:new( NULL, wxID_ANY, "wxEuphoria Demo", {-1,-1}, {640,480} )
+wxFrame myFrame = wxFrame:new( NULL, wxID_ANY, "wxEuphoria Demo", wxDefaultPosition, wxSIZE(640,480) )
 
 wxMenu fileMenu = wxMenu:new()
 AppendItem( fileMenu, wxID_NEW, "&New\tCtrl+N" )
@@ -31,8 +31,13 @@ wxMenuBar:Append( myMenuBar, fileMenu, "&File" )
 wxMenuBar:Append( myMenuBar, editMenu, "&Edit" )
 wxFrame:SetMenuBar( myFrame, myMenuBar )
 
-wxPanel myPanel = wxPanel:new( myFrame )
-wxButton myButton = wxButton:new( myPanel, ID_Button, "Click me", {10,10}, {75,23}, 0, NULL, "myButton" )
+--wxPanel myPanel = wxPanel:new( myFrame )
+--wxButton myButton = wxButton:new( myPanel, ID_Button, "Click me", {10,10}, {75,23}, 0, NULL, "myButton" )
+
+wxTextCtrl myTextCtrl = wxTextCtrl:new( myFrame, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE+wxNO_BORDER )
+
+wxFont CourierNew_10pt = wxFont:new( 10,,,,, "Courier New" )
+SetFont( myTextCtrl, CourierNew_10pt )
 
 wxStatusBar myStatusBar = wxFrame:CreateStatusBar( myFrame, 4 )
 wxFrame:SetStatusWidths( myFrame, {64,48,32,-1} )
@@ -62,15 +67,15 @@ procedure fileMenu_OnClick( wxEvent event ) -- should be wxMenuEvent
 end procedure
 wxMenu:Connect( fileMenu, wxID_ANY, wxEVT_MENU, "fileMenu_OnClick" )
 
-procedure myButton_OnClick( wxEvent event ) -- should be wxCommandEvent
-
-	wxMessageBox( "Hello, world!\n\nYou can only click that button once.",
-		"Message Box", wxYES_NO+wxCANCEL+wxICON_EXCLAMATION )
-
-	wxButton:Disconnect( myButton, ID_Button, wxEVT_BUTTON )
-
-end procedure
-wxButton:Connect( myButton, ID_Button, wxEVT_BUTTON, "myButton_OnClick" )
+--procedure myButton_OnClick( wxEvent event ) -- should be wxCommandEvent
+--
+--	wxMessageBox( "Hello, world!\n\nYou can only click that button once.",
+--		"Message Box", wxYES_NO+wxCANCEL+wxICON_EXCLAMATION )
+--
+--	wxButton:Disconnect( myButton, ID_Button, wxEVT_BUTTON )
+--
+--end procedure
+--wxButton:Connect( myButton, ID_Button, wxEVT_BUTTON, "myButton_OnClick" )
 
 wxFrame:Center( myFrame )
 

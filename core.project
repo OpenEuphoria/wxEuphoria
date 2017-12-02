@@ -38,6 +38,8 @@
     <File Name="src/wxIcon.cpp"/>
     <File Name="src/wxMenuBar.cpp"/>
     <File Name="src/wxMenu.cpp"/>
+    <File Name="src/wxTextCtrl.cpp"/>
+    <File Name="src/wxFont.cpp"/>
   </VirtualDirectory>
   <Dependencies Name="Win32-Debug">
     <Project Name="base"/>
@@ -52,6 +54,9 @@
     <Project Name="base"/>
   </Dependencies>
   <Dependencies Name="Linux64-Debug">
+    <Project Name="base"/>
+  </Dependencies>
+  <Dependencies Name="Linux64-Release">
     <Project Name="base"/>
   </Dependencies>
   <Settings Type="Dynamic Library">
@@ -240,7 +245,7 @@
         <SearchPaths/>
       </Completion>
     </Configuration>
-    <Configuration Name="Win64-Debug" CompilerType="MinGW ( TDM-GCC-32 )" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+    <Configuration Name="Win64-Debug" CompilerType="MinGW ( TDM-GCC-64 )" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-g;$(shell wx-config --cxxflags --debug=yes --unicode=yes)" C_Options="-g;$(shell wx-config --cflags --debug=yes --unicode=yes)" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <Preprocessor Value="EDEBUG"/>
         <Preprocessor Value="EWINDOWS"/>
@@ -326,7 +331,4 @@
       </Completion>
     </Configuration>
   </Settings>
-  <Dependencies Name="Linux64-Release">
-    <Project Name="base"/>
-  </Dependencies>
 </CodeLite_Project>

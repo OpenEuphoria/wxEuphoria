@@ -23,6 +23,10 @@ export constant
 $
 
 export constant
+	WXFONT_NEW		= wx_define( core, "wxFont_new",    7, TRUE ),
+$
+
+export constant
 	WXFRAME_NEW					= wx_define( core, "wxFrame_new",                   7, TRUE ),
 	WXFRAME_CENTRE				= wx_define( core, "wxFrame_Centre",                2, FALSE ),
 	WXFRAME_CENTER				= wx_define( core, "wxFrame_Center",                2, FALSE ),
@@ -158,6 +162,11 @@ export constant
 $
 
 export constant
+	WXTEXTCTRL_NEW		= wx_define( core, "wxTextCtrl_new",       8, TRUE ),
+	WXTEXTCTRL_CREATE	= wx_define( core, "wxTextCtrl_Create",    9, TRUE ),
+$
+
+export constant
 	WXTOPLEVELWINDOW_NEW				= wx_define( core, "wxTopLevelWindow_new",               7, TRUE ),
 	WXTOPLEVELWINDOW_CREATE				= wx_define( core, "wxTopLevelWindow_Create",            8, TRUE ),
 	WXTOPLEVELWINDOW_CANSETTRANSPARENT	= wx_define( core, "wxTopLevelWindow_CanSetTransparent", 1, TRUE ),
@@ -175,6 +184,7 @@ export constant
 	WXWINDOW_GETCLIENTSIZE	= wx_define( core, "wxWindow_GetClientSize",    1, TRUE ),
 	WXWINDOW_ACCEPTSFOCUS	= wx_define( core, "wxWindow_AcceptsFocus",     1, TRUE ),
 	WXWINDOW_CLOSE			= wx_define( core, "wxWindow_Close",            2, TRUE ),
+	WXWINDOW_SETFONT		= wx_define( core, "wxWindow_SetFont",          2, TRUE ),
 	WXWINDOW_SHOW			= wx_define( core, "wxWindow_Show",             2, TRUE ),
 $
 

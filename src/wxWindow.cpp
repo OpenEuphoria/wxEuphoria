@@ -19,8 +19,8 @@ object WXEUAPI_CORE wxWindow_new( object parent, object id, object pos, object s
 
 object WXEUAPI_CORE wxWindow_Create( intptr_t self, object parent, object id, object pos, object size, object style, object name )
 {
-//	bool result = ((wxWindow*)self)->Create( (wxWindow*)parent, (wxWindowID)id, get_point(pos), get_size(size), get_int(style), get_string(name) );
-	bool result = wx_reinterpret_cast(wxWindow*, self)->Create( (wxWindow*)parent, (wxWindowID)id, get_point(pos), get_size(size), get_int(style), get_string(name) );
+	bool result = ((wxWindow*)self)->Create( (wxWindow*)parent, (wxWindowID)id, get_point(pos), get_size(size), get_int(style), get_string(name) );
+//	bool result = wx_reinterpret_cast(wxWindow*, self)->Create( (wxWindow*)parent, (wxWindowID)id, get_point(pos), get_size(size), get_int(style), get_string(name) );
 
 	wxDeRef( pos );
 	wxDeRef( size );
@@ -271,6 +271,33 @@ object WXEUAPI_CORE wxWindow_AcceptsFocus( object self )
 	return BOX_INT( result );
 }
 
+/* Child management functions */
+
+/* Sibling and parent management functions */
+
+/* Scrolling and scrollbars functions */
+
+/* Positioning functions */
+
+/* Coordinate conversion functions */
+
+/* Drawing-related functions */
+
+object WXEUAPI_CORE wxWindow_SetFont( object self, object font )
+{
+	bool result = ((wxWindow*)self)->SetFont( *(wxFont*)font );
+	
+	return BOX_INT( result );
+}
+
+/* Event-handling functions */
+
+/* Window styles functions */
+
+/* Tab order functions */
+
+/* Z order functions */
+
 /* Window status functions */
 
 object WXEUAPI_CORE wxWindow_Show( object self, object show )
@@ -280,6 +307,12 @@ object WXEUAPI_CORE wxWindow_Show( object self, object show )
 	return BOX_INT( result );
 }
 
+/* Context-sensitive help functions */
+
+/* Popup/context menu functions */
+
+/* wxWindow properties functions */
+
 /* Window deletion functions */
 
 object WXEUAPI_CORE wxWindow_Close( object self, object force )
@@ -288,5 +321,15 @@ object WXEUAPI_CORE wxWindow_Close( object self, object force )
 
 	return BOX_INT( result );
 }
+
+/* Drag and drop functions */
+
+/* Constraints, sizers and window layout functions */
+
+/* Mouse functions */
+
+/* Miscellaneous functions */
+
+
 
 };

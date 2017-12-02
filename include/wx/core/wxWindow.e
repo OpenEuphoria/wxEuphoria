@@ -6,6 +6,7 @@ include "wx/defs.e"
 include "wx/core.e"
 include "wx/string.e"
 include "wx/gdicmn.e"
+include "wx/font.e"
 
 public include "wx/event.e"
 public include "wx/object.e"
@@ -38,6 +39,10 @@ end function
 
 public function Close( wxWindow self, atom force = FALSE )
 	return wx_func( WXWINDOW_CLOSE, {self,force} )
+end function
+
+public function SetFont( wxWindow self, wxFont font )
+	return wx_func( WXWINDOW_SETFONT, {self,font} )
 end function
 
 public function Show( wxWindow self, atom show = TRUE )

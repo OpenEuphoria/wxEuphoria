@@ -10,3 +10,6 @@ public type wxSize( object x )
 	return object(x)
 end type
 
+public function wxSIZE( atom w, atom h )
+	return {w,h}
+end function

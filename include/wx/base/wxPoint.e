@@ -10,3 +10,6 @@ public type wxPoint( object x )
 	return object(x)
 end type
 
+public function wxPOINT( atom x, atom y )
+	return {x,y}
+end function

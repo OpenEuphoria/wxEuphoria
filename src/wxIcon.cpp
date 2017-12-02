@@ -58,10 +58,10 @@ object WXEUAPI_CORE wxIcon_ConvertToDisabled( object self, object brightness )
 {
 	wxIcon* icon = NULL;
 
-#ifdef WXEUMSW
-	icon = new wxIcon();
-	*icon = ((wxIcon*)self)->ConvertToDisabled( get_int(brightness) );
-#endif
+//#ifdef WXEUMSW
+//	icon = new wxIcon();
+//	*icon = ((wxIcon*)self)->ConvertToDisabled( get_int(brightness) );
+//#endif
 
 	return BOX_INT( icon );
 }
