@@ -1,8 +1,6 @@
-# wxEuphoria "Project Leviathan"
+# wxEuphoria 3.1.2 alpha 1
 
-**Version 3.1.0 alpha 1**
-
-wxEuphoria provides bindings for [wxWidgets](https://www.wxwidgets.org/) in Euphoria. This project is an *all new library* written from the ground up to supercede the previous version at [SourceForge.net](http://wxeuphoria.sourceforge.net/). Such an effort is not without its challenges of course. For one thing, this library is *completely* incompatible with the original, but the new design makes developing with and for wxEuphoria easier than ever before. We also plan to keep this version up to date with wxWidgets as new releases are made available upstream.
+wxEuphoria provides bindings for [wxWidgets](https://www.wxwidgets.org/) in Euphoria. This project is an *all new library* written from the ground up to supercede the previous version at [SourceForge.net](http://wxeuphoria.sourceforge.net/). Such an effort is not without its challenges of course. For one thing, this library is *completely* incompatible with the original, but the new design makes developing with and for wxEuphoria easier than ever before. We also plan to keep this version up to date with wxWidgets as new releases are made available.
 
 ## Our Goals
 
@@ -37,20 +35,16 @@ To use the binaries:
 - [OpenEuphoria 4.1.0 Beta 2](https://sourceforge.net/projects/rapideuphoria/files/Euphoria/4.1.0-beta2/) or later
 
 To build from source:
-- [CodeLite 9.2.0](https://codelite.org/) or later
+- [CodeLite 13.0](https://codelite.org/) or later
 - [TDM-GCC 5.1.0](http://tdm-gcc.tdragon.net/) or later
-- [wxWidgets 3.1.0](http://www.wxwidgets.org/) or later
-- [InnoSetup 5.5.0](http://www.jrsoftware.org/) or later
+- [wxWidgets 3.1.2](http://www.wxwidgets.org/) or later
+- [InnoSetup 5.0](http://www.jrsoftware.org/) or later (for releasing)
 
 ## FAQ
 
-### What's up with that project name?
-
-This is inspired by the [wxPython](https://www.wxpython.org/)'s *[Project Phoenix](https://wiki.wxpython.org/ProjectPhoenix)*. The name **leviathan** is [synonymous](https://www.google.com/search?q=define%3Aleviathan) with *a thing that is very large or powerful* and the word evokes the sense of overwhelming effort and danger involved with the attempt tackle a project of this scale.
-
 ### Why not update and extend the old library?
 
-Matthew Lewis, the original author of wxEuphoria, did a great job on that library and we owe him a great deal of credit for his efforts. The very core of this new library is still based on his code. However, as time has moved on, the old library fell further behind the release of wxWidgets, which made it difficult to bring into the modern age. We used this as an opportunity to bring the whole thing up to date with modern tools.
+[Matthew Lewis](https://github.com/matthewwalkerlewis), the original author of wxEuphoria, did a great job on that library and we owe him a great deal of credit for his efforts. The very core of this new library is still based on his code. However, as time has moved on, the old library fell further behind the release of wxWidgets, which made it difficult to bring into the modern age. We used this as an opportunity to bring the whole thing up to date with modern tools.
 
 ### Can I use this with Euphoria 3.1.x or 4.0.x?
 
@@ -68,7 +62,7 @@ No. This is not supported. Please do not try to do this. Bad things will happen.
 
 ### January 14, 2017
 
-- Posted project to [GitHub](https://github.com/ghaberek/wxEuphoria) and [OpenEuhporia.org](openeuphoria.org/forum/130722.wc).
+- Posted project to [GitHub](https://github.com/ghaberek/wxEuphoria) and [OpenEuphoria.org](openeuphoria.org/forum/130722.wc).
 
 ### January 8, 2017
 
