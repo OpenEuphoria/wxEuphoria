@@ -43,6 +43,33 @@ extern HANDLE default_heap;
 #endif
 */
 
+/* routine id lookup table entry structure */
+typedef struct wxObjRid {
+	wxObjRid() {};
+	wxObjRid( intptr_t routine_id, intptr_t event_object )
+		: m_RoutineId(routine_id)
+		, m_EventObject(event_object) {};
+	intptr_t m_RoutineId;
+	intptr_t m_EventObject;
+} wxObjRid;
+
+/* map types for routine id lookup table */
+typedef map<intptr_t, wxObjRid> wxId2ObjRid;
+typedef map<intptr_t, wxId2ObjRid> wxEvtType2Id;
+
+/* shared class for wxEuphoria event data */
+class EuClientData : public wxClientData
+{
+public:
+	EuClientData();
+	/* event_type -> window_id -> (handler, routine_id, user_data) */
+	void Add( intptr_t handler, wxWindowID window_id, wxEventType event_type, intptr_t routine_id );
+	void Get( wxWindowID window_id, wxEventType event_type, intptr_t* handler, intptr_t* routine_id );
+	void Del( wxWindowID window_id, wxEventType event_type );
+private:
+	wxEvtType2Id m_EvtType2Id;
+};
+
 /* call back functions into Euphoria code */
 typedef object WXEUAPI (*EuCallFunc)(intptr_t);
 typedef   void WXEUAPI (*EuCallProc)(intptr_t);
@@ -322,6 +349,18 @@ static inline intptr_t get_int( object seq, intptr_t index )
 	return get_int( (object)SEQ_PTR(seq)->base[index] );
 }
 
+/* convert a Euphoria atom to any object type */
+template <typename T> T get_object( object x )
+{
+	return reinterpret_cast<T>( get_int(x) );
+}
+
+/* convert an item of a Euphoria sequence to any object type */
+template <typename T> T get_object( object seq, intptr_t index )
+{
+	return reinterpret_cast<T>( get_int(seq, index) );
+}
+
 /* convert a Euphoria object to a wxPoint */
 static inline wxPoint get_point( object pt )
 {
@@ -404,32 +443,5 @@ static inline void free_xpm( char** xpm, intptr_t len )
 
 	delete[] xpm;
 }
-
-/* routine id lookup table entry structure */
-typedef struct wxObjRid {
-	wxObjRid() {};
-	wxObjRid( intptr_t routine_id, intptr_t event_object )
-		: m_RoutineId(routine_id)
-		, m_EventObject(event_object) {};
-	intptr_t m_RoutineId;
-	intptr_t m_EventObject;
-} wxObjRid;
-
-/* map types for routine id lookup table */
-typedef map<intptr_t, wxObjRid> wxId2ObjRid;
-typedef map<intptr_t, wxId2ObjRid> wxEvtType2Id;
-
-/* shared class for wxEuphoria event data */
-class EuClientData : public wxClientData
-{
-public:
-	EuClientData();
-	/* event_type -> window_id -> (handler, routine_id, user_data) */
-	void Add( intptr_t handler, wxWindowID window_id, wxEventType event_type, intptr_t routine_id );
-	void Get( wxWindowID window_id, wxEventType event_type, intptr_t* handler, intptr_t* routine_id );
-	void Del( wxWindowID window_id, wxEventType event_type );
-private:
-	wxEvtType2Id m_EvtType2Id;
-};
 
 #endif // WXEUPHORIA_H

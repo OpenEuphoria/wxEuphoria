@@ -33,7 +33,7 @@ end function
 public function FindClass( wxString className )
 
 	wxClassInfo info = wx_func( WXCLASSINFO_FINDCLASS, {className} )
-	wxDebugf( "0x%08x %s\n", {info,className} )
+	wxDebugf( "0x%08x wxClassInfo:FindClass( \"%s\" )\n", {info,className} )
 
 	return info
 end function

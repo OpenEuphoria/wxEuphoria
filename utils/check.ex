@@ -24,6 +24,12 @@ constant re_routine   = regex:new( `^(public|export)\s+(function|procedure)\s+(\
 constant re_typename  = regex:new( `^public\s+type\s+(\w+)\s*\(.*\)$` )
 constant re_wxeuapi   = regex:new( `^(\w+)\s+(WXEUAPI_\w+)\s+(\w+)\s*\((.*)\)$` )
 
+procedure debugf( sequence msg, object data = {} )
+ifdef DEBUG then
+	printf( STDERR, msg, data )
+end ifdef
+end procedure
+
 procedure print_var( sequence name, object value )
 
 	printf( STDOUT, "%s = ", {name} )
@@ -123,6 +129,8 @@ function check_params( sequence file_path, sequence file_class, sequence func_in
 	end if
 
 	if length( cpp_parts ) != length( eu_parts ) then
+		printf( STDERR, "length( cpp_parts ) = %d\n", length(cpp_parts) )
+		printf( STDERR, "length( eu_parts )  = %d\n", length(eu_parts) )
 		return 0
 	end if
 

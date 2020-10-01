@@ -47,13 +47,20 @@ public procedure DeletePendingEvents( wxEvtHandler self )
 	wx_proc( WXEVTHANDLER_DELETEPENDINGEVENTS, {self} )
 end procedure
 
---public procedure Connect( wxEvtHandler self, wxWindowID window_id, wxEventType event_type,
---		sequence routine_name, atom _routine_id = routine_id(routine_name) )
 public procedure Connect( wxEvtHandler self, wxWindowID window_id, wxEventType event_type,
 		sequence routine_name, atom _routine_id = routine_id(routine_name) )
-	wx_proc( WXEVTHANDLER_CONNECT, {self,window_id,event_type,_routine_id} )
+	wx_proc( WXEVTHANDLER_CONNECT, {self,window_id,event_type,routine_name,_routine_id} )
 end procedure
 
 public function Disconnect( wxEvtHandler self, wxWindowID window_id, wxEventType event_type )
 	return wx_func( WXEVTHANDLER_DISCONNECT, {self,window_id,event_type} )
+end function
+
+public procedure Bind( wxEvtHandler self, wxWindowID window_id, wxEventType event_type,
+		sequence routine_name, atom _routine_id = routine_id(routine_name) )
+	wx_proc( WXEVTHANDLER_BIND, {self,window_id,event_type,routine_name,_routine_id} )
+end procedure
+
+public function Unbind( wxEvtHandler self, wxWindowID window_id, wxEventType event_type )
+	return wx_func( WXEVTHANDLER_UNBIND, {self,window_id,event_type} )
 end function

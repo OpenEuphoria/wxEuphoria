@@ -20,7 +20,6 @@ object WXEUAPI_CORE wxWindow_new( object parent, object id, object pos, object s
 object WXEUAPI_CORE wxWindow_Create( intptr_t self, object parent, object id, object pos, object size, object style, object name )
 {
 	bool result = ((wxWindow*)self)->Create( (wxWindow*)parent, (wxWindowID)id, get_point(pos), get_size(size), get_int(style), get_string(name) );
-//	bool result = wx_reinterpret_cast(wxWindow*, self)->Create( (wxWindow*)parent, (wxWindowID)id, get_point(pos), get_size(size), get_int(style), get_string(name) );
 
 	wxDeRef( pos );
 	wxDeRef( size );
@@ -82,7 +81,6 @@ object WXEUAPI_CORE wxWindow_FromDIP( object self, object d )
 
 	return BOX_INT( result );
 }
-
 
 object WXEUAPI_CORE wxWindow_SizeFromDIP( object self, object size )
 {
@@ -261,6 +259,12 @@ void WXEUAPI_CORE wxWindow_InvalidateBestSize( object self )
 	((wxWindow*)self)->InvalidateBestSize();
 }
 
+void WXEUAPI_CORE wxWindow_SetSize( object self, object size )
+{
+	wxDeRef( size );
+	
+	((wxWindow*)self)->SetSize( get_size(size) );
+}
 
 /* Focus functions */
 
@@ -283,6 +287,13 @@ object WXEUAPI_CORE wxWindow_AcceptsFocus( object self )
 
 /* Drawing-related functions */
 
+object WXEUAPI_CORE wxWindow_SetBackgroundColour( object self, object colour )
+{
+	bool result = ((wxWindow*)self)->SetBackgroundColour( *get_object<wxColour*>(colour) );
+	
+	return BOX_INT( result );
+}
+
 object WXEUAPI_CORE wxWindow_SetFont( object self, object font )
 {
 	bool result = ((wxWindow*)self)->SetFont( *(wxFont*)font );
@@ -294,11 +305,30 @@ object WXEUAPI_CORE wxWindow_SetFont( object self, object font )
 
 /* Window styles functions */
 
+object WXEUAPI_CORE wxWindow_GetWindowStyleFlag( object self )
+{
+	long style = ((wxWindow*)self)->GetWindowStyleFlag();
+	
+	return BOX_INT( style );
+}
+
+void WXEUAPI_CORE wxWindow_SetWindowStyleFlag( object self, object style )
+{
+	((wxWindow*)self)->SetWindowStyleFlag( get_int(style) );
+}
+
 /* Tab order functions */
 
 /* Z order functions */
 
 /* Window status functions */
+
+object WXEUAPI_CORE wxWindow_Hide( object self )
+{
+	bool result = ((wxWindow*)self)->Hide();
+
+	return BOX_INT( result );
+}
 
 object WXEUAPI_CORE wxWindow_Show( object self, object show )
 {
@@ -322,11 +352,32 @@ object WXEUAPI_CORE wxWindow_Close( object self, object force )
 	return BOX_INT( result );
 }
 
+object WXEUAPI_CORE wxWindow_Destroy( object self )
+{
+	bool result = ((wxWindow*)self)->Destroy();
+
+	return BOX_INT( result );
+}
+
 /* Drag and drop functions */
 
 /* Constraints, sizers and window layout functions */
 
 /* Mouse functions */
+
+object WXEUAPI_CORE wxWindow_SetCursor( object self, object cursor )
+{
+	bool result = ((wxWindow*)self)->SetCursor( *get_object<wxCursor*>(cursor) );
+	
+	return BOX_INT( result );
+}
+
+object WXEUAPI_CORE wxWindow_SetStockCursor( object self, object cursorId )
+{
+	bool result = ((wxWindow*)self)->SetCursor( wxCursor((wxStockCursor)get_int(cursorId)) );
+	
+	return result;
+}
 
 /* Miscellaneous functions */
 

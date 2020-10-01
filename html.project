@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CodeLite_Project Name="core" InternalType="User templates" Version="11000">
+<CodeLite_Project Name="html" Version="11000" InternalType="User templates">
   <Plugins>
     <Plugin Name="qmake">
       <![CDATA[00050001N0013Linux64-Debug0000000000000001N0011Win32-Debug0000000000000001N0013Win32-Release0000000000000001N0011Win64-Debug0000000000000001N0013Win64-Release000000000000]]>
@@ -26,29 +26,10 @@
  }]]]>
     </Plugin>
   </Plugins>
-  <VirtualDirectory Name="resource">
-    <File Name="resource/wxEuphoria.rc"/>
-  </VirtualDirectory>
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
-    <File Name="src/wxUpdateUIEvent.cpp"/>
-    <File Name="src/wxTextEntryDialog.cpp"/>
-    <File Name="src/wxCursor.cpp"/>
-    <File Name="src/wxStockGDI.cpp"/>
-    <File Name="src/wxScrolledWindow.cpp"/>
-    <File Name="src/wxSplitterWindow.cpp"/>
-    <File Name="src/wxFrame.cpp"/>
-    <File Name="src/wxApp.cpp"/>
-    <File Name="src/wxPanel.cpp"/>
-    <File Name="src/wxButton.cpp"/>
-    <File Name="src/wxWindow.cpp"/>
-    <File Name="src/wxTopLevelWindow.cpp"/>
-    <File Name="src/wxIcon.cpp"/>
-    <File Name="src/wxMenuBar.cpp"/>
-    <File Name="src/wxMenu.cpp"/>
-    <File Name="src/wxTextCtrl.cpp"/>
-    <File Name="src/wxFont.cpp"/>
+    <File Name="src/wxHtmlWindow.cpp"/>
   </VirtualDirectory>
   <Dependencies Name="Linux64-Debug">
     <Project Name="base"/>
@@ -62,11 +43,12 @@
   <Dependencies Name="Win32-Release">
     <Project Name="base"/>
   </Dependencies>
-  <Dependencies Name="Win64-Debug">
-    <Project Name="base"/>
-  </Dependencies>
   <Dependencies Name="Win64-Release">
     <Project Name="base"/>
+  </Dependencies>
+  <Dependencies Name="Win64-Debug">
+    <Project Name="base"/>
+    <Project Name="core"/>
   </Dependencies>
   <Settings Type="Dynamic Library">
     <GlobalSettings>
@@ -86,7 +68,7 @@
         <Preprocessor Value="ELINUX"/>
         <Preprocessor Value="WXEUGTK"/>
       </Compiler>
-      <Linker Options="-pthread;-Wl,-rpath=.;-Wl,--whole-archive;-lwx_gtk3u_core-3.1;-Wl,--no-whole-archive;-lwxeud_base;-lgthread-2.0;-lX11;-lXxf86vm;-lSM;-lgtk-3;-lgdk-3;-lpangocairo-1.0;-lpango-1.0;-latk-1.0;-lcairo-gobject;-lcairo;-lgdk_pixbuf-2.0;-lgio-2.0;-lgobject-2.0;-lglib-2.0;-ldl;-lm" Required="yes">
+      <Linker Options="-pthread;-Wl,-rpath=.;-Wl,--whole-archive;-lwx_baseu_html-3.1;-Wl,--no-whole-archive;-lwxeud_base;-lgthread-2.0;-lX11;-lXxf86vm;-lSM;-lgtk-3;-lgdk-3;-lpangocairo-1.0;-lpango-1.0;-latk-1.0;-lcairo-gobject;-lcairo;-lgdk_pixbuf-2.0;-lgio-2.0;-lgobject-2.0;-lglib-2.0;-ldl;-lm" Required="yes">
         <LibraryPath Value="$(WXWIN)/build/gtk-debug/lib"/>
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
@@ -130,7 +112,7 @@
         <Preprocessor Value="ELINUX"/>
         <Preprocessor Value="WXEUGTK"/>
       </Compiler>
-      <Linker Options="-pthread;-Wl,-rpath=.;-Wl,--whole-archive;-lwx_gtk3u_core-3.1;-Wl,--no-whole-archive;-lwxeu_base;-lgthread-2.0;-lX11;-lXxf86vm;-lSM;-lgtk-3;-lgdk-3;-lpangocairo-1.0;-lpango-1.0;-latk-1.0;-lcairo-gobject;-lcairo;-lgdk_pixbuf-2.0;-lgio-2.0;-lgobject-2.0;-lglib-2.0;-ldl;-lm" Required="yes">
+      <Linker Options="-pthread;-Wl,-rpath=.;-Wl,--whole-archive;-lwx_baseu_html-3.1;-Wl,--no-whole-archive;-lwxeu_base;-lgthread-2.0;-lX11;-lXxf86vm;-lSM;-lgtk-3;-lgdk-3;-lpangocairo-1.0;-lpango-1.0;-latk-1.0;-lcairo-gobject;-lcairo;-lgdk_pixbuf-2.0;-lgio-2.0;-lgobject-2.0;-lglib-2.0;-ldl;-lm" Required="yes">
         <LibraryPath Value="$(WXWIN)/build/gtk-release/lib"/>
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
@@ -175,7 +157,7 @@
         <Preprocessor Value="EWINDOWS"/>
         <Preprocessor Value="WXEUMSW"/>
       </Compiler>
-      <Linker Options="-m32;-Wl,--whole-archive;-lwxmsw31ud_core;-Wl,--no-whole-archive;-lwxeud_base;-lkernel32;-luser32;-lgdi32;-lcomdlg32;-lwinspool;-lwinmm;-lshell32;-lcomctl32;-lversion;-lshlwapi;-lole32;-loleaut32;-luuid;-lrpcrt4;-ladvapi32;-lwsock32" Required="yes">
+      <Linker Options="-m32;-Wl,--whole-archive;-lwxbase31ud_html;-Wl,--no-whole-archive;-lwxeud_base;-lkernel32;-luser32;-lgdi32;-lcomdlg32;-lwinspool;-lwinmm;-lshell32;-lcomctl32;-lversion;-lshlwapi;-lole32;-loleaut32;-luuid;-lrpcrt4;-ladvapi32;-lwsock32" Required="yes">
         <LibraryPath Value="$(WXWIN)/lib/gcc_lib"/>
       </Linker>
       <ResourceCompiler Options="-F pe-i386" Required="no"/>
@@ -217,7 +199,7 @@
         <Preprocessor Value="EWINDOWS"/>
         <Preprocessor Value="WXEUMSW"/>
       </Compiler>
-      <Linker Options="-s;-m32;-Wl,--whole-archive;-lwxmsw31u_core;-Wl,--no-whole-archive;-lwxeu_base;-lkernel32;-luser32;-lgdi32;-lcomdlg32;-lwinspool;-lwinmm;-lshell32;-lcomctl32;-lversion;-lshlwapi;-lole32;-loleaut32;-luuid;-lrpcrt4;-ladvapi32;-lwsock32" Required="yes">
+      <Linker Options="-s;-m32;-Wl,--whole-archive;-lwxbase31u_html;-Wl,--no-whole-archive;-lwxeu_base;-lkernel32;-luser32;-lgdi32;-lcomdlg32;-lwinspool;-lwinmm;-lshell32;-lcomctl32;-lversion;-lshlwapi;-lole32;-loleaut32;-luuid;-lrpcrt4;-ladvapi32;-lwsock32" Required="yes">
         <LibraryPath Value="$(WXWIN)/lib/gcc_lib"/>
       </Linker>
       <ResourceCompiler Options="-F pe-i386" Required="no"/>
@@ -258,7 +240,7 @@
       <Compiler Options="-g;-mthreads;-Wno-ctor-dtor-privacy;-pipe;-fmessage-length=0" C_Options="-g;-mthreads;-Wno-ctor-dtor-privacy;-pipe;-fmessage-length=0" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="$(WXWIN)\include"/>
         <IncludePath Value="$(WXWIN)\lib\$(WXCFG)"/>
-        <Preprocessor Value="_UNICODE"/>
+        <Preprocessor Value="UNICODE"/>
         <Preprocessor Value="__WXMSW__"/>
         <Preprocessor Value="__WXDEBUG__"/>
         <Preprocessor Value="HAVE_W32API_H"/>
@@ -266,10 +248,10 @@
         <Preprocessor Value="EWINDOWS"/>
         <Preprocessor Value="WXEUMSW"/>
       </Compiler>
-      <Linker Options="-Wl,--whole-archive;-lwxmsw31ud_core;-Wl,--no-whole-archive;-lwxeud_base;-lkernel32;-luser32;-lgdi32;-lcomdlg32;-lwinspool;-lwinmm;-lshell32;-lcomctl32;-lversion;-lshlwapi;-lole32;-loleaut32;-luuid;-lrpcrt4;-ladvapi32;-lwsock32;-luxtheme;-loleacc" Required="yes">
+      <Linker Options="-Wl,--whole-archive;-lwxmsw31ud_html;-Wl,--no-whole-archive;-lwxeud_base;-lwxmsw31ud_core;-lkernel32;-luser32;-lgdi32;-lcomdlg32;-lwinspool;-lwinmm;-lshell32;-lcomctl32;-lversion;-lshlwapi;-lole32;-loleacc;-loleaut32;-luuid;-lrpcrt4;-ladvapi32;-lwsock32;-luxtheme" Required="yes">
         <LibraryPath Value="$(WXWIN)/lib/gcc_lib"/>
       </Linker>
-      <ResourceCompiler Options="-I$(WXWIN)\include" Required="no"/>
+      <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="./bin/$(ConfigurationName)/libwxeud_$(ProjectName).dll" IntermediateDirectory="./build/$(ProjectName)/$(ConfigurationName)" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="" PauseExecWhenProcTerminates="no" IsGUIProgram="no" IsEnabled="yes"/>
       <BuildSystem Name="Default"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
@@ -305,19 +287,13 @@
     </Configuration>
     <Configuration Name="Win64-Release" CompilerType="MinGW ( TDM-GCC-64 )" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-O2;$(shell wx-config --cxxflags --debug=no --unicode=yes)" C_Options="-O2;$(shell wx-config --cflags --debug=no --unicode=yes)" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
-        <IncludePath Value="$(WXWIN)\include"/>
-        <IncludePath Value="$(WXWIN)\lib\$(WXCFG)"/>
-        <Preprocessor Value="_UNICODE"/>
-        <Preprocessor Value="__WXMSW__"/>
-        <Preprocessor Value="HAVE_W32API_H"/>
-        <Preprocessor Value="EDEBUG"/>
         <Preprocessor Value="EWINDOWS"/>
         <Preprocessor Value="WXEUMSW"/>
       </Compiler>
-      <Linker Options="-s;-Wl,--whole-archive;-lwxmsw31u_core;-Wl,--no-whole-archive;-lwxeu_base;-lkernel32;-luser32;-lgdi32;-lcomdlg32;-lwinspool;-lwinmm;-lshell32;-lcomctl32;-lversion;-lshlwapi;-lole32;-loleaut32;-luuid;-lrpcrt4;-ladvapi32;-lwsock32;-luxtheme;-loleacc" Required="yes">
+      <Linker Options="-s;-Wl,--whole-archive;-lwxmsw31u_html;-Wl,--no-whole-archive;-lwxeu_base;-lwxmsw31u_core;-lkernel32;-luser32;-lgdi32;-lcomdlg32;-lwinspool;-lwinmm;-lshell32;-lcomctl32;-lversion;-lshlwapi;-lole32;-loleacc;-loleaut32;-luuid;-lrpcrt4;-ladvapi32;-lwsock32;-luxtheme" Required="yes">
         <LibraryPath Value="$(WXWIN)/lib/gcc_lib"/>
       </Linker>
-      <ResourceCompiler Options="-I$(WXWIN)\include" Required="no"/>
+      <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="./bin/$(ConfigurationName)/libwxeu_$(ProjectName).dll" IntermediateDirectory="./build/$(ProjectName)/$(ConfigurationName)" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="" PauseExecWhenProcTerminates="no" IsGUIProgram="no" IsEnabled="yes"/>
       <BuildSystem Name="Default"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">

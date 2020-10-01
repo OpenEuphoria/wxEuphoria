@@ -55,9 +55,19 @@ procedure fileMenu_OnClick( wxEvent event ) -- should be wxMenuEvent
 	switch id do
 
 		case wxID_NEW then
-			sequence size = wxFrame:GetClientSize( myFrame )
-			wxMessageBox( sprintf("width = %d, height = %d", size),
-				"GetClientSize", wxOK+wxICON_INFORMATION )
+			wxMessageBox( "New", "File", wxOK+wxICON_INFORMATION )
+
+		case wxID_OPEN then
+			wxMessageBox( "Open", "File", wxOK+wxICON_INFORMATION )
+
+		case wxID_SAVE then
+			wxMessageBox( "Save", "File", wxOK+wxICON_INFORMATION )
+
+		case wxID_SAVEAS then
+			wxMessageBox( "Save As", "File", wxOK+wxICON_INFORMATION )
+
+		case wxID_CLOSE then
+			wxMessageBox( "Close", "File", wxOK+wxICON_INFORMATION )
 
 		case wxID_EXIT then
 			wxFrame:Close( myFrame )

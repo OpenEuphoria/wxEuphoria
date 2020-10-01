@@ -32,22 +32,13 @@
    aren't needed - only 29 bits are stored.
 */
 
-/* NO VALUE objects can occur only in a few well-defined places,
-   so we can simplify some tests. For speed we first check for ATOM-INT
-   since that's what most objects are. */
-#undef MININT
-
-#define MININT32     (intptr_t) 0xC0000000L
-#define MAXINT32     (intptr_t) 0x3FFFFFFFL
-
-
 #if INTPTR_MAX == INT32_MAX
 
 #define DBL_MASK     (uintptr_t)0xA0000000L
 #define SEQ_MASK     (uintptr_t)0x80000000L
 #define DS_MASK      (uintptr_t)0xE0000000L
-#define MININT       MININT32
-#define MAXINT       MAXINT32
+#define EU_MININT    (intptr_t) 0xC0000000L
+#define EU_MAXINT    (intptr_t) 0x3FFFFFFFL
 #define NOVALUE      (intptr_t) 0xbfffffffL
 #define TOO_BIG_INT  (intptr_t) 0x40000000L
 #define HIGH_BITS    (intptr_t) 0xC0000000L
@@ -57,20 +48,19 @@
 #define DBL_MASK     (uintptr_t)INT64_C( 0xA000000000000000 )
 #define SEQ_MASK     (uintptr_t)INT64_C( 0x8000000000000000 )
 #define DS_MASK      (uintptr_t)INT64_C( 0xE000000000000000 )
-#define MININT       (intptr_t) INT64_C( 0xC000000000000000 )
-#define MAXINT       (intptr_t) INT64_C( 0x3FFFFFFFFFFFFFFF )
+#define EU_MININT    (intptr_t) INT64_C( 0xC000000000000000 )
+#define EU_MAXINT    (intptr_t) INT64_C( 0x3FFFFFFFFFFFFFFF )
 #define NOVALUE      (intptr_t) INT64_C( 0xbfffffffffffffff )
 #define TOO_BIG_INT  (intptr_t) INT64_C( 0x4000000000000000 )
-#define HIGH_BITS    (intptr_t )INT64_C( 0xC000000000000000 )
+#define HIGH_BITS    (intptr_t) INT64_C( 0xC000000000000000 )
 
 #endif
 
-#define IS_ATOM_INT(ob)       (((intptr_t)(ob)) > NOVALUE)
+#define IS_ATOM_INT(ob)       ((intptr_t)(ob)  > NOVALUE)
 #define IS_ATOM_INT_NV(ob)    ((intptr_t)(ob) >= NOVALUE)
 
 #define MAKE_UINT(x) ((object)((uintptr_t)x < (uintptr_t)TOO_BIG_INT \
-                          ? (uintptr_t)x : \
-                            NewDouble((eudouble)(uintptr_t)x)))
+					 ? (uintptr_t)x : NewDouble((eudouble)(uintptr_t)x)))
 
 /* these are obsolete */
 #define INT_VAL(x)        ((intptr_t)(x))
@@ -88,8 +78,8 @@
 #define IS_DBL_OR_SEQUENCE(ob)  (((object)(ob)) < NOVALUE)
 
 
-#define MININT_DBL ((eudouble)MININT)
-#define MAXINT_DBL ((eudouble)MAXINT)
+#define MININT_DBL ((eudouble)EU_MININT)
+#define MAXINT_DBL ((eudouble)EU_MAXINT)
 #define INT23      (object)0x003FFFFFL
 #define INT16      (object)0x00007FFFL
 #define INT15      (object)0x00003FFFL

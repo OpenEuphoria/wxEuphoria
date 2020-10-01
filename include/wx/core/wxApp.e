@@ -77,7 +77,7 @@ public procedure wxMain( wxWindow window, wxApp app = NULL )
 	if app = NULL then
 		app = wxApp:new()
 	end if
-
+	
 	wxApp:SetTopWindow( app, window )
 	
 	wxWindow:Show( window )

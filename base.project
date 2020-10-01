@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CodeLite_Project Name="base" InternalType="Library" Version="10.0.0">
+<CodeLite_Project Name="base" InternalType="Library" Version="11000">
   <Plugins>
     <Plugin Name="qmake">
       <![CDATA[00050001N0013Linux64-Debug0000000000000001N0011Win32-Debug0000000000000001N0013Win32-Release0000000000000001N0011Win64-Debug0000000000000001N0013Win64-Release000000000000]]>
@@ -51,6 +51,8 @@
     <File Name="src/wxAppTraits.cpp"/>
     <File Name="src/wxStandardPaths.cpp"/>
   </VirtualDirectory>
+  <Dependencies Name="Linux64-Debug"/>
+  <Dependencies Name="Linux64-Release"/>
   <Dependencies Name="Win32-Debug"/>
   <Dependencies Name="Win32-Release"/>
   <Dependencies Name="Win64-Debug"/>
@@ -242,18 +244,24 @@
       </Completion>
     </Configuration>
     <Configuration Name="Win64-Debug" CompilerType="MinGW ( TDM-GCC-64 )" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
-      <Compiler Options="-g;$(shell wx-config --cxxflags --debug=yes --unicode=yes)" C_Options="-g;$(shell wx-config --cflags --debug=yes --unicode=yes)" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+      <Compiler Options="-g;-mthreads;-Wno-ctor-dtor-privacy;-pipe;-fmessage-length=0" C_Options="-g;-mthreads;-Wno-ctor-dtor-privacy;-pipe;-fmessage-length=0" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+        <IncludePath Value="$(WXWIN)\include"/>
+        <IncludePath Value="$(WXWIN)\lib\$(WXCFG)"/>
+        <Preprocessor Value="_UNICODE"/>
+        <Preprocessor Value="__WXMSW__"/>
+        <Preprocessor Value="__WXDEBUG__"/>
+        <Preprocessor Value="HAVE_W32API_H"/>
         <Preprocessor Value="EDEBUG"/>
         <Preprocessor Value="EWINDOWS"/>
         <Preprocessor Value="WXEUMSW"/>
       </Compiler>
-      <Linker Options="-Wl,--whole-archive;-lwxbase31ud;-lwxtiffd;-lwxjpegd;-lwxpngd;-lwxzlibd;-lwxregexud;-Wl,--no-whole-archive;-lkernel32;-luser32;-lgdi32;-lcomdlg32;-lwinspool;-lwinmm;-lshell32;-lcomctl32;-lversion;-lshlwapi;-lole32;-loleaut32;-luuid;-lrpcrt4;-ladvapi32;-lwsock32" Required="yes">
-        <LibraryPath Value="$(WXWIN)/lib/gcc_lib"/>
+      <Linker Options="-mthreads;-Wl,--whole-archive;-lwxbase31ud;-lwxtiffd;-lwxjpegd;-lwxpngd;-lwxzlibd;-lwxregexud;-Wl,--no-whole-archive;-lkernel32;-luser32;-lgdi32;-lcomdlg32;-lwinspool;-lwinmm;-lshell32;-lcomctl32;-lversion;-lshlwapi;-lole32;-loleaut32;-luuid;-lrpcrt4;-ladvapi32;-lwsock32" Required="yes">
+        <LibraryPath Value="$(WXWIN)\lib\gcc_lib"/>
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="./bin/$(ConfigurationName)/libwxeud_$(ProjectName).dll" IntermediateDirectory="./build/$(ProjectName)/$(ConfigurationName)" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="" PauseExecWhenProcTerminates="no" IsGUIProgram="no" IsEnabled="yes"/>
       <BuildSystem Name="Default"/>
-      <Environment EnvVarSetName="wxWidgets-3.1.0 (64-bit)" DbgSetName="&lt;Use Defaults&gt;">
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[WXCFG=gcc_lib\mswud]]>
       </Environment>
       <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="no">
@@ -284,7 +292,7 @@
         <SearchPaths/>
       </Completion>
     </Configuration>
-    <Configuration Name="Win64-Release" CompilerType="MinGW ( TDM-GCC-32 )" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+    <Configuration Name="Win64-Release" CompilerType="MinGW ( TDM-GCC-64 )" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-O2;$(shell wx-config --cxxflags --debug=no --unicode=yes)" C_Options="-O2;$(shell wx-config --cflags --debug=no --unicode=yes)" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <Preprocessor Value="EWINDOWS"/>
         <Preprocessor Value="WXEUMSW"/>
@@ -295,7 +303,7 @@
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="./bin/$(ConfigurationName)/libwxeu_$(ProjectName).dll" IntermediateDirectory="./build/$(ProjectName)/$(ConfigurationName)" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="" PauseExecWhenProcTerminates="no" IsGUIProgram="no" IsEnabled="yes"/>
       <BuildSystem Name="Default"/>
-      <Environment EnvVarSetName="wxWidgets-3.1.0 (64-bit)" DbgSetName="&lt;Use Defaults&gt;">
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[WXCFG=gcc_lib\mswu]]>
       </Environment>
       <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="no">

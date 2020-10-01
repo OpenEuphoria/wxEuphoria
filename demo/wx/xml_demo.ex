@@ -4,6 +4,10 @@ include "wx/versioninfo.e"
 include "wx/xml/xml.e"
 
 sequence cmd = command_line()
+if length( cmd ) = 2 then
+	puts( 1, "usage: eui xml_demo.ex [filename]\n" )
+	abort( 0 )
+end if
 
 wxXmlDocument doc = wxXmlDocument:new()
 printf( 1, "doc = #%08x\n", {doc} )

@@ -6,6 +6,8 @@ include "wx/base.e"
 include "wx/defs.e"
 include "wx/string.e"
 
+include "wx/base/wxEvtHandler.e"
+
 public include "wx/event.e"
 public include "wx/object.e"
 
@@ -25,7 +27,12 @@ public type wxAppConsole( object x )
 	    or wxObject:IsKindOf( x, wxEvtHandlerInfo )
 end type
 
-public function new( atom func = wx_callback("wxEvtHandler:CallFunc"), atom proc = wx_callback("wxEvtHandler:CallProc"), atom rtfatal = routine_id("RTFatal") )
+public function new( atom func = NULL, atom proc = NULL, atom rtfatal = -1 )
+	
+	if func = NULL then func = wx_callback("wxEvtHandler:CallFunc") end if
+	if proc = NULL then proc = wx_callback("wxEvtHandler:CallProc") end if
+	if rtfatal = -1 then rtfatal = routine_id("RTFatal") end if
+	
 	return wx_func( WXAPPCONSOLE_NEW, {func,proc,rtfatal} )
 end function
 

@@ -1,5 +1,6 @@
 
-#include "wx/init.h"
+#include <wx/init.h>
+#include <wx/menu.h>
 #include "wxEuphoria.h"
 
 /*
@@ -70,14 +71,31 @@ object EuAppBase::GetTheObject() {
 void EuAppBase::Handler( wxEvent& event ) {
 
 	wxEvtHandler* event_object = (wxEvtHandler*)event.GetEventObject();
-	wxEventType   event_type   = (wxEventType)  event.GetEventType();
-	wxWindowID    window_id    = (wxWindowID)   event.GetId();
 	EuClientData* client_data  = (EuClientData*)event_object->GetClientObject();
+	wxEventType   event_type   = (wxEventType)event.GetEventType();
+	wxWindowID    window_id    = (wxWindowID)event.GetId();
 
-	if ( client_data == NULL && event_object->IsKindOf(wxCLASSINFO(wxTimer)) ) {
+	// TODO move wxFrame event handling to a separate function
 
+//	if ( client_data == NULL && event_object->IsKindOf(wxCLASSINFO(wxTimer)) ) {
+		/*
+		 *  wxWidgets sets the wxTimer as the eventObject regardless of calls to
+		 *  wxTimer::SetOwner().  So we'll go through the owner's client data 
+		 *  the first time, and set up a wxEuClientData on the wxTimer for
+		 *  subsequent events to avoid the extra checks later.
+		 */
+/*
 		wxTimer* timer = (wxTimer*)event_object;
+		if ( timer == NULL ) {
+			event.Skip();
+			return;
+		}
+
 		wxEvtHandler* owner = timer->GetOwner();
+		if ( owner == NULL ) {
+			event.Skip();
+			return;
+		}
 
 		EuClientData* timer_data = (EuClientData*)owner->GetClientObject();
 		if ( timer_data != NULL ) {
@@ -91,8 +109,20 @@ void EuAppBase::Handler( wxEvent& event ) {
 			event_object->SetClientObject( client_data );
 		}
 	}
+*/
+
+//	if ( client_data == NULL && event_object->IsKindOf(wxCLASSINFO(wxMenu)) ) {
+//		event_object = (wxEvtHandler*)((wxMenu*)event_object)->GetMenuBar();
+//		client_data  = (EuClientData*)event_object->GetClientObject();
+//	}
+
+//	if ( client_data == NULL && event_object->IsKindOf(wxCLASSINFO(wxMenuBar)) ) {
+//		event_object = (wxEvtHandler*)((wxMenuBar*)event_object)->GetFrame();
+//		client_data  = (EuClientData*)event_object->GetClientObject();
+//	}
 
 	if ( client_data == NULL ) {
+		event.Skip();
 		return;
 	}
 
@@ -100,16 +130,9 @@ void EuAppBase::Handler( wxEvent& event ) {
 	client_data->Get( window_id, event_type, &handler, &routine_id );
 
 	if ( routine_id == -1 ) {
+		event.Skip();
 		return;
 	}
-
-//	s1_ptr data = NewS1( 4 );
-//	data->base[1] = BOX_INT( handler );
-//	data->base[2] = BOX_INT( event_type );
-//	data->base[3] = BOX_INT( window_id );
-//	data->base[4] = BOX_INT( &event );
-//
-//	EuAppBase::DoCallProc( routine_id, MAKE_SEQ(data) );
 
 	s1_ptr params = NewS1( 1 );
 	params->base[1] = BOX_INT( &event );
@@ -138,7 +161,7 @@ void EuAppBase::DoRTFatal( wxString& msg )
 }
 
 
-#ifdef WXEUMSW
+#ifdef __WXMSW__
 
 BOOL APIENTRY DllMain( HANDLE hModule, DWORD dwReason, LPVOID lpReserved ) {
 

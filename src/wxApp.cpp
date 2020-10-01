@@ -4,6 +4,7 @@
 #include <wx/frame.h>
 #include <wx/msgdlg.h>
 #include <wx/vidmode.h>
+#include <wx/msw/private.h>
 #include "wxEuphoria.h"
 
 /* class for wxEuphoria GUI application */
@@ -22,6 +23,22 @@ public:
 		return 0;
 	}
 };
+
+#ifdef __WXMSW__
+BOOL WINAPI DllMain( HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved )
+{
+	// N.B. we need a DllMain() function so that we can pass the
+	// hinstDLL value to wxWidgets so that it can properly load
+	// the resources stored in the "wx/msw/wx.rc" resource file.
+	
+	if ( fdwReason == DLL_PROCESS_ATTACH ) {
+		wxSetInstance( hinstDLL );
+	}
+	
+	return TRUE;
+}
+
+#endif // __WXMSW__
 
 extern "C" {
 

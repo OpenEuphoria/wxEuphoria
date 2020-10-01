@@ -6,23 +6,20 @@ include "wx/string.e"
 
 procedure main()
 	
-	
 	wxAppConsole app = wxAppConsole:new()
-	printf( 1, "app = #%08x\n", app )
-	
+	printf( 1, "app = #%016x\n", app )
 	
 	wxAppTraits traits = wxAppConsole:GetTraits( app )
-	printf( 1, "traits = #%08x\n", traits )
+	printf( 1, "traits = #%016x\n", traits )
 	
-	sequence version = wxAppTraits:GetToolkitVersion( traits )
-	printf( 1, "version = {%d,%d,%d}\n", version )
+--	sequence version = wxAppTraits:GetToolkitVersion( traits )
+--	printf( 1, "version = {%d,%d,%d}\n", version )
 	
 	sequence desktopEnv = wxAppTraits:GetDesktopEnvironment( traits )
 	printf( 1, "desktopEnv = '%s'\n", {desktopEnv} )
 	
-	
---	wxStandardPaths paths1 = wxAppTraits:GetStandardPaths( traits )
---	printf( 1, "paths = #%08x\n", paths1 )
+	wxStandardPaths paths1 = wxAppTraits:GetStandardPaths( traits )
+	printf( 1, "paths = #%08x\n", paths1 )
 	
 --	wxString configDir1 = wxStandardPaths:GetConfigDir( paths1 )
 --	printf( 1, "configDir = '%s'\n", {configDir1} )

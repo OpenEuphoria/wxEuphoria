@@ -115,17 +115,20 @@ object WXEUAPI_CORE wxIcon_LoadFile( object self, object name, object iconType, 
 
 void WXEUAPI_CORE wxIcon_SetDepth( object self, object depth )
 {
-	((wxIcon*)self)->SetDepth( get_int(depth) );
+	// deprecated
+//	((wxIcon*)self)->SetDepth( get_int(depth) );
 }
 
 void WXEUAPI_CORE wxIcon_SetHeight( object self, object height )
 {
-	((wxIcon*)self)->SetHeight( get_int(height) );
+	// deprecated
+//	((wxIcon*)self)->SetHeight( get_int(height) );
 }
 
 void WXEUAPI_CORE wxIcon_SetWidth( object self, object width )
 {
-	((wxIcon*)self)->SetWidth( get_int(width) );
+	// deprecated
+//	((wxIcon*)self)->SetWidth( get_int(width) );
 }
 
 };

@@ -69,8 +69,7 @@ public function wx_library( sequence name )
 			continue
 		end if
 
-		wxDebugf( "0x%08x %s\n", {lib,list[i]} )
---		printf( 1, "0x%08x %s\n", {lib,list[i]} )
+		wxDebugf( "0x%08x open_dll( \"%s\" )\n", {lib,list[i]} )
 
 		if equal( name, "base" ) then
 			-- initialize the library
@@ -108,19 +107,19 @@ public function wx_define( atom lib, sequence name, object params = -1, atom ret
 	if equal( {params,return_type}, {-1,FALSE} ) then
 		id = define_c_var( lib, name )
 		if id != -1 then
-			wxDebugf( "0x%08x %s\n", {id,name} )
+			wxDebugf( "0x%08x define_c_var( \"%s\" )\n", {id,name} )
 		end if
 
 	elsif return_type = FALSE then
 		id = define_c_proc( lib, '+' & name, params )
 		if id != -1 then
-			wxDebugf( "%d %s\n", {id,name} )
+			wxDebugf( "%d define_c_proc( \"%s\" )\n", {id,name} )
 		end if
 
 	else
 		id = define_c_func( lib, '+' & name, params, E_OBJECT )
 		if id != -1 then
-			wxDebugf( "%d %s\n", {id,name} )
+			wxDebugf( "%d define_c_func( \"%s\" )\n", {id,name} )
 		end if
 
 	end if

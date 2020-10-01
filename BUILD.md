@@ -2,8 +2,8 @@
 
 ## Extract
 
-    tar xzf wxWidgets-3.1.0.tar.gz
-    cd wxWidgets-3.1.0/build/
+    tar xzf wxWidgets-3.1.2.tar.gz
+    cd wxWidgets-3.1.2/build/
 
 ## Build
 
@@ -27,18 +27,18 @@
 
 ## Extract
 
-    7z x wxWidgets-3.1.0.zip
-    cd wxWidgets-3.1.0/build/msw/
+    7z x wxWidgets-3.1.2.zip
+    cd wxWidgets-3.1.2/build/msw/
 
 ## Build
 
 ### Debug
 
     mingw32-make -f makefile.gcc BUILD=debug SHARED=0 UNICODE=1 clean
-    mingw32-make -f makefile.gcc BUILD=debug SHARED=0 UNICODE=1
+    mingw32-make -f makefile.gcc BUILD=debug SHARED=0 UNICODE=1 -j4
 
 ### Release
 
     mingw32-make -f makefile.gcc BUILD=release SHARED=0 UNICODE=1 clean
-    mingw32-make -f makefile.gcc BUILD=release SHARED=0 UNICODE=1
+    mingw32-make -f makefile.gcc BUILD=release SHARED=0 UNICODE=1 -j4
 

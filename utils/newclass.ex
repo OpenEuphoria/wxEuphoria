@@ -51,6 +51,10 @@ public include "wx/object.e"
 constant {class}Info = wxClassInfo:FindClass( "{class}" )
 
 public type {class}( object x )
+	if equal( x, NULL ) then
+		return 1
+	end if
+	
 	return wxObject:IsKindOf( x, {class}Info )
 end type
 

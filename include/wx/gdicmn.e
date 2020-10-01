@@ -1,4 +1,8 @@
 
+include "wx/dll.e"
+
+atom core = wx_library( "core" )
+
 /* --------------------------------------------------------------------------- */
 /* constants */
 /* --------------------------------------------------------------------------- */
@@ -174,4 +178,87 @@ public include "wx/base/wxPoint.e"
 /* --------------------------------------------------------------------------- */
 
 public include "wx/base/wxRect.e"
+
+/* --------------------------------------------------------------------------- */
+/* Management of pens, brushes and fonts */
+/* --------------------------------------------------------------------------- */
+
+
+/* --------------------------------------------------------------------------- */
+/* global variables */
+/* --------------------------------------------------------------------------- */
+
+public include "wx/core/wxStockGDI.e"
+
+public constant
+	wxITALIC_FONT       = wxStockGDI:GetFont( wxStockGDI:FONT_ITALIC ),
+	wxNORMAL_FONT       = wxStockGDI:GetFont( wxStockGDI:FONT_NORMAL ),
+	wxSMALL_FONT        = wxStockGDI:GetFont( wxStockGDI:FONT_SMALL ),
+	wxSWISS_FONT        = wxStockGDI:GetFont( wxStockGDI:FONT_SWISS ),
+$
+
+public constant
+	wxBLACK_DASHED_PEN  = wxStockGDI:GetPen( wxStockGDI:PEN_BLACKDASHED ),
+	wxBLACK_PEN         = wxStockGDI:GetPen( wxStockGDI:PEN_BLACK ),
+	wxBLUE_PEN          = wxStockGDI:GetPen( wxStockGDI:PEN_BLUE ),
+	wxCYAN_PEN          = wxStockGDI:GetPen( wxStockGDI:PEN_CYAN ),
+	wxGREEN_PEN         = wxStockGDI:GetPen( wxStockGDI:PEN_GREEN ),
+	wxYELLOW_PEN        = wxStockGDI:GetPen( wxStockGDI:PEN_YELLOW ),
+	wxGREY_PEN          = wxStockGDI:GetPen( wxStockGDI:PEN_GREY ),
+	wxLIGHT_GREY_PEN    = wxStockGDI:GetPen( wxStockGDI:PEN_LIGHTGREY ),
+	wxMEDIUM_GREY_PEN   = wxStockGDI:GetPen( wxStockGDI:PEN_MEDIUMGREY ),
+	wxRED_PEN           = wxStockGDI:GetPen( wxStockGDI:PEN_RED ),
+	wxTRANSPARENT_PEN   = wxStockGDI:GetPen( wxStockGDI:PEN_TRANSPARENT ),
+	wxWHITE_PEN         = wxStockGDI:GetPen( wxStockGDI:PEN_WHITE ),
+$
+
+public constant
+	wxBLACK_BRUSH           = wxStockGDI:GetBrush( wxStockGDI:BRUSH_BLACK ),
+	wxBLUE_BRUSH            = wxStockGDI:GetBrush( wxStockGDI:BRUSH_BLUE ),
+	wxCYAN_BRUSH            = wxStockGDI:GetBrush( wxStockGDI:BRUSH_CYAN ),
+	wxGREEN_BRUSH           = wxStockGDI:GetBrush( wxStockGDI:BRUSH_GREEN ),
+	wxYELLOW_BRUSH          = wxStockGDI:GetBrush( wxStockGDI:BRUSH_YELLOW ),
+	wxGREY_BRUSH            = wxStockGDI:GetBrush( wxStockGDI:BRUSH_GREY ),
+	wxLIGHT_GREY_BRUSH      = wxStockGDI:GetBrush( wxStockGDI:BRUSH_LIGHTGREY ),
+	wxMEDIUM_GREY_BRUSH     = wxStockGDI:GetBrush( wxStockGDI:BRUSH_MEDIUMGREY ),
+	wxRED_BRUSH             = wxStockGDI:GetBrush( wxStockGDI:BRUSH_RED ),
+	wxTRANSPARENT_BRUSH     = wxStockGDI:GetBrush( wxStockGDI:BRUSH_TRANSPARENT ),
+	wxWHITE_BRUSH           = wxStockGDI:GetBrush( wxStockGDI:BRUSH_WHITE ),
+$
+
+public constant
+	wxBLACK                 = wxStockGDI:GetColour( wxStockGDI:COLOUR_BLACK ),
+	wxBLUE                  = wxStockGDI:GetColour( wxStockGDI:COLOUR_BLUE ),
+	wxCYAN                  = wxStockGDI:GetColour( wxStockGDI:COLOUR_CYAN ),
+	wxGREEN                 = wxStockGDI:GetColour( wxStockGDI:COLOUR_GREEN ),
+	wxYELLOW                = wxStockGDI:GetColour( wxStockGDI:COLOUR_YELLOW ),
+	wxLIGHT_GREY            = wxStockGDI:GetColour( wxStockGDI:COLOUR_LIGHTGREY ),
+	wxRED                   = wxStockGDI:GetColour( wxStockGDI:COLOUR_RED ),
+	wxWHITE                 = wxStockGDI:GetColour( wxStockGDI:COLOUR_WHITE ),
+$
+
+public constant
+	wxCROSS_CURSOR          = wxStockGDI:GetCursor( wxStockGDI:CURSOR_CROSS ),
+	wxHOURGLASS_CURSOR      = wxStockGDI:GetCursor( wxStockGDI:CURSOR_HOURGLASS ),
+	wxSTANDARD_CURSOR       = wxStockGDI:GetCursor( wxStockGDI:CURSOR_STANDARD ),
+$
+
+-- 'Null' objects
+
+public constant
+	wxNullBitmap            = wx_define( core, "wxNullBitmap" ),
+	wxNullIcon              = wx_define( core, "wxNullIcon" ),
+	wxNullCursor            = wx_define( core, "wxNullCursor" ),
+	wxNullPen               = wx_define( core, "wxNullPen" ),
+	wxNullBrush             = wx_define( core, "wxNullBrush" ),
+	wxNullPalette           = wx_define( core, "wxNullPalette" ),
+	wxNullFont              = wx_define( core, "wxNullFont" ),
+	wxNullColour            = wx_define( core, "wxNullColour" ),
+	wxNullIconBundle        = wx_define( core, "wxNullIconBundle" ),
+$
+
+public constant
+	wxTheColourDatabase     = wx_define( core, "wxTheColourDatabase" ),
+$
+
 

@@ -5,6 +5,7 @@ include "wx/dll.e"
 include "wx/defs.e"
 include "wx/xml.e"
 include "wx/string.e"
+include "wx/xml/xml.e"
 
 public include "wx/object.e"
 
