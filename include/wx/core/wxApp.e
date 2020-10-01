@@ -2,14 +2,14 @@
 namespace wxApp
 
 include "wx/dll.e"
-include "wx/base.e"
-include "wx/core.e"
 include "wx/defs.e"
+include "wx/core.e"
 include "wx/string.e"
 include "wx/window.e"
 
-public include "wx/base/wxAppConsole.e"
-public include "wx/base/wxEvtHandler.e"
+public include "wx/app.e"
+public include "wx/event.e"
+public include "wx/object.e"
 
 atom core = wx_library( "core" )
 
@@ -22,14 +22,17 @@ public constant
 	wxEVT_DIALUP_DISCONNECTED	= wx_event( core, "wxEVT_DIALUP_DISCONNECTED" ),
 $
 
+constant wxAppInfo = wxClassInfo:FindClass( "wxApp" )
+
 public type wxApp( object x )
-	return wxAppConsole(x)
+	if equal( x, NULL ) then
+		return 1
+	end if
+	
+	return wxObject:IsKindOf( x, wxAppInfo )
 end type
 
-public function new()
-	atom func = wx_callback( "wxEvtHandler:CallFunc" )
-	atom proc = wx_callback( "wxEvtHandler:CallProc" )
-	atom rtfatal = routine_id( "RTFatal" )
+public function new( atom func = wx_callback("wxEvtHandler:CallFunc"), atom proc = wx_callback("wxEvtHandler:CallProc"), atom rtfatal = routine_id("RTFatal") )
 	return wx_func( WXAPP_NEW, {func,proc,rtfatal} )
 end function
 
@@ -74,7 +77,7 @@ public procedure wxMain( wxWindow window, wxApp app = NULL )
 	if app = NULL then
 		app = wxApp:new()
 	end if
-
+	
 	wxApp:SetTopWindow( app, window )
 	
 	wxWindow:Show( window )

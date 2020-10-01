@@ -1,5 +1,6 @@
 
 #include <wx/object.h>
+#include <wx/msgout.h>
 #include "wxEuphoria.h"
 
 #ifdef WXEUMSW
@@ -12,7 +13,9 @@ extern "C" {
 
 object WXEUAPI_BASE wxObject_GetClassInfo( object self )
 {
-	return BOX_INT( ((wxObject*)self)->GetClassInfo() );
+	wxClassInfo* classInfo = ((wxObject*)self)->GetClassInfo();
+	
+	return BOX_INT( classInfo );
 }
 
 // TODO - do we need ref data?
@@ -23,12 +26,39 @@ object WXEUAPI_BASE wxObject_GetClassInfo( object self )
 
 object WXEUAPI_BASE wxObject_IsKindOf( object self, object info )
 {
-	return BOX_INT( ((wxObject*)self)->IsKindOf((wxClassInfo*)info) );
+	wxObject* obj = (wxObject*)self;
+	wxClassInfo* classInfo = NULL;
+	
+	if ( IS_SEQUENCE(info) ) {
+		wxString className = get_string( info );
+		classInfo = wxClassInfo::FindClass( className );
+		
+		wxDeRef( info );
+	}
+	else {
+		classInfo = (wxClassInfo*)info;
+	}
+	
+	if ( obj->IsKindOf(classInfo) ) {
+		return BOX_INT( true );
+	}
+	
+	wxClassInfo* selfClass = obj->GetClassInfo();
+	
+	if ( classInfo == selfClass->GetBaseClass1() )
+		return BOX_INT( true );
+	
+	if ( classInfo == selfClass->GetBaseClass2() )
+		return BOX_INT( true );
+	
+	return BOX_INT( false );
 }
 
 object WXEUAPI_BASE wxObject_IsSameAs( object self, object obj )
 {
-	return BOX_INT( ((wxObject*)self)->IsSameAs(*(wxObject*)obj) );
+	bool result = ((wxObject*)self)->IsSameAs(*(wxObject*)obj);
+	
+	return BOX_INT( result );
 }
 
 // TODO - do we need ref data?

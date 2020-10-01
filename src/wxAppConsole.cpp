@@ -1,5 +1,6 @@
 
 #include <wx/app.h>
+#include <wx/image.h>
 #include "wxEuphoria.h"
 
 /* class for wxEuphoria console application */
@@ -39,7 +40,9 @@ object WXEUAPI_BASE wxAppConsole_new( object func, object proc, object rtfatal )
 
 object WXEUAPI_BASE wxAppConsole_Yield( object self, object onlyIfNeeded )
 {
-	return BOX_INT( ((wxAppConsole*)self)->Yield(onlyIfNeeded) );
+	bool result = ((wxAppConsole*)self)->Yield( onlyIfNeeded );
+	
+	return BOX_INT( result );
 }
 
 void WXEUAPI_BASE wxAppConsole_SetCLocale( object self )
@@ -51,7 +54,9 @@ void WXEUAPI_BASE wxAppConsole_SetCLocale( object self )
 
 object WXEUAPI_BASE wxAppConsole_MainLoop( object self )
 {
-	return BOX_INT( ((wxAppConsole*)self)->MainLoop() );
+	int result = ((wxAppConsole*)self)->MainLoop();
+	
+	return BOX_INT( result );
 }
 
 void WXEUAPI_BASE wxAppConsole_ExitMainLoop( object self )
@@ -61,12 +66,16 @@ void WXEUAPI_BASE wxAppConsole_ExitMainLoop( object self )
 
 object WXEUAPI_BASE wxAppConsole_GetMainLoop( object self )
 {
-	return BOX_INT( ((wxAppConsole*)self)->GetMainLoop() );
+	wxEventLoopBase* mainLoop = ((wxAppConsole*)self)->GetMainLoop();
+	
+	return BOX_INT( mainLoop );
 }
 
 object WXEUAPI_BASE wxAppConsole_UsesEventLoop( object self )
 {
-	return BOX_INT( ((wxAppConsole*)self)->UsesEventLoop() );
+	bool result = ((wxAppConsole*)self)->UsesEventLoop();
+	
+	return BOX_INT( result );
 }
 
 /* Pending events */
@@ -83,7 +92,9 @@ void WXEUAPI_BASE wxAppConsole_DeletePendingEvents( object self )
 
 object WXEUAPI_BASE wxAppConsole_HasPendingEvents( object self )
 {
-	return BOX_INT( ((wxAppConsole*)self)->HasPendingEvents() );
+	bool result = ((wxAppConsole*)self)->HasPendingEvents();
+	
+	return BOX_INT( result );
 }
 
 void WXEUAPI_BASE wxAppConsole_SuspendProcessingOfPendingEvents( object self )
@@ -103,70 +114,83 @@ void WXEUAPI_BASE wxAppConsole_ScheduleForDestruction( object self, object obj )
 
 object WXEUAPI_BASE wxAppConsole_IsScheduledForDestruction( object self, object obj )
 {
-	return BOX_INT( ((wxAppConsole*)self)->IsScheduledForDestruction( (wxObject*)obj ) );
+	bool result = ((wxAppConsole*)self)->IsScheduledForDestruction( (wxObject*)obj );
+	
+	return BOX_INT( result );
 }
 
 /* Application information */
 
 object WXEUAPI_BASE wxAppConsole_GetAppDisplayName( object self )
 {
-	return get_sequence( ((wxAppConsole*)self)->GetAppDisplayName() );
+	wxString displayName = ((wxAppConsole*)self)->GetAppDisplayName();
+	
+	return get_sequence( displayName );
 }
 
 object WXEUAPI_BASE wxAppConsole_GetAppName( object self )
 {
-	return get_sequence( ((wxAppConsole*)self)->GetAppName() );
+	wxString appName = ((wxAppConsole*)self)->GetAppName();
+	
+	return get_sequence( appName );
 }
 
 object WXEUAPI_BASE wxAppConsole_GetClassName( object self )
 {
-	return get_sequence( ((wxAppConsole*)self)->GetClassName() );
+	wxString className = ((wxAppConsole*)self)->GetClassName();
+	
+	return get_sequence( className );
 }
 
-// TODO - implement wxAppTraits
-//object WXEUAPI_BASE wxAppConsole_GetTraits( object self )
-//{
-//	return BOX_INT( ((wxAppConsole*)self)->GetTraits() );
-//}
+object WXEUAPI_BASE wxAppConsole_GetTraits( object self )
+{
+	wxAppTraits* traits = ((wxAppConsole*)self)->GetTraits();
+	
+	return BOX_INT( traits );
+}
 
 object WXEUAPI_BASE wxAppConsole_GetVendorDisplayName( object self )
 {
-	return get_sequence( ((wxAppConsole*)self)->GetVendorDisplayName() );
+	wxString displayName = ((wxAppConsole*)self)->GetVendorDisplayName();
+	
+	return get_sequence( displayName );
 }
 
 object WXEUAPI_BASE wxAppConsole_GetVendorName( object self )
 {
-	return get_sequence( ((wxAppConsole*)self)->GetVendorName() );
+	wxString vendorName = ((wxAppConsole*)self)->GetVendorName();
+	
+	return get_sequence( vendorName );
 }
 
 void WXEUAPI_BASE wxAppConsole_SetAppDisplayName( object self, object name )
 {
-	wxDeRefDS( name );
 	((wxAppConsole*)self)->SetAppDisplayName( get_string(name) );
+	wxDeRef( name );
 }
 
 void WXEUAPI_BASE wxAppConsole_SetAppName( object self, object name )
 {
-	wxDeRefDS( name );
 	((wxAppConsole*)self)->SetAppName( get_string(name) );
+	wxDeRef( name );
 }
 
 void WXEUAPI_BASE wxAppConsole_SetClassName( object self, object name )
 {
-	wxDeRefDS( name );
 	((wxAppConsole*)self)->SetClassName( get_string(name) );
+	wxDeRef( name );
 }
 
 void WXEUAPI_BASE wxAppConsole_SetVendorDisplayName( object self, object name )
 {
-	wxDeRefDS( name );
 	((wxAppConsole*)self)->SetVendorDisplayName( get_string(name) );
+	wxDeRef( name );
 }
 
 void WXEUAPI_BASE wxAppConsole_SetVendorName( object self, object name )
 {
-	wxDeRefDS( name );
 	((wxAppConsole*)self)->SetVendorName( get_string(name) );
+	wxDeRef( name );
 }
 
 /* Static Public Member Functions */
@@ -178,12 +202,16 @@ object WXEUAPI_BASE wxAppConsole_SetInstance( object app )
 
 object WXEUAPI_BASE wxAppConsole_GetInstance()
 {
-	return BOX_INT( wxAppConsole::GetInstance() );
+	wxAppConsole* instance = wxAppConsole::GetInstance();
+	
+	return BOX_INT( instance );
 }
 
 object WXEUAPI_BASE wxAppConsole_IsMainLoopRunning()
 {
-	return BOX_INT( wxAppConsole::IsMainLoopRunning() );
+	bool result = wxAppConsole::IsMainLoopRunning();
+	
+	return BOX_INT( result );
 }
 
 };

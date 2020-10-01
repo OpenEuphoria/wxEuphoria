@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CodeLite_Project Name="all" InternalType="Library" Version="10.0.0">
+<CodeLite_Project Name="all" InternalType="Library" Version="11000">
   <Plugins>
     <Plugin Name="qmake">
       <![CDATA[00040001N0011Win32-Debug0000000000000001N0013Win32-Release0000000000000001N0011Win64-Debug0000000000000001N0013Win64-Release000000000000]]>
@@ -37,25 +37,31 @@
   </Plugins>
   <Description/>
   <Dependencies/>
+  <Dependencies Name="Linux64-Debug">
+    <Project Name="base"/>
+    <Project Name="core"/>
+    <Project Name="xml"/>
+  </Dependencies>
+  <Dependencies Name="Linux64-Release">
+    <Project Name="base"/>
+    <Project Name="core"/>
+    <Project Name="xml"/>
+  </Dependencies>
   <Dependencies Name="Win32-Debug">
     <Project Name="base"/>
     <Project Name="core"/>
+    <Project Name="xml"/>
   </Dependencies>
   <Dependencies Name="Win32-Release">
     <Project Name="base"/>
     <Project Name="core"/>
+    <Project Name="xml"/>
   </Dependencies>
   <Dependencies Name="Win64-Debug">
     <Project Name="base"/>
     <Project Name="core"/>
-  </Dependencies>
-  <Dependencies Name="Win64-Release">
-    <Project Name="base"/>
-    <Project Name="core"/>
-  </Dependencies>
-  <Dependencies Name="Linux64-Debug">
-    <Project Name="base"/>
-    <Project Name="core"/>
+    <Project Name="html"/>
+    <Project Name="xml"/>
   </Dependencies>
   <Settings Type="Executable">
     <GlobalSettings>
@@ -67,11 +73,50 @@
       </Linker>
       <ResourceCompiler Options=""/>
     </GlobalSettings>
-    <Configuration Name="Linux64-Debug" CompilerType="" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+    <Configuration Name="Linux64-Debug" CompilerType="GCC" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-g;$(shell wx-config --cxxflags --debug=yes --unicode=yes)" C_Options="-g;$(shell wx-config --cxxflags --debug=yes --unicode=yes)" Assembler="" Required="no" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="."/>
       </Compiler>
       <Linker Options="$(shell wx-config --debug=yes --libs --unicode=yes)" Required="no"/>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="" IntermediateDirectory="./build/$(ProjectName)/$(ConfigurationName)" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="" PauseExecWhenProcTerminates="no" IsGUIProgram="no" IsEnabled="yes"/>
+      <BuildSystem Name="Default"/>
+      <Environment EnvVarSetName="wxWidgets-3.1.0 (64-bit)" DbgSetName="&lt;Use Defaults&gt;">
+        <![CDATA[]]>
+      </Environment>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="no">
+        <DebuggerSearchPaths/>
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="no">
+        <RebuildCommand/>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+      <Completion EnableCpp11="no" EnableCpp14="no">
+        <ClangCmpFlagsC/>
+        <ClangCmpFlags/>
+        <ClangPP/>
+        <SearchPaths/>
+      </Completion>
+    </Configuration>
+    <Configuration Name="Linux64-Release" CompilerType="GCC" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-g;$(shell wx-config --cxxflags --unicode=yes)" C_Options="-g;$(shell wx-config --cxxflags --unicode=yes)" Assembler="" Required="no" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+        <IncludePath Value="."/>
+      </Compiler>
+      <Linker Options="$(shell wx-config --libs --unicode=yes)" Required="no"/>
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="" IntermediateDirectory="./build/$(ProjectName)/$(ConfigurationName)" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="" PauseExecWhenProcTerminates="no" IsGUIProgram="no" IsEnabled="yes"/>
       <BuildSystem Name="Default"/>
@@ -184,7 +229,7 @@
         <SearchPaths/>
       </Completion>
     </Configuration>
-    <Configuration Name="Win64-Debug" CompilerType="MinGW ( TDM-GCC-32 )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+    <Configuration Name="Win64-Debug" CompilerType="MinGW ( TDM-GCC-64 )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-g;$(shell wx-config --cxxflags --debug=yes --unicode=yes)" C_Options="-g;$(shell wx-config --cxxflags --debug=yes --unicode=yes)" Assembler="" Required="no" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="."/>
       </Compiler>
@@ -223,7 +268,7 @@
         <SearchPaths/>
       </Completion>
     </Configuration>
-    <Configuration Name="Win64-Release" CompilerType="MinGW ( TDM-GCC-32 )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+    <Configuration Name="Win64-Release" CompilerType="MinGW ( TDM-GCC-64 )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-O2;$(shell wx-config --cxxflags --debug=no --unicode=yes)" C_Options="-O2;$(shell wx-config --cxxflags --debug=no --unicode=yes)" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="."/>
       </Compiler>
@@ -231,7 +276,7 @@
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="" IntermediateDirectory="./build/$(ProjectName)/$(ConfigurationName)" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="" PauseExecWhenProcTerminates="no" IsGUIProgram="no" IsEnabled="yes"/>
       <BuildSystem Name="Default"/>
-      <Environment EnvVarSetName="wxWidgets-3.1.0 (64-bit)" DbgSetName="&lt;Use Defaults&gt;">
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[WXCFG=gcc_lib\mswu]]>
       </Environment>
       <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="no">
@@ -263,4 +308,10 @@
       </Completion>
     </Configuration>
   </Settings>
+  <Dependencies Name="Win64-Release">
+    <Project Name="base"/>
+    <Project Name="core"/>
+    <Project Name="html"/>
+    <Project Name="xml"/>
+  </Dependencies>
 </CodeLite_Project>

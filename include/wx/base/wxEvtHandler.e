@@ -6,10 +6,16 @@ include "wx/base.e"
 include "wx/defs.e"
 include "wx/event.e"
 
-public include "wx/base/wxObject.e"
+public include "wx/object.e"
+
+constant wxEvtHandlerInfo = wxClassInfo:FindClass( "wxEvtHandler" )
 
 public type wxEvtHandler( object x )
-	return wxObject(x)
+	if equal( x, NULL ) then
+		return 1
+	end if
+
+	return wxObject:IsKindOf( x, wxEvtHandlerInfo )
 end type
 
 export function GetObject()
@@ -25,8 +31,36 @@ export function CallProc( atom id )
 	return NULL
 end function
 
-public procedure Connect( wxEvtHandler self, wxWindowID window_id, wxEventType event_type,
-		sequence routine_name, atom _routine_id = routine_id(routine_name) )
-	wx_proc( WXEVTHANDLER_CONNECT, {self,window_id,event_type,_routine_id} )
+public procedure QueueEvent( wxEvtHandler self, wxEvent event )
+	wx_proc( WXEVTHANDLER_QUEUEEVENT, {self,event} )
 end procedure
 
+public procedure AddPendingEvent( wxEvtHandler self, wxEvent event )
+	wx_proc( WXEVTHANDLER_ADDPENDINGEVENT, {self,event} )
+end procedure
+
+public procedure ProcessPendingEvents( wxEvtHandler self )
+	wx_proc( WXEVTHANDLER_PROCESSPENDINGEVENTS, {self} )
+end procedure
+
+public procedure DeletePendingEvents( wxEvtHandler self )
+	wx_proc( WXEVTHANDLER_DELETEPENDINGEVENTS, {self} )
+end procedure
+
+public procedure Connect( wxEvtHandler self, wxWindowID window_id, wxEventType event_type,
+		sequence routine_name, atom _routine_id = routine_id(routine_name) )
+	wx_proc( WXEVTHANDLER_CONNECT, {self,window_id,event_type,routine_name,_routine_id} )
+end procedure
+
+public function Disconnect( wxEvtHandler self, wxWindowID window_id, wxEventType event_type )
+	return wx_func( WXEVTHANDLER_DISCONNECT, {self,window_id,event_type} )
+end function
+
+public procedure Bind( wxEvtHandler self, wxWindowID window_id, wxEventType event_type,
+		sequence routine_name, atom _routine_id = routine_id(routine_name) )
+	wx_proc( WXEVTHANDLER_BIND, {self,window_id,event_type,routine_name,_routine_id} )
+end procedure
+
+public function Unbind( wxEvtHandler self, wxWindowID window_id, wxEventType event_type )
+	return wx_func( WXEVTHANDLER_UNBIND, {self,window_id,event_type} )
+end function

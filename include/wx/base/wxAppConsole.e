@@ -6,20 +6,33 @@ include "wx/base.e"
 include "wx/defs.e"
 include "wx/string.e"
 
-public include "wx/base/wxEvtHandler.e"
-public include "wx/base/wxObject.e"
+include "wx/base/wxEvtHandler.e"
+
+public include "wx/event.e"
+public include "wx/object.e"
 
 atom base = wx_library( "base" )
+
 public constant wxEVT_IDLE = wx_event( base, "wxEVT_IDLE" )
 
+constant wxAppConsoleInfo = wxClassInfo:FindClass( "wxAppConsole" )
+constant wxEvtHandlerInfo = wxClassInfo:FindClass( "wxEvtHandler" )
+
 public type wxAppConsole( object x )
-	return wxEvtHandler(x)
+	if equal( x, NULL ) then
+		return 1
+	end if
+
+	return wxObject:IsKindOf( x, wxAppConsoleInfo )
+	    or wxObject:IsKindOf( x, wxEvtHandlerInfo )
 end type
 
-public function new()
-	atom func = wx_callback( "wxEvtHandler:CallFunc" )
-	atom proc = wx_callback( "wxEvtHandler:CallProc" )
-	atom rtfatal = routine_id( "RTFatal" )
+public function new( atom func = NULL, atom proc = NULL, atom rtfatal = -1 )
+	
+	if func = NULL then func = wx_callback("wxEvtHandler:CallFunc") end if
+	if proc = NULL then proc = wx_callback("wxEvtHandler:CallProc") end if
+	if rtfatal = -1 then rtfatal = routine_id("RTFatal") end if
+	
 	return wx_func( WXAPPCONSOLE_NEW, {func,proc,rtfatal} )
 end function
 
@@ -85,6 +98,10 @@ end function
 
 public function GetClassName( wxAppConsole self )
 	return wx_func( WXAPPCONSOLE_GETCLASSNAME, {self} )
+end function
+
+public function GetTraits( wxAppConsole self )
+	return wx_func( WXAPPCONSOLE_GETTRAITS, {self} )
 end function
 
 public function GetVendorDisplayName( wxAppConsole self )

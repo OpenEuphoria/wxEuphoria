@@ -1,5 +1,6 @@
 
-#include "wx/init.h"
+#include <wx/init.h>
+#include <wx/menu.h>
 #include "wxEuphoria.h"
 
 /*
@@ -13,6 +14,7 @@ EuAppBase* EuAppBase::s_EuAppBase;
 EuCallFunc EuAppBase::s_CallFunc;
 EuCallProc EuAppBase::s_CallProc;
 MallocFunc EuAppBase::s_MallocFunc;
+FreeFunc EuAppBase::s_FreeFunc;
 intptr_t EuAppBase::s_RTFatal;
 intptr_t EuAppBase::s_TheObject;
 
@@ -22,21 +24,25 @@ void EuClientData::Add( intptr_t handler, wxWindowID window_id, wxEventType even
 	m_EvtType2Id[event_type][window_id] = wxObjRid( routine_id, handler );
 }
 
+void EuClientData::Del( wxWindowID window_id, wxEventType event_type ) {
+	m_EvtType2Id[event_type].erase( window_id );
+}
+
 void EuClientData::Get( wxWindowID window_id, wxEventType event_type, intptr_t* handler, intptr_t* routine_id ) {
-	
+
 	wxEvtType2Id::iterator evIt = m_EvtType2Id.find( event_type );
-	
+
 	if ( evIt == m_EvtType2Id.end() ) {
 		*routine_id = -1;
 	}
 	else {
-		
+
 		wxId2ObjRid::iterator rIt = evIt->second.find( window_id );
-		
+
 		if ( rIt == evIt->second.end() ) {
 			rIt = evIt->second.find( wxID_ANY );
 		}
-		
+
 		if ( rIt == evIt->second.end() ) {
 			*handler    =  0;
 			*routine_id = -1;
@@ -45,7 +51,7 @@ void EuClientData::Get( wxWindowID window_id, wxEventType event_type, intptr_t* 
 			*handler    = rIt->second.m_EventObject;
 			*routine_id = rIt->second.m_RoutineId;
 		}
-	
+
 	}
 }
 
@@ -63,48 +69,75 @@ object EuAppBase::GetTheObject() {
 }
 
 void EuAppBase::Handler( wxEvent& event ) {
-	
+
 	wxEvtHandler* event_object = (wxEvtHandler*)event.GetEventObject();
+	EuClientData* client_data  = (EuClientData*)event_object->GetClientObject();
 	wxEventType   event_type   = (wxEventType)event.GetEventType();
 	wxWindowID    window_id    = (wxWindowID)event.GetId();
-	EuClientData* client_data  = (EuClientData*)event_object->GetClientObject();
-	
-	if ( client_data == NULL && event_object->IsKindOf(wxCLASSINFO(wxTimer)) ) {
-		
+
+	// TODO move wxFrame event handling to a separate function
+
+//	if ( client_data == NULL && event_object->IsKindOf(wxCLASSINFO(wxTimer)) ) {
+		/*
+		 *  wxWidgets sets the wxTimer as the eventObject regardless of calls to
+		 *  wxTimer::SetOwner().  So we'll go through the owner's client data 
+		 *  the first time, and set up a wxEuClientData on the wxTimer for
+		 *  subsequent events to avoid the extra checks later.
+		 */
+/*
 		wxTimer* timer = (wxTimer*)event_object;
+		if ( timer == NULL ) {
+			event.Skip();
+			return;
+		}
+
 		wxEvtHandler* owner = timer->GetOwner();
-		
+		if ( owner == NULL ) {
+			event.Skip();
+			return;
+		}
+
 		EuClientData* timer_data = (EuClientData*)owner->GetClientObject();
 		if ( timer_data != NULL ) {
-			
+
 			intptr_t handler, routine_id;
 			timer_data->Get( window_id, event_type, &handler, &routine_id );
-			
+
 			client_data = new EuClientData();
 			client_data->Add( handler, window_id, event_type, routine_id );
-			
+
 			event_object->SetClientObject( client_data );
 		}
 	}
-	
+*/
+
+//	if ( client_data == NULL && event_object->IsKindOf(wxCLASSINFO(wxMenu)) ) {
+//		event_object = (wxEvtHandler*)((wxMenu*)event_object)->GetMenuBar();
+//		client_data  = (EuClientData*)event_object->GetClientObject();
+//	}
+
+//	if ( client_data == NULL && event_object->IsKindOf(wxCLASSINFO(wxMenuBar)) ) {
+//		event_object = (wxEvtHandler*)((wxMenuBar*)event_object)->GetFrame();
+//		client_data  = (EuClientData*)event_object->GetClientObject();
+//	}
+
 	if ( client_data == NULL ) {
+		event.Skip();
 		return;
 	}
-	
+
 	intptr_t handler, routine_id;
 	client_data->Get( window_id, event_type, &handler, &routine_id );
-	
+
 	if ( routine_id == -1 ) {
+		event.Skip();
 		return;
 	}
-	
-	s1_ptr data = NewS1( 4 );
-	data->base[1] = BOX_INT( handler );
-	data->base[2] = BOX_INT( event_type );
-	data->base[3] = BOX_INT( window_id );
-	data->base[4] = BOX_INT( &event );
-	
-	EuAppBase::DoCallProc( routine_id, MAKE_SEQ(data) );
+
+	s1_ptr params = NewS1( 1 );
+	params->base[1] = BOX_INT( &event );
+
+	EuAppBase::DoCallProc( routine_id, MAKE_SEQ(params) );
 }
 
 object EuAppBase::DoCallFunc( intptr_t id, object params )
@@ -123,21 +156,21 @@ void EuAppBase::DoRTFatal( wxString& msg )
 {
 	s1_ptr data = NewS1( 1 );
 	data->base[1] = get_sequence( msg );
-	
+
 	EuAppBase::DoCallProc( s_RTFatal, MAKE_SEQ(data) );
 }
 
 
-#ifdef WXEUMSW
+#ifdef __WXMSW__
 
 BOOL APIENTRY DllMain( HANDLE hModule, DWORD dwReason, LPVOID lpReserved ) {
-	
+
 	if ( dwReason == DLL_PROCESS_ATTACH )
 	{
 	//	winInstance = (intptr_t)hModule;
 	//	default_heap = GetProcessHeap();
 	}
-	
+
 	return TRUE;
 }
 
@@ -150,9 +183,15 @@ void __attribute__ ((destructor))  my_fini(void) {}
 
 extern "C" {
 
-void WXEUAPI_BASE wxEuphoria_Initialize( MallocFunc malloc_func )
+void WXEUAPI_BASE wxEuphoria_Initialize( object malloc_func, object free_func )
 {
-	EuAppBase::s_MallocFunc = malloc_func;
+	EuAppBase::s_MallocFunc = (MallocFunc)malloc_func;
+	EuAppBase::s_FreeFunc = (FreeFunc)free_func;
+}
+
+void WXEUAPI_BASE wxEuphoria_DeleteObject( object ptr )
+{
+	delete (wxObject*)ptr;
 }
 
 };

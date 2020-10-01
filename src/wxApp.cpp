@@ -1,8 +1,10 @@
 
 #include <wx/app.h>
+#include <wx/image.h>
 #include <wx/frame.h>
 #include <wx/msgdlg.h>
 #include <wx/vidmode.h>
+#include <wx/msw/private.h>
 #include "wxEuphoria.h"
 
 /* class for wxEuphoria GUI application */
@@ -22,6 +24,22 @@ public:
 	}
 };
 
+#ifdef __WXMSW__
+BOOL WINAPI DllMain( HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved )
+{
+	// N.B. we need a DllMain() function so that we can pass the
+	// hinstDLL value to wxWidgets so that it can properly load
+	// the resources stored in the "wx/msw/wx.rc" resource file.
+	
+	if ( fdwReason == DLL_PROCESS_ATTACH ) {
+		wxSetInstance( hinstDLL );
+	}
+	
+	return TRUE;
+}
+
+#endif // __WXMSW__
+
 extern "C" {
 
 object WXEUAPI_CORE wxApp_new( object func, object proc, object rtfatal )
@@ -32,6 +50,8 @@ object WXEUAPI_CORE wxApp_new( object func, object proc, object rtfatal )
 		app = new EuApp( (EuCallFunc)func, (EuCallProc)proc, rtfatal );
 		
 		wxInitialize();
+		wxInitAllImageHandlers();
+		
 		wxApp::SetInstance( app );
 	}
 	
@@ -55,37 +75,51 @@ object WXEUAPI_CORE wxApp_new( object func, object proc, object rtfatal )
 
 object WXEUAPI_CORE wxApp_GetExitOnFrameDelete( object self )
 {
-	return BOX_INT( ((wxApp*)self)->GetExitOnFrameDelete() );
+	bool result = ((wxApp*)self)->GetExitOnFrameDelete();
+	
+	return BOX_INT( result );
 }
 
 object WXEUAPI_CORE wxApp_GetLayoutDirection( object self )
 {
-	return BOX_INT( ((wxApp*)self)->GetLayoutDirection() );
+	wxLayoutDirection direction = ((wxApp*)self)->GetLayoutDirection();
+	
+	return BOX_INT( direction );
 }
 
 object WXEUAPI_CORE wxApp_GetUseBestVisual( object self )
 {
-	return BOX_INT( ((wxApp*)self)->GetUseBestVisual() );
+	bool result = ((wxApp*)self)->GetUseBestVisual();
+	
+	return BOX_INT( result );
 }
 
 object WXEUAPI_CORE wxApp_GetTopWindow( object self )
 {
-	return BOX_INT( ((wxApp*)self)->GetTopWindow() );
+	wxWindow* window = ((wxApp*)self)->GetTopWindow();
+	
+	return BOX_INT( window );
 }
 
 object WXEUAPI_CORE wxApp_IsActive( object self )
 {
-	return BOX_INT( ((wxApp*)self)->IsActive() );
+	bool result = ((wxApp*)self)->IsActive();
+	
+	return BOX_INT( result );
 }
 
 object WXEUAPI_CORE wxApp_SafeYield( object self, object window, object onlyIfNeeded )
 {
-	return BOX_INT( ((wxApp*)self)->SafeYield( (wxWindow*)window, (bool)onlyIfNeeded ) );
+	bool result = ((wxApp*)self)->SafeYield( (wxWindow*)window, (bool)onlyIfNeeded );
+	
+	return BOX_INT( result );
 }
 
 object WXEUAPI_CORE wxApp_SafeYieldFor( object self, object window, object eventsToProcess )
 {
-	return BOX_INT( ((wxApp*)self)->SafeYieldFor( (wxWindow*)window, (long)eventsToProcess ) );
+	bool result = ((wxApp*)self)->SafeYieldFor( (wxWindow*)window, (long)eventsToProcess );
+	
+	return BOX_INT( result );
 }
 
 // TODO - implement wxVideoMode
@@ -98,13 +132,13 @@ object WXEUAPI_CORE wxApp_SafeYieldFor( object self, object window, object event
 //	
 //	wxVideoMode m(width, height, bpp, refresh);
 //	
-//	wxDeRefDS( mode );
+//	wxDeRe( mode );
 //	return BOX_INT( ((wxApp*)self)->SetDisplayMode(m) );
 //}
 
 void WXEUAPI_CORE wxApp_SetExitOnFrameDelete( object self, object flag )
 {
-	((wxApp*)self)->SetExitOnFrameDelete( (bool)flag );
+	((wxApp*)self)->SetExitOnFrameDelete( get_int(flag) );
 }
 
 void WXEUAPI_CORE wxApp_SetTopWindow( object self, object window )

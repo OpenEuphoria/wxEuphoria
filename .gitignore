@@ -1,4 +1,5 @@
 .build-linux64-debug/
+.build-linux64-release/
 .build-win32-debug/
 .build-win32-release/
 .build-win64-debug/
@@ -10,11 +11,19 @@ dist/Win32/
 dist/Win64/
 dist/*.exe
 dist/*.zip
+.directory
+Makefile
+compile_commands.json
+compile_flags.txt
+ex.err
 all.mk
 all.txt
 base.mk
 base.txt
 core.mk
 core.txt
-ex.err
-Makefile
+html.mk
+html.txt
+xml.mk
+xml.txt
+*.swp

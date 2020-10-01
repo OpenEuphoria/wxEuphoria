@@ -3,36 +3,56 @@
   <Project Name="all" Path="all.project" Active="Yes"/>
   <Project Name="core" Path="core.project" Active="No"/>
   <Project Name="base" Path="base.project" Active="No"/>
+  <Project Name="xml" Path="xml.project" Active="No"/>
+  <Project Name="html" Path="html.project" Active="No"/>
   <BuildMatrix>
-    <WorkspaceConfiguration Name="Win64-Debug" Selected="yes">
+    <WorkspaceConfiguration Name="Win64-Debug" Selected="no">
       <Environment/>
       <Project Name="all" ConfigName="Win64-Debug"/>
       <Project Name="base" ConfigName="Win64-Debug"/>
       <Project Name="core" ConfigName="Win64-Debug"/>
+      <Project Name="xml" ConfigName="Win64-Debug"/>
+      <Project Name="html" ConfigName="Win64-Debug"/>
     </WorkspaceConfiguration>
-    <WorkspaceConfiguration Name="Win64-Release" Selected="no">
+    <WorkspaceConfiguration Name="Win64-Release" Selected="yes">
       <Environment/>
       <Project Name="all" ConfigName="Win64-Release"/>
       <Project Name="base" ConfigName="Win64-Release"/>
       <Project Name="core" ConfigName="Win64-Release"/>
+      <Project Name="xml" ConfigName="Win64-Release"/>
+      <Project Name="html" ConfigName="Win64-Release"/>
     </WorkspaceConfiguration>
-    <WorkspaceConfiguration Name="Win32-Debug" Selected="no">
+    <WorkspaceConfiguration Name="Win32-Debug" Selected="yes">
       <Environment/>
       <Project Name="all" ConfigName="Win32-Debug"/>
       <Project Name="base" ConfigName="Win32-Debug"/>
       <Project Name="core" ConfigName="Win32-Debug"/>
+      <Project Name="xml" ConfigName="Win32-Debug"/>
+      <Project Name="html" ConfigName="Win32-Debug"/>
     </WorkspaceConfiguration>
-    <WorkspaceConfiguration Name="Win32-Release" Selected="no">
+    <WorkspaceConfiguration Name="Win32-Release" Selected="yes">
       <Environment/>
       <Project Name="all" ConfigName="Win32-Release"/>
       <Project Name="base" ConfigName="Win32-Release"/>
       <Project Name="core" ConfigName="Win32-Release"/>
+      <Project Name="xml" ConfigName="Win32-Release"/>
+      <Project Name="html" ConfigName="Win32-Release"/>
     </WorkspaceConfiguration>
-    <WorkspaceConfiguration Name="Linux64-Debug" Selected="no">
+    <WorkspaceConfiguration Name="Linux64-Debug" Selected="yes">
       <Environment/>
+      <Project Name="xml" ConfigName="Linux64-Debug"/>
       <Project Name="core" ConfigName="Linux64-Debug"/>
       <Project Name="base" ConfigName="Linux64-Debug"/>
       <Project Name="all" ConfigName="Linux64-Debug"/>
+      <Project Name="html" ConfigName="Linux64-Debug"/>
+    </WorkspaceConfiguration>
+    <WorkspaceConfiguration Name="Linux64-Release" Selected="yes">
+      <Environment/>
+      <Project Name="all" ConfigName="Linux64-Release"/>
+      <Project Name="base" ConfigName="Linux64-Release"/>
+      <Project Name="core" ConfigName="Linux64-Release"/>
+      <Project Name="xml" ConfigName="Linux64-Release"/>
+      <Project Name="html" ConfigName="Linux64-Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>
